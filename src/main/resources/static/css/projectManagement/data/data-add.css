@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #fff;
+}
+.middle {
+    margin: 0 auto;
+    width: 1580px;
+}
+/*top show 开始*/
+.top-shows {
+    height: 60px;
+    width: 1500px;
+    margin: 10px auto;
+    background-color: rgb(177, 215, 236);
+    border-radius: 10px;
+    position: relative;
+}
+.top-shows span {
+    margin-left: 75px;
+    font-weight: 700;
+    font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    color: #333;
+}
+.top-shows img {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 15px;
+    left: 36px;
+}
+.data-head {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.data-head input {
+    outline: none;
+    display: inline-block;
+    width: 216px;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.data-head select {
+    outline: none;
+    display: inline-block;
+    width: 220px;
+    height: 34px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.data-head textarea {
+    width: 216px;
+}
+.kc {
+    border: 1px dashed rgb(104, 165, 209);
+    display: none;
+}
+
+.zx {
+    border: 1px dashed rgb(209, 129, 104);
+    display: none;
+}
+.cl {
+    border: 1px dashed rgb(104, 209, 174);
+    display: none;
+}
+
+table.altrowstable {
+    font-family: verdana, arial, sans-serif;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+table.altrowstable tbody{
+    padding: 10px;
+}
+table.altrowstable th {
+    padding: 10px;
+    padding-top:16px;
+    color: #363535;
+    width: 120px;
+    height: 140px;
+    font-size: 15px;
+    vertical-align:top;
+}
+table.altrowstableHead th {
+    height: 60px;
+}
+.altrowstable .kc th {
+    color:rgb(54, 170, 254);
+}
+.altrowstable .zx th {
+    color:rgb(209, 129, 104);
+}.altrowstable .cl th {
+     color:rgb(104, 209, 174);
+ }
+table.altrowstable td {
+    width: 370px;
+    font-size: 14px;
+    color:#868686;
+    padding: 1px;
+    vertical-align:top;
+}
+.altrowstable span {
+    color: brown;
+}
+.altrowstable .signed select{
+    width: 100px;
+    height: 30px;
+    outline: none;
+
+}
+
+/*最右边按钮*/
+.table-submit button{
+    color: #fff;
+    background-color: #1B9AF7;
+    border-color: #1B9AF7;
+    font-weight: 300;
+    font-size: 16px;
+    font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 40px;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    margin-left: 46%;
+}
+/* 资料上传下拉框 */
+.update {
+    margin:8px 0;
+    width: 335px;
+    height: 100px;
+    background-color: #fff;
+    position: relative;
+    border: 1px solid #666;
+    overflow: auto;
+
+}
+.update input{
+    background-color: #f5f5f5;
+    border: none;
+    color: rgba(70, 76, 91, 1);
+    padding: 2px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    outline:none;
+    margin-top:3px;
+    position: absolute;
+    left: 4px;
+
+}

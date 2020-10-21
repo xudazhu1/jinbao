@@ -1,0 +1,21 @@
+html {
+    background-color: #f2f2f2;
+    color: #666;
+    padding: 10px;
+    box-sizing: border-box;
+}
+/*复选框计数*/
+.checked-count {
+    display: inline-block;
+}
+/*图标样式*/
+table .layui-btn .layui-icon {
+    margin-right: 0;
+}
+/*!*iframe的关闭图标*!*/
+/*body .layui-layer-setwin .layui-layer-close2 {*/
+    /*!*top: 0;*!*/
+    /*!*right: -14px;*!*/
+    /*!*z-index: 0;*!*/
+    /*display: none;*/
+/*}*/

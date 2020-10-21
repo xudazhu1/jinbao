@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财务支出</title>
+    <meta id="permission-tag" data-name="财务支出" data-class="财务管理-财务支出" data-remark="财务支出页"/>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../js/finance/financialDisburse.js"></script>
+    <style type="text/css" >
+        body [data-name='paymentStatusBean.paymentStatusId-th'] , body [data-name='paymentStatusBean.paymentStatusId-td'] {
+            display: none!important;
+        }
+        body [data-name='expenseAccountBean.approvalStatusBean.approvalStatusId-th'] , body [data-name='expenseAccountBean.approvalStatusBean.approvalStatusId-td'] {
+            display: none!important;
+        }
+
+    </style>
+</head>
+<body>
+<header class="webTop">
+    <nav class="webTop-right">
+        <ul class="nav nav-tabs webNav">
+            <li>
+                <a href="./financialSummary.html" class="nav-item" id="index-btn">财务汇总</a>
+            </li>
+            <li>
+                <a href="./financialIncome.html" class="nav-item">财务收入</a>
+            </li>
+            <li class="active">
+                <a href="./financialDisburse.html" class="nav-item">财务支出</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+        <span class="ctl-glyphicon table-title">财务支出</span>
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <form id="searchForm">
+        <input type="hidden" name="table_utils.custom_where" value=" disburseBean.disburseAffiliation <> '资产-折旧费' ">
+        <input type="hidden" name="table_utils.custom_where"
+               value="  disburseBeanXUDAZHUpaymentStatusBean.paymentStatusId ='7'  or disburseBeanXUDAZHUexpenseAccountBeanXUDAZHUapprovalStatusBean.approvalStatusId='2' ">
+        <div class="table-div table-utils-div" id="myTable">
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

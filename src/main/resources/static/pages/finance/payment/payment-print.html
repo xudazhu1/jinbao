@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>付款申请单打印</title>
+    <meta id="permission-tag" data-name="付款申请单打印" data-class="财务管理-付款申请单" data-remark="付款申请单打印页"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../../css/finance/payment/payment-print.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/jQueryPrint/jQuery.print.js"></script>
+    <script type="text/javascript" src="../../../js/finance/payment/payment-print.js"></script>
+    <style>
+        [data-category="部门日常"] .project-num-tr,
+        [data-category="部门日常"] .project-state-tr,
+        [data-category="部门日常"] .paid-boss-tr,
+        [data-category="部门日常"] .earningsCompany-th,
+        [data-category="部门日常"] .earningsCompany-td,
+        [data-category="部门日常"] .all-boss-th,
+        [data-category="部门日常"] .all-boss-td,
+        [data-category="部门日常"] .add-boss-tr
+        {
+            display: none;
+        }
+        [data-category="部门日常"] .innerTable-td table{
+            margin: 0 auto;
+        }
+        [data-category="部门日常"] .pay-money-th{
+            height: 50px;
+        }
+
+        [data-category="业务提成"] .paid-boss-tr{
+             display: none;
+         }
+        [data-category="项目花销"] .paid-boss-tr{
+            display: none;
+        }
+        .print-btn {
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 10px;
+            font-size: 12px;
+            border-radius: 3px;
+            background-color: rgb(105, 198, 152);
+            border:none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div style="width: 1000px;margin: 0 auto;text-align: right;padding: 0 70px;box-sizing: border-box;">
+    <button type="button" class="print-btn" title="打印">打印</button>
+</div>
+
+<div class="middle" id="middle">
+    <div class="content" data-category="">
+        <!-- 头部开始 -->
+        <h2>付款申请单</h2>
+        <div class="head clearfix">
+            <div class="head-inner">
+                <span>费用类别(大类):</span>
+                <span data-text="disburseDetailBean.disburseTypeBean.disburseCategoryBean.disburseCategoryName"></span>
+            </div>
+            <div class="head-inner">
+                <span>付款申请编号:</span>
+                <span data-text="disburseNum"></span>
+            </div>
+            <div class="head-inner">
+                <span>申请部门:</span>
+                <span data-text="departmentBean.departmentName" class="department-span"></span>
+            </div>
+        </div>
+        <!-- 表格开始 -->
+        <div class="table">
+            <table>
+                <!-- 第一部分 -->
+                <tbody class="table-b1">
+                <tr class="red">
+                    <th>费用类型(中类)：</th>
+                    <td data-text="disburseDetailBean.disburseTypeBean.disburseTypeName"></td>
+                    <th>费用明细(小类)：</th>
+                    <td data-text="disburseDetailBean.disburseDetailName"></td>
+                    <th>付款单位:</th>
+                    <td data-text="secondPartyBean.secondPartyName"></td>
+                </tr>
+                <tr class="red">
+                    <th rowspan="2" class="content-th"></th>
+                    <td rowspan="2" colspan="3" data-text="disburseExpenseAccountContent" class="content-td"></td>
+                    <th>付款方式：</th>
+                    <td data-text="disburseMode"></td>
+                </tr>
+                <tr>
+                    <th>填写日期：</th>
+                    <td data-text="disburseTime"></td>
+                </tr>
+                <tr class="red project-num-tr">
+                    <th>项目编号：</th>
+                    <td data-text="implementBean.projectBean.projectNum"></td>
+                    <th>经营类型：</th>
+                    <td data-text="implementBean.projectBean.projectManagementType"></td>
+                    <th>业务人:</th>
+                    <td data-text="implementBean.projectBean.managementBean.managementPartnersBean.userBean.userName"></td>
+                </tr>
+                <tr class="red project-state-tr">
+                    <th>项目状态：</th>
+                    <td data-text="implementBean.projectStatusBean.projectStatusName"></td>
+                    <th>合同状态：</th>
+                    <td data-text="implementBean.projectBean.contractBean.contractState"></td>
+                    <th>合同金额:</th>
+                    <td data-text="implementBean.projectBean.contractBean.contractMoney"></td>
+                </tr>
+
+                </tbody>
+                <!-- 第二部分 -->
+                <tbody class="table-b2">
+                <tr class="paid-boss-tr">
+                    <th>已付班组费</th><!--已付班组费：-->
+                    <td colspan="3" class="paidBoss"></td><!--老板审核通过 付了多少-->
+                    <th>班组老板</th>
+                    <td data-text="squadGroupFeeBean.squadGroupFeeName"></td>
+                </tr>
+                <tr>
+                    <th class="all-boss-th">总共应付班组费</th><!--总共应付班组费：-->
+                    <td class="all-boss-td"></td><!--根据生产费抓取这个老板的金钱 总和-->
+                    <th rowspan="3" class="pay-money-th">本次付款金额：</th> <!-- colspan 跨行 rowspan 跨列   -->
+                    <td rowspan="3" colspan="1" class="pay-money-td" data-text="disbursePaymentAmount"></td>
+                    <th rowspan="2" class="subclass-money-th">本次付款金额1：</th> <!-- colspan 跨行 rowspan 跨列   -->
+                    <td rowspan="2"  class="subclass-money-td"></td>
+                </tr>
+                <tr class="add-boss-tr">
+                    <th class="add-boss-th">本次付款后累计班组费付款金额：</th><!--本次付款后累计班组费付款金额：-->
+                    <td class="add-boss-td"></td><!--全部关于这个老板的班组费  包括这次的-->
+
+                </tr>
+                <tr style="display: none">
+                    <th class="typeName">本次付款后累计业务提成/回款总金额（%）:</th><!--本次付款后累计班组费付款比（%）： -->
+                    <td class="incomeMoneyRatio-td"></td>
+                    <th class="subclass-ratio-th">本次付款金额2：</th> <!-- colspan 跨行 rowspan 跨列   -->
+                    <td class="subclass-ratio-td"></td>
+                </tr>
+                <tr>
+                    <th class="earningsCompany-th">收益单位</th><!--本次付款后累计班组费付款比（%）： 改成收益单位-->
+                    <td class="earningsCompany-td" data-text="earningsCompanyBean.earningsCompanyName"></td><!-- 这个老板全部班组费 / 生产费 这个老板金额总和-->
+                    <td colspan="4" class="innerTable-td">
+                        <table class="innerTable">
+                            <tr>
+                                <td colspan="3">人民币（大写）：</td>
+                                <td>零</td>
+                                <td>仟</td>
+                                <td>零</td>
+                                <td>佰</td>
+                                <td>零</td>
+                                <td>拾</td>
+                                <td>零</td>
+                                <td>万</td>
+                                <td>零</td>
+                                <td>仟</td>
+                                <td>零</td>
+                                <td>佰</td>
+                                <td>零</td>
+                                <td>拾</td>
+                                <td>零</td>
+                                <td>元</td>
+                                <td>零</td>
+                                <td>角</td>
+                                <td>零</td>
+                                <td>分</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+                <!-- 第三部分 -->
+                <tbody class="table-b1">
+                <tr>
+                    <th rowspan="4">收款单位：</th>
+                </tr>
+                <tr>
+                    <th>名称：</th>
+                    <td colspan="4" data-text="disbursePayee"></td>
+                </tr>
+                <tr>
+                    <th>开户行：</th>
+                    <td colspan="4" data-text="disburseCollectionBank"></td>
+                </tr>
+                <tr>
+                    <th>银行账号：</th>
+                    <td colspan="4" data-text="financeShroffAccountNumber"></td>
+                </tr>
+                <tr>
+                    <th>付款备注：</th>
+                    <td colspan="3" data-text="disburseRemarks"></td>
+                    <th>是否已开票据:</th>
+                    <td data-text="disburseHaveTicket"></td>
+                </tr>
+                <tr class="write">
+                    <th>附件：（发票、收据、收款条）</th>
+                    <td colspan="5">线下手填</td>
+                </tr>
+                </tbody>
+                <!-- 第四部分 -->
+                <tbody>
+                <tr class="advice">
+                    <th>经办人意见</th>
+                    <td colspan="5">
+
+                    </td>
+                </tr>
+                <tr class="advice">
+                    <th>部门负责人意见</th>
+                    <td colspan="5">
+
+                    </td>
+                </tr>
+                <tr class="advice">
+                    <th>总经理意见</th>
+                    <td colspan="5">
+
+                    </td>
+                </tr>
+                <tr class="advice">
+                    <th>财务部意见</th>
+                    <td colspan="5">
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<!-- 返回 -->
+<script>
+    $(".print-btn").on('click', function () {
+        //Print ele4 with custom options
+        $("#middle").print({
+            globalStyles: true,//是否包含父文档的样式，默认为true
+            mediaPrint: false,//是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+            stylesheet: null,//外部样式表的URL地址，默认为null
+            noPrintSelector: ".no-print",//不想打印的元素的jQuery选择器，默认为".no-print"
+            iframe: true,//是否使用一个iframe来替代打印表单的弹出窗口，true为在本页面进行打印，false就是说新开一个页面打印，默认为true
+            append: null,//将内容添加到打印内容的后面
+            prepend: null,//将内容添加到打印内容的前面，可以用来作为要打印内容
+            deferred:
+                $.Deferred()//回调函数
+        });
+    });
+</script>
+</body>
+
+</html>

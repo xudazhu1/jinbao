@@ -1,0 +1,11 @@
+body {
+    /*min-width: 1000px;*/
+    overflow: auto;
+}
+td {
+    word-wrap: break-word;
+    word-break:break-all;
+}
+tbody button {
+    margin-left: 5px;
+}

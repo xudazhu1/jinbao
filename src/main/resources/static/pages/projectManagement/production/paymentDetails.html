@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta id="permission-tag" data-name="班组费付款明细展示页" data-class="项目管理-班组费" data-remark="班组费付款明细页面，只能进行查看"/>
+    <title>班组费付款明细展示页</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/build.css" media="all">
+    <link rel="stylesheet" href="../../../css/set/role.css" media="all">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/soulTable.css" media="all">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script src="../../../js/xudazhu.js"></script>
+    <script src="../../../vendor/echart/echarts.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/production/paymentDetails.js"></script>
+</head>
+<style>
+    label{
+        margin-bottom:0;
+    }
+    .layui-table-tips-c{
+        padding:0;
+    }
+    .soul-bottom-contion .editCondtion{
+        display: none;
+    }
+    .soul-bottom-contion{
+        display: none;
+    }
+    .layui-right{
+        float: right;
+        margin-top: 3px;
+    }
+    .layui-table-tool-temp{
+        padding-right: 100px;
+    }
+    .clearfix{
+        clear:both;
+    }
+    .layui-table-tool .layui-inline[lay-event]{
+        background-color: #fff;
+    }
+    .type-form{
+       display: none;
+    }
+</style>
+<body>
+<div class="project-show project-show-margin">
+    <div id="layui-copeWith" class="layui-form type-form" style="margin-top:15px">
+        <div style="font-size: 18px;">合计应付详情信息</div>
+        <table class="layui-table">
+            <thead class="layui-thead">
+            <tr>
+                <th>序号</th>
+                <th>班组费类型</th>
+                <th>班组老板</th>
+                <th>金额</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody class="layui-copeWith">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="layui-paid" class="layui-form type-form" style="margin-top:15px">
+        <div style="font-size: 18px;">已付详情信息</div>
+        <table class="layui-table">
+            <thead class="layui-thead">
+            <tr>
+                <th>支出编号</th>
+                <th>日期</th>
+                <th>费用明细</th>
+                <th>支出费用</th>
+                <th>付款方式</th>
+                <th>费用归属单位</th>
+            </tr>
+            </thead>
+            <tbody class="layui-paid">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

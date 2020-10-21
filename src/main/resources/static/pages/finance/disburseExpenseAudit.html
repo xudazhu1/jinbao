@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报销审核展示</title>
+    <meta id="permission-tag" data-name="报销审核展示" data-class="财务管理-报销" data-remark="报销审核展示页"/>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../js/finance/disburseExpenseAudit.js"></script>
+    <style>
+
+        body [data-name='disburseBeans.disbursePaymentAmount-th'] {
+            display: none!important;
+        }
+        body [data-name='disburseBeans.disbursePaymentAmount-td'] {
+            display: none!important;
+        }
+        body [data-name='disburseBeans.disburseInvoiceMoney-th'] {
+            display: none!important;
+        }
+        body [data-name='disburseBeans.disburseInvoiceMoney-td'] {
+            display: none!important;
+        }
+
+        .layui-tab-title {
+            position: relative;
+            left: 0;
+            height: 41px;
+            white-space: nowrap;
+            font-size: 0;
+            border-bottom: 1px solid #ccc;
+            transition: all .2s;
+            -webkit-transition: all .2s;
+        }
+
+        .layui-tab-title li {
+            list-style: none;
+            display: inline-block;
+            *display: inline;
+            *zoom: 0;
+            vertical-align: middle;
+            font-size: 14px;
+            transition: all .2s;
+            -webkit-transition: all .2s;
+            position: relative;
+            line-height: 40px;
+            min-width: 65px;
+            padding: 0 15px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 3px solid rgba(204, 204, 204, 0);
+        }
+
+        .layui-tab-title .layui-this {
+            color: #5fb878;
+            border-bottom: 2px solid #5fb878;
+            margin-top: -2px;
+        }
+
+        .add-divs .add-div {
+            display: none;
+        }
+
+        [data-title="详情"] {
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+        [data-title="详情"]:hover {
+            background-color: #5bc0de;
+            border-color: #46b8da;
+        }
+
+        [data-title="详情"]:focus {
+            background-color: #5bc0de !important;
+            border-color: #46b8da !important;
+        }
+
+        [data-title="被退回"] {
+            background-color: #f0ad4e;
+            border-color: #eea236;
+        }
+
+        [data-title="被退回"]:hover {
+            background-color: #f0ad4e;
+            border-color: #eea236;
+        }
+
+        [data-title="被退回"]:focus {
+            background-color: #f0ad4e !important;
+            border-color: #eea236 !important;
+        }
+    </style>
+</head>
+<body>
+<header class="webTop">
+    <nav class="webTop-right">
+        <ul class="nav nav-tabs webNav">
+            <li class="   permissions-elem" data-href="./disburseExpense.html" >
+                <a href="./disburseExpense.html" class="nav-item" id="my-expense">我的报销</a>
+            </li>
+            <li class="active   permissions-elem" data-href="./disburseExpenseAudit.html">
+                <a href="./disburseExpenseAudit.html" class="nav-item">报销审核</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+        <div class="time-area ctl-glyphicon">
+        </div>
+        <div class="add-divs">
+            <div class="th-checkbox add-div ctl-glyphicon permissions-elem"
+                 data-href="disburseExpense/disburseExpense-insert.html?way=add" title="添加部门报销" data-title="录入报销单"
+                 style="display: block">
+                <i class="glyphicon glyphicon-plus show-i test-normal"></i>
+            </div>
+        </div>
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <form id="searchForm">
+        <input type="hidden" name="disburseBeans.disburseAffiliation" value="报销" title="">
+        <input type="hidden" name="table_utils.custom_where" value=" expenseAccountBeanXUDAZHUapprovalStatusBean.approvalStatusId != 0 " title="">
+        <div class="table-div table-utils-div" id="myTable">
+        </div>
+    </form>
+</div>
+</body>
+</html>

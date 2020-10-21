@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实施展示</title>
+    <meta id="permission-tag" data-name="实施展示" data-class="项目管理-实施" data-remark="实施展示页" />
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../js/projectManagement/implement/implement.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script src="../../js/xudazhu.js"></script>
+    <style>
+        .recordDiv{
+            position: absolute;
+            width: 360px;
+            z-index: 99;
+            margin-top: 10px;
+            /*border: 1px #0a78ef solid;*/
+            /*background-color: white;*/
+            max-height: 160px;
+            overflow: auto;
+        }
+
+        .implRecord{
+            right: 3%;
+        }
+        .statusRecord{
+            right: 12%;
+        }
+    </style>
+
+</head>
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+        <span class="ctl-glyphicon table-title" title="实施">
+            实施
+        </span>
+
+        <div class="time-area ctl-glyphicon">
+            <div class="th-checkbox">
+                <i class="glyphicon glyphicon-th-list show-i test-normal"></i>
+                <div class="filter-div" tabindex="1">
+                    <div class="filter-body pre-scrollable test-1 " id="label_list">
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_name" checked>
+                            <label for="opera_name">项目编号</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_num" checked>
+                            <label for="opera_num">项目名称</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module134" checked>
+                            <label for="opera_module134">经营类型</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module1" checked>
+                            <label for="opera_module1">项目地点</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module" checked>
+                            <label for="opera_module">实施部门</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module11" checked>
+                            <label for="opera_module11">实施负责人</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_num2" checked>
+                            <label for="opera_num2">项目类型</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module22" checked>
+                            <label for="opera_module22">乙方名称</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module12" checked>
+                            <label for="opera_module12">项目状态</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module13" checked>
+                            <label for="opera_module13">实施记录</label>
+                        </div>
+                    </div>
+                    <div class="scrollbar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <div class="table-div">
+        <form id="searchForm">
+            <div class="table-div table-utils-div" id="myTable" >
+            </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

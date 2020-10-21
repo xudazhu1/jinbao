@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="height-fix">
+<head>
+    <meta charset="UTF-8">
+    <title>班组管理选项卡</title>
+    <meta id="permission-tag" data-name="班组管理选项卡" data-class="项目管理-工作量" data-remark="班组管理选项卡页面" />
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../vendor/sweetalert/sweet-alert.js"></script>
+    <script src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../js/share.js"></script>
+    <style type="text/css" >
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+            color: #666;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .layui-tab-item iframe {
+            width: 100%;
+            /*height: height !important;*/
+            margin-top: 15px;
+        }
+        .layui-tab-item {
+            padding: 0  ;
+        }
+
+        .height-fix {
+            height: 110%;
+        }
+
+        .layui-tab-content {
+            padding: 0;
+        }
+
+        iframe html {
+            padding: 0!important;
+        }
+
+        iframe {
+            border:  0 !important;
+        }
+    </style>
+
+</head>
+<body class="height-fix">
+<div class="layui-fluid height-fix">
+    <div class="layui-card height-fix">
+        <div class="layui-card-body height-fix">
+            <div class="layui-tab layui-tab-brief height-fix" >
+                <ul class="layui-tab-title">
+                    <li class="job-show layui-this">生产费类型</li>
+<!--                    <li class="job-show">班组费类型</li>-->
+<!--                    <li class="job-show">其他费类型</li>-->
+                    <li class="job-show">班组老板</li>
+                </ul>
+                <div class="layui-tab-content height-fix">
+                    <!--设备使用-->
+                    <div class="layui-tab-item layui-show height-fix">
+                        <iframe class="height-fix iframepage" src="teamManage/equipment.html" ></iframe>
+                    </div>
+                    <!--班组费类型-->
+<!--                    <div class="layui-tab-item  height-fix">-->
+<!--                        <iframe class="height-fix iframepage" src="teamManage/teamFeeTypeList.html"></iframe>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;其他费类型&ndash;&gt;-->
+<!--                    <div class="layui-tab-item height-fix"  >-->
+<!--                        <iframe class="height-fix iframepage" src="teamManage/otherFeeTypeList.html" onLoad="changeFrameHeight()" ></iframe>-->
+<!--                    </div>-->
+                    <!--班组老板-->
+                    <div class="layui-tab-item height-fix">
+                        <iframe class="height-fix iframepage" src="teamManage/teamManageList.html" ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // setTimeout(function () {
+    //     $("iframe").each(function (index , iFrameTemp) {
+    //         iFrameTemp.contentWindow.document.getElementsByTagName("html")[0].style.padding = "0";
+    //     });
+    // } , 100 );
+    $(document).on("click" , ".layui-tab-title li" , function () {
+        $("iframe").each(function (index , iFrameTemp) {
+            iFrameTemp.contentWindow.document.getElementsByTagName("html")[0].style.padding = "0";
+        });
+    });
+
+    function changeFrameHeight(){
+       var ifm= document.getElementsByClassName("iframepage");
+        ifm.height=document.documentElement.clientHeight - 400;
+          console.log("ifram高度:"+ifm.height);
+    }
+
+    window.onresize=function(){
+        changeFrameHeight();
+
+    }
+
+</script>
+</html>

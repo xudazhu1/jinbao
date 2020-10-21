@@ -1,0 +1,164 @@
+select[readonly] + .layui-form-select .layui-anim {
+    display: none !important;
+}
+select[readonly] + .layui-form-select .layui-edge {
+    display: none !important;
+}
+select[readonly] + .layui-form-select .layui-input {
+    cursor: auto !important;
+    background-color: initial;
+    border: none;
+}
+select[readonly] + .layui-form-select .layui-input:hover {
+    background-color: initial;
+}
+
+select[data-select-hidden] + .layui-form-select {
+    display: none !important;
+}
+
+.layui-card-header {
+    text-align: center;
+}
+
+.no-tab {
+    white-space: nowrap;
+}
+
+.management-money-back-estimation tr td button {
+    width: 24px;
+    margin: 0 !important;
+}
+
+html {
+    background-color: #f2f2f2;
+    padding: 8px 30px;
+    box-sizing: border-box;
+}
+
+body .layui-card-header {
+    color: #efb019;
+}
+
+body .layui-form-label {
+    color: #538cd8;
+    width: 98px;
+    padding: 9px 7px;
+}
+
+body .layui-elem-quote > span {
+    color: #47a3dc;
+    font-size: 16px;
+}
+
+button {
+    margin: 2px 4px;
+}
+
+body .layui-form select {
+    top: 6px;
+    position: absolute;
+    display: block;
+    border: none;
+    opacity: 0.01;
+}
+
+.payment-condition .layui-col-sm4 {
+    padding-right: 20px;
+    margin-top: 5px;
+}
+
+span[data-text] , span.data-info {
+    line-height: 32px;
+}
+
+body .layui-form-item {
+    margin-bottom: 0;
+}
+
+
+.inner-table th {
+    white-space: nowrap;
+}
+.inner-table td {
+    white-space: nowrap;
+}
+
+.hidden-dom {
+    /*display: none;*/
+}
+
+
+body.way .audit-only-write {
+    cursor: auto !important;
+    background-color: initial;
+    border: none;
+}
+body.way .audit-only-write + .layui-form-select input {
+    cursor: auto !important;
+    background-color: initial;
+    border: none;
+}
+body.audit .audit-only-write {
+    cursor: auto !important;
+    background-color: initial;
+    border: 1px solid #D2D2D2;
+}
+body.audit .audit-only-write + .layui-form-select input {
+    cursor: auto !important;
+    background-color: initial;
+    border: 1px solid #D2D2D2;
+}
+body.audit .add-only-show {
+    display: none;
+}
+body.audit .sum-card input,body.audit .sum-card textarea{
+    cursor: auto !important;
+    border: none;
+}
+
+body.way input[readonly]:not(.layui-unselect) , body.way select[readonly] + .layui-form-select input {
+    border: none;
+}
+body.way [name][readonly]:not(.layui-unselect)  {
+    border: none;
+}
+body.way .add-only-show {
+    display: none;
+}
+body.add .add-only-show {
+    display: block;
+}
+body.add td.add-only-show , body.add th.add-only-show {
+    display: table-cell;
+}
+body.way .confirm-btn {
+    display: none;
+}
+body.add .confirm-btn , body.audit .confirm-btn  {
+    display: block;
+}
+
+body.way .audit-only-write:hover {
+    background-color: initial;
+}
+
+/*永为readonly*/
+body.way .my-readonly + .layui-form-select input {
+    cursor: auto !important;
+    background-color: initial;
+    border: none;
+}
+body.way .my-readonly  {
+    cursor: auto !important;
+    background-color: initial;
+    border: none;
+}
+
+select.my-readonly + .layui-form-select .layui-anim {
+    display: none !important;
+}
+select.my-readonly + .layui-form-select .layui-edge {
+    display: none !important;
+}
+

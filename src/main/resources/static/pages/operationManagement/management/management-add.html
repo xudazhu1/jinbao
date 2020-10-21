@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="添加/编辑经营管理" data-class="经营管理-经营" data-remark="添加/编辑经营管理"/>
+    <title>添加/编辑经营管理</title>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/xudazhu-layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/Mtils/Mtils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/operationManagement/management/management-add.js"></script>
+
+    <!--suppress CssUnusedSymbol -->
+    <style>
+        select[data-select-hidden] + .layui-form-select {
+            display: none !important;
+        }
+
+        .no-tab {
+            white-space: nowrap;
+        }
+
+        .management-money-back-estimation tr td button {
+            width: 24px;
+            margin: 0 !important;
+        }
+
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form-label {
+            width: 98px;
+            padding: 9px 7px;
+        }
+
+
+        body .layui-elem-quote > span {
+            color: #47a3dc;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 2px 4px;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+
+        .payment-condition .layui-col-sm4 {
+            padding-right: 20px;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-lg-offset3 layui-col-lg6">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-row ">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">项目编号：</label>
+                            <div class="layui-input-block">
+                                <input type="text" readonly data-notice-path="projectBean.projectNum" value=""
+                                       placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input">
+                                <input type="hidden" readonly name="projectBean.projectId" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input">
+                                <input type="hidden" readonly name="managementId" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">项目名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" title="" data-notice-path="projectBean.projectName" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input quoteName" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">基本信息</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-form-item">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <!--<label class="layui-form-label">*经营类型：</label>-->
+                            <!--<div class="layui-input-block">-->
+                            <!--<select title="" name="projectManagementType" lay-filter="projectManagementType" class=" projectManagementType">-->
+                            <!--<option></option>-->
+                            <!--<option>自营</option>-->
+                            <!--<option>合作</option>-->
+                            <!--</select>-->
+                            <!--</div>-->
+                            <label class="layui-form-label">经营类型：</label>
+                            <div class="layui-input-block">
+                                <input type="text" readonly data-notice-path="projectBean.projectManagementType"
+                                       value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input projectManagementType">
+                            </div>
+                            <label class="layui-form-label no-tab">协调费/协作费：</label>
+                            <div class="layui-input-block">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <select title="" name="managementCoordinateFee" lay-filter="managementCoordinateFee"
+                                        class=" managementCoordinateFee">
+                                    <option></option>
+                                    <option>有</option>
+                                    <option>无</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label no-tab">提成模式：</label>
+                            <div class="layui-input-block">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <select title="" name="managementCommissionMode" lay-filter="managementCommissionMode"
+                                        class="managementCommissionMode">
+                                    <option></option>
+                                    <option data-type="自营">牛逼(特殊)</option>
+                                    <option data-type="自营">牛逼(普通)</option>
+                                    <option data-type="自营">小挣</option>
+                                    <option data-type="自营">劳务</option>
+                                    <option data-type="自营">承包</option>
+                                    <option data-type="合作">配合</option>
+                                    <option data-type="初始">初始</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label no-tab managementPartner"> 业务人：</label>
+                            <div class="layui-input-block managementPartner">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <select title="" lay-filter="managementPartner" lay-search
+                                        name="managementPartnersBean.managementPartnersId"
+                                        class="managementPartner">
+                                    <option></option>
+                                    <!--                                    <option>徐大柱</option>-->
+                                    <!--                                    <option>司利强</option>-->
+                                </select>
+                            </div>
+                            <label class="layui-form-label no-tab managementPartnersIdentity-dom "> 身份标识符：</label>
+                            <div class="layui-input-block managementPartnersIdentity-dom ">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input type="text" data-notice-path="managementPartnersIdentity"
+                                       name="managementPartnersIdentity" value="" placeholder=""
+                                       autocomplete="off" readonly
+                                       class="layui-input ">
+                            </div>
+                            <label class="layui-form-label no-tab managementRefereesName"> 推荐人：</label>
+                            <div class="layui-input-block managementRefereesName">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input type="hidden" name="refereeUserBean.userId" value="" placeholder=""
+                                       autocomplete="off" readonly
+                                       class="layui-input managementRefereesNameInput">
+                                <input type="text" data-notice-path="refereeUserBean.userName" value="" placeholder=""
+                                       autocomplete="off" readonly
+                                       class="layui-input managementRefereesNameInput">
+                            </div>
+<!--                            <label class="layui-form-label no-tab managementCooperationFee"-->
+<!--                                   style="display: none">合作费：</label>-->
+<!--                            <div class="layui-input-block managementCooperationFee" style="display: none">-->
+<!--                                <input type="number" name="managementCooperationFee" value="" placeholder=""-->
+<!--                                       autocomplete="off"-->
+<!--                                       class="layui-input managementCooperationFee double-input ">-->
+<!--                            </div>-->
+                            <label class="layui-form-label no-tab managementCorporateProfits" style="display: none">公司利润：</label>
+                            <div class="layui-input-block managementCorporateProfits" style="display: none">
+                                <input type="number" name="managementCorporateProfits" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input managementCorporateProfits double-input ">
+                            </div>
+                            <label class="layui-form-label managementContractFee" style="display: none">承包费：</label>
+                            <div class="layui-input-block managementContractFee" style="display: none">
+                                <input type="number" name="managementContractFee" placeholder="" autocomplete="off"
+                                       class="layui-input ">
+                            </div>
+                            <label class="layui-form-label">备注：</label>
+                            <div class="layui-input-block">
+                                <textarea type="text" style="height: 60px;" name="managementRemark" title=""
+                                      autocomplete="on"
+                                      class="layui-input "></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label no-tab"> &nbsp;*经营主负责人：</label>
+                            <div class="layui-input-block">
+                                <!--<input type="text" name="managementMainHead" placeholder="" autocomplete="off"-->
+                                <!--class="layui-input  select-tree-btn head select-tree-btn"-->
+                                <!--data-href="../../set/user/user-select.html?num=1" data-type="经营主负责人">-->
+                                <select name="managementMainHead" title="" class="managementMainHead"
+                                        lay-filter="userName" lay-search></select>
+                            </div>
+                            <label class="layui-form-label no-tab">税率：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="managementRate" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input management-rate double-input ">
+<!--                                <select name="managementRate" lay-filter="managementRate" >-->
+<!--                                    <option value="0.09"> 9% </option>-->
+<!--                                    <option value="0.056"> 5.6% </option>-->
+<!--                                    <option value="0.0"> 0% </option>-->
+<!--                                </select>-->
+                            </div>
+                            <label class="layui-form-label no-tab">管理费率：</label>
+                            <div class="layui-input-block">
+<!--                                <input type="number" name="managementFee" value="0.03" placeholder=""-->
+<!--                                       autocomplete="off"-->
+<!--                                       class="layui-input management-rate double-input ">-->
+                                <select name="managementFee" lay-filter="managementFee" >
+                                    <option value="0.03"> 3% </option>
+                                    <option value="0.04"> 4% </option>
+                                    <option value="0.06"> 6% </option>
+                                    <option value="0.01"> 1% </option>
+                                </select>
+
+                            </div>
+                            <label class="layui-form-label">财评金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="managementGoodsEvaluationAmount" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input ">
+                            </div>
+                            <label class="layui-form-label">预算金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="managementSettlementAmount" placeholder="" autocomplete="off"
+                                       class="layui-input ">
+                            </div>
+                            <label class="layui-form-label">审计金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="managementAuditAmount" placeholder="" autocomplete="off"
+                                       class="layui-input ">
+                            </div>
+                            <label class="layui-form-label">业务介绍人：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="managementSponsor" placeholder="" autocomplete="off"
+                                       class="layui-input ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style=" text-align: right;  margin: 15px 0; width: 100%; ">
+                <button class="layui-btn confirm-btn" style="/* margin-top: 15px; *//* float: right; */" type="button">
+                    提交更改
+                </button>
+            </div>
+
+            <!--            <div class="layui-card payment-condition management-money-back-estimation">-->
+            <!--                <div class="layui-card-body">-->
+            <!--                    <div class="layui-tab-item layui-show">-->
+            <!--                        <button type="button" class="layui-btn layui-btn-sm add_management_money_back_estimation">添加预估回款-->
+            <!--                        </button>-->
+            <!--                        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"-->
+            <!--                                style="display: none">批量删除-->
+            <!--                        </button>-->
+            <!--                        &lt;!&ndash;<div class="checked-count">&ndash;&gt;-->
+            <!--                        &lt;!&ndash;<span>已选择</span>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;<span class="checked-num">0</span>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;<span>项</span>&ndash;&gt;-->
+            <!--                        &lt;!&ndash;</div>&ndash;&gt;-->
+            <!--                        <table class="layui-table management_money_back_estimation" data-table="management_money_back_estimation">-->
+            <!--                            <thead>-->
+            <!--                            <tr>-->
+            <!--                                <th style="width: 160px;" >序号</th>-->
+            <!--                                <th style="width: 120px;">预估条件/时间</th>-->
+            <!--                                <th style="width: 80px;">预估金额</th>-->
+            <!--                                <th style="width: 80px;">已回总金额</th>-->
+            <!--                                <th style="width: 80px;">已有回款</th>-->
+            <!--                                <th style="width: 50px;">状态</th>-->
+            <!--                                <th style="width: 60px;">操作</th>-->
+            <!--                            </tr>-->
+            <!--                            </thead>-->
+            <!--                            <tbody id="management_money_back_estimation_tBody">-->
+            <!--                            <tr class="newTr">-->
+            <!--                                <td>1</td>-->
+            <!--                                <td>条件1</td>-->
+            <!--                                <td>50000</td>-->
+            <!--                                <td>40000</td>-->
+            <!--                                <td>2笔</td>-->
+            <!--                                <td>完成</td>-->
+            <!--                                <td class="do-td">-->
+            <!--                                    <button>-->
+            <!--                                        <span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange" title="编辑"></span>-->
+            <!--                                    </button>-->
+            <!--                                    <button>-->
+            <!--                                        <span class="layui-icon layui-icon-delete del-btn" data-id="2" style="color: #ff4646" title="删除"></span>-->
+            <!--                                    </button>-->
+            <!--                                </td>-->
+            <!--                            </tr>-->
+            <!--                            </tbody>-->
+            <!--                        </table>-->
+            <!--                    </div>-->
+
+            <!--                </div>-->
+            <!--            </div>-->
+<!--            <div class="layui-card">-->
+<!--                <div class="layui-card-body">-->
+<!--                    <div>-->
+<!--                        <blockquote class="layui-elem-quote layui-quote-nm">-->
+<!--                            <div class="layui-row">-->
+<!--                                <label class="layui-form-label" style="padding: 9px 0">流程动作：</label>-->
+<!--                                <div class="layui-input-block  flow-select">-->
+<!--                                    &lt;!&ndash;suppress HtmlUnknownAttribute &ndash;&gt;-->
+<!--                                    <select title="" name="thisFlowNodeId" lay-filter="thisFlowNodeId">-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </blockquote>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;通知&ndash;&gt;-->
+<!--                    <div class="choose-parent">-->
+<!--                        <blockquote class="layui-elem-quote layui-quote-nm">-->
+<!--                            <span>通知人</span>-->
+<!--                            <button class="layui-btn layui-btn-xs layui-btn-normal add-people select-tree-btn"-->
+<!--                                    data-href="../../set/user/user-select.html?" data-type="通知" type="button">添加-->
+<!--                            </button>-->
+<!--                            <div class="user-div choose-wait">-->
+<!--                            </div>-->
+<!--                        </blockquote>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;待办&ndash;&gt;-->
+<!--                    <div>-->
+<!--                        <blockquote class="layui-elem-quote layui-quote-nm">-->
+<!--                            <span>待办人</span>-->
+<!--                            <div class="layui-row todo-list">-->
+<!--                                &lt;!&ndash;&lt;!&ndash;合同上传&ndash;&gt;&ndash;&gt;-->
+<!--                                &lt;!&ndash;<div class="layui-col-sm4 choose-parent">&ndash;&gt;-->
+<!--                                &lt;!&ndash;<fieldset class="layui-elem-field">&ndash;&gt;-->
+<!--                                &lt;!&ndash;<legend>&ndash;&gt;-->
+<!--                                &lt;!&ndash;<button class="layui-btn layui-btn-xs layui-btn-normal select-tree-btn" type="button"&ndash;&gt;-->
+<!--                                &lt;!&ndash;data-href="../../set/user/user-select.html?" data-type="待办">合同上传</button>&ndash;&gt;-->
+<!--                                &lt;!&ndash;</legend>&ndash;&gt;-->
+<!--                                &lt;!&ndash;<div class="layui-field-box" >&ndash;&gt;-->
+<!--                                &lt;!&ndash;&lt;!&ndash; 默认待办人&ndash;&gt;&ndash;&gt;-->
+<!--                                &lt;!&ndash;<div class="default-wait">&ndash;&gt;-->
+<!--                                &lt;!&ndash;<button class="layui-btn layui-btn-sm layui-btn-primary" type="button">许书兰&ndash;&gt;-->
+<!--                                &lt;!&ndash;</button>&ndash;&gt;-->
+<!--                                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                &lt;!&ndash;&lt;!&ndash;可选可删待办人&ndash;&gt;&ndash;&gt;-->
+<!--                                &lt;!&ndash;<div class="choose-wait user-div">&ndash;&gt;-->
+<!--                                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                                &lt;!&ndash;</fieldset>&ndash;&gt;-->
+<!--                                &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                            </div>-->
+
+<!--                        </blockquote>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

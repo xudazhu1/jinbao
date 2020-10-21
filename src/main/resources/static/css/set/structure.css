@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: rgb(245, 245, 247);
+    /*min-height: 700px;*/
+    width: 100%;
+}
+.structure-tree {
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    /*width: 100%;*/
+    overflow: auto;
+}
+.structure-tree ul {
+    display: flex;
+}
+.structure-tree li {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 auto;
+
+}
+.node-box {
+    position: relative;
+    min-width: 65px;
+    border-top:5px solid rgb(87, 106, 149);
+    padding: 8px 10px;
+    display: inline-block;
+    background-color: #fff;
+    margin: 10px;
+    /*border-radius: 4px;*/
+    box-shadow: #c7c7c7 0px 0px 5px;
+}
+.node-box i {
+    cursor: pointer;
+}
+.node-box .layui-icon-close {
+    position: absolute;
+    font-size: 6px;
+    color: #f9f5f5;
+    font-weight: 900;
+    right: -9px;
+    top: -14px;
+    background-color: #f19292;
+    border-radius: 50%;
+    padding: 3px 4px;
+    border: 1px solid #fff;
+    outline: none;
+    display: none;
+}
+.node-add {
+    /*padding-top: 6px;*/
+    padding-bottom: 40px;
+    display: inline-block;
+    position: relative;
+    /*z-index: 2;*/
+}
+.node-add-btn {
+    border: none;
+    outline: none;
+    width: 26px;
+    height: 26px;
+    background: #3296fa;
+    border-radius: 50%;
+    position: relative;
+}
+.node-add-btn span {
+    color: #fff;
+    text-align: center;
+}
+/* 辅助线*/
+.canvas {
+    position: absolute;
+    top:0;
+    left: 0;
+}
+.my-line {
+    position: absolute;
+    border: 1px solid #cacaca;
+    z-index: -1;
+}
+
+/*lauyi样式*/
+body .layui-layer-rim {
+    border: none;
+}
+
+/*下级结构弹出框*/
+.sub-container {
+    padding: 10px;
+}
+.sub-info {
+    width: 100%;
+    padding: 0px 15px;
+    min-height: 38px;
+    background: #eceff4;
+    line-height: 38px;
+}
+.sub-info-add>div {
+    padding: 10px 10px 2px 10px;
+}
+.sub-info-add label {
+    width: 100px;
+}
+.sub-info-btn {
+    padding-top: 40px;
+}
+
+/*关闭按钮*/
+body .layui-layer-setwin .layui-layer-close2{
+    top: 0;
+    right: -14px;
+}
+
+/*选择添加职位还是部门*/
+.select-type-div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 20;
+    display: none;
+}
+.select-type {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 160px;
+    height: 80px;
+    position: absolute;
+    left: 33px;
+    top: -12px;
+    padding: 12px 0px 5px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+.select-type i {
+    font-size: 28px;
+    cursor: pointer;
+}
+.select-type span {
+    display: block;
+    cursor: pointer;
+    padding: 4px;
+}
+.layui-icon-home {
+    color: orange;
+}
+.layui-icon-home:hover {
+    color: #ff5317;
+}
+.layui-icon-user {
+    color: #00b4ef;
+}
+.layui-icon-user:hover {
+    color: #0a78ef;
+}
+/*箭头*/
+.arrow {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 12px;
+    left: 29px;
+}
+.select-type-div .layui-icon-close {
+    font-size: 14px;
+    position: absolute;
+    top: 2px;
+    right: 5px;
+}
+
+.node-name , .node-box  {
+    white-space: nowrap;
+}

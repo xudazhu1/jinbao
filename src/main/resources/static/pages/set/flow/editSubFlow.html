@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑流程节点</title>
+    <meta id="permission-tag" data-name="编辑流程节点" data-class="设置-流程管理" data-remark="可以编辑流程节点,编辑其名称,对应页面,对该流程进行一定的角色和职位分配"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/set/structure/editStructure.css">
+    <link rel="stylesheet" href="../../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/sweetalert/sweet-alert.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/share.js"></script>
+    <script type="text/javascript" src="../../../js/flow/editSubFlow.js"></script>
+    <!--<script type="text/javascript" src="../../../js/set/structure/editStructure.js"></script>-->
+</head>
+<body>
+<form class="layui-form structure-form" id="inputForm">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md4">
+                <div class="layui-card">
+                    <div class="layui-card-header">节点信息</div>
+                    <div class="layui-card-body layui-text">
+                        <div class="layui-row sub-info-add">
+                            <div>
+                                <label class="layui-form-label">节点名称：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="flowSubName"  placeholder="" autocomplete="off"
+                                           class="layui-input this-name need-input" >
+                                    <input type="hidden" name="flowSubId" id="flowSubId" class="flowSubId">
+                                    <input type="hidden" name="flowBean.flowId" id="flowId" class="flowId">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label" style="width: 100px;padding: 10px 0;">节点对应页面：</label>
+                                <div class="layui-input-block select-tree-btn"  data-href="../permission/permission-select.html?num=1">
+                                    <input type="text" name="flowSubPage"   placeholder="请选择" autocomplete="off"
+                                           class="layui-input this-name need-input" id="permissionName">
+                                    <input type="hidden" name="permissionBean.permissionId" class="this-name-hidden" id="permissionId">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">节点描述：</label>
+                                <div class="layui-input-block">
+                                    <textarea name="flowSubDescribe" id="flowSubDescribe" placeholder="" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label"> 上级节点：</label>
+                                <div class="layui-input-block">
+                                    <textarea  placeholder="" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md8">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-tab layui-tab-brief" >
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">角色分配</li>
+                                <li class="job-show">职位分配</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show">
+                                    <button type="button" class="layui-btn layui-btn-sm select-tree-btn"
+                                            data-href="../role/role-select.html">添加
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                            style="display: none">批量删除
+                                    </button>
+                                    <div class="checked-count">
+                                        <span>已选择</span>
+                                        <span class="checked-num">0</span>
+                                        <span>项</span>
+                                    </div>
+                                    <table class="layui-table">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <input placeholder="" type="checkbox" lay-skin="primary">
+                                            </th>
+                                            <th>序号</th>
+                                            <th>权限名称</th>
+                                            <th>权限备注(描述)</th>
+                                            <th>操作框</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="roles">
+                                        <tr>
+                                            <td>
+                                                <input title="" type="checkbox" lay-skin="primary">
+                                            </td>
+                                            <td>5</td>
+                                            <td>录入报销单</td>
+                                            <td>录入报销单remark</td>
+                                            <td>
+                                                <button type="button"
+                                                        class="layui-btn layui-btn-xs layui-btn-danger delete-btn">删除
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <button type="button" class="layui-btn layui-btn-sm select-tree-btn " data-href="../job/job-select.html">
+                                        添加
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                            style="display: none">批量删除
+                                    </button>
+                                    <div class="checked-count">
+                                        <span>已选择</span>
+                                        <span class="checked-num">0</span>
+                                        <span>项</span>
+                                    </div>
+                                    <table class="layui-table">
+                                        <!--<colgroup>-->
+                                            <!--<col width="40">-->
+                                            <!--<col width="60">-->
+                                            <!--<col>-->
+                                            <!--<col width="80">-->
+                                        <!--</colgroup>-->
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" lay-skin="primary" title="">
+                                            </th>
+                                            <th>序号</th>
+                                            <th>公司名称</th>
+                                            <th>部门名称</th>
+                                            <th>职位</th>
+                                            <th>操作框</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="jobs">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="fixed-bottom">
+    <button class="layui-btn confirm-btn">确认</button>
+    <button type="reset" class="layui-btn layui-btn-primary cancel-btn">取消</button>
+</div>
+<div class="layui-input-block sub-info-btn">
+
+</div>
+<script>
+
+</script>
+</body>
+</html>

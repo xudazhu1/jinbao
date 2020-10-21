@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta id="permission-tag" data-name="工作管理列表页" data-class="设置-工作管理" data-remark="工作管理列表页,工作管理岗位单价"/>
+    <title>工作管理信息展示页</title>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css" media="all">
+    <link rel="stylesheet" href="../../css/set/teamManageList.css" media="all">
+    <link rel="stylesheet" href="../../vendor/build.css" media="all">
+    <link rel="stylesheet" href="../../css/set/role.css" media="all">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css" media="all">
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../vendor/layui/css/soulTable.css" media="all">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../js/set/WorkSet.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.js"></script>
+</head>
+<style>
+    label{
+        margin-bottom:0;
+    }
+    .layui-table-tips-c{
+        padding:0;
+    }
+    .soul-bottom-contion .editCondtion{
+        display: none;
+    }
+    .soul-bottom-contion{
+        display: none;
+    }
+    .layui-tab-title .layui-this{
+        background-color: #eee;
+        color: #666;
+    }
+    .layui-tab-title li{
+        font-size: 16px;
+        padding: 0 40px;
+    }
+    .layui-table-cell{
+        text-align: center;
+    }
+    .layui-right{
+        float: right;
+        margin-top: 3px;
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        background-color: #fff;
+        box-shadow: none;
+        margin-right: 9px;
+        border: #ccc 1px solid;
+    }
+    .layui-table-tool-temp{
+        padding-right: 100px;
+    }
+    .clearfix{
+        clear:both;
+    }
+    .layui-table-tool .layui-inline[lay-event]{
+        background-color: #fff;
+    }
+</style>
+<body>
+<!--  部门选项卡  -->
+<div class="project-show project-show-margin">
+    <div class="layui-tab" lay-filter="tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">测量部</li>
+            <li>勘察部</li>
+            <li>咨询部</li>
+            <li style="display: none;">实验室</li>
+            <li>用户对应岗位</li>
+            <li>岗位</li>
+            <li>计量单位</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!-- 测量部 -->
+            <div class="layui-tab-item layui-show">
+                <div class="ctl-div">
+                    <!--  搜索框  -->
+                    <div class="pull-right layui-form-pane pms-search-box">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">信息查询</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="measureName" placeholder="请输入..." autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button id="measureQuery" class="layui-btn" data-type="reload">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button class="layui-btn layui-btn-primary" id="measureReset">
+                                <i class="fa fa-refresh"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  表格渲染  -->
+                <div class="pms-table-wrap">
+                    <table class="layui-hide" id="measure" lay-filter="user"></table>
+                </div>
+            </div>
+            <!-- 勘察部 -->
+            <div class="layui-tab-item">
+                <div class="ctl-div">
+                    <!--  搜索框  -->
+                    <div class="pull-right layui-form-pane pms-search-box">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">信息查询</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="surveyName" placeholder="请输入..." autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button id="surveyQuery" class="layui-btn" data-type="reload">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button class="layui-btn layui-btn-primary" id="surveyReset">
+                                <i class="fa fa-refresh"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  表格渲染  -->
+                <div class="pms-table-wrap">
+                    <table class="layui-hide" id="survey" lay-filter="survey"></table>
+                </div>
+            </div>
+            <!-- 咨询部 -->
+            <div class="layui-tab-item">
+                <div class="ctl-div">
+                    <!--  搜索框  -->
+                    <div class="pull-right layui-form-pane pms-search-box">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">信息查询</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="ConsultationResetName" placeholder="请输入..." autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button id="ConsultationQuery" class="layui-btn" data-type="reload">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button class="layui-btn layui-btn-primary" id="ConsultationReset">
+                                <i class="fa fa-refresh"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  表格渲染  -->
+                <div class="pms-table-wrap">
+                    <table class="layui-hide" id="Consultation" lay-filter="Consultation"></table>
+                </div>
+            </div>
+            <!-- 实验室 -->
+            <div class="layui-tab-item" style="display: none;">
+                <div class="ctl-div">
+                    <!--  搜索框  -->
+                    <div class="pull-right layui-form-pane pms-search-box">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">信息查询</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="ExperimentName" placeholder="请输入..." autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button id="ExperimentQuery" class="layui-btn" data-type="reload">
+                                <i class="fa fa-search"></i> 查询
+                            </button>
+                            <button class="layui-btn layui-btn-primary" id="ExperimentReset">
+                                <i class="fa fa-refresh"></i> 重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  表格渲染  -->
+                <div class="pms-table-wrap">
+                    <table class="layui-hide" id="Experiment" lay-filter="Experiment"></table>
+                </div>
+            </div>
+            <!--  用户对应岗位  -->
+            <div class="layui-tab-item">
+                <div class="header-search layui-form" id="search-one" >
+                    <div class="layui-row layui-form-item" style="padding-top: 10px">
+                        <div class="layui-col-md1 label-center">
+                            <label>用户对应编号</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="squadGroupFeeGenre">
+                                <option value="">全部</option>
+                                <option value="开票">开票</option>
+                                <option value="普票">普票</option>
+                                <option value="不需开">不需开</option>
+                                <option value="3%专票">3%专票</option>
+                            </select>
+                        </div>
+
+                        <div class="layui-col-md1 label-center layui-col-md-offset1">
+                            <label>员工岗位</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left">
+                            <input type="text" name="staff"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md1 label-center layui-col-md-offset1">
+                            <label>主管岗位</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left">
+                            <input type="text" name="supervisor"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md1 label-center layui-col-md-offset1">
+                            <label>队长岗位</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left">
+                            <input type="text" name="captain"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-row layui-form-item" style="margin-top: 10px;padding-bottom: 20px">
+                        <div class="layui-col-md1 label-center">
+                            <label>用户名称</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left">
+                            <input type="text" name="userName"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md1 label-center layui-col-md-offset1">
+                            <label>部门</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="departmentBean.departmentId" class="implementName">
+                                <option value="">全部</option>
+                            </select>
+                        </div>
+                        <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                            <label>状态</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="squadGroupFeeStatusId">
+                                <option value="">全部</option>
+                                <option value="1">正常</option>
+                                <option value="2">冻结</option>
+                            </select>
+                        </div>
+                        <button type="button" class="layui-btn layui-col-md-offset1 search" style="margin-left: 250px;" id="search-userPost"  data-type="reload">搜索</button>
+                        <button type="button" class="layui-btn layui-btn-primary clear" id="clear-userPost" data-type="reload">清空</button>
+                    </div>
+                </div>
+                <table class="layui-hide" id="LAY_table_userPost" lay-filter="barPost"></table>
+            </div>
+            <!-- 岗位  -->
+            <div class="layui-tab-item">
+                <div class="header-search layui-form">
+                    <div class="layui-row layui-form-item" style="padding-top: 10px">
+                        <div class="layui-col-md1 label-center">
+                            <label>岗位编号</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="squadGroupFeeGenre">
+                                <option value="">全部</option>
+                                <option value="开票">开票</option>
+                                <option value="普票">普票</option>
+                                <option value="不需开">不需开</option>
+                                <option value="3%专票">3%专票</option>
+                            </select>
+                        </div>
+                        <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                            <label>状态</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="squadGroupFeeStatusId">
+                                <option value="">全部</option>
+                                <option value="1">正常</option>
+                                <option value="2">冻结</option>
+                            </select>
+                        </div>
+                        <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                            <label>录入时间</label>
+                        </div>
+                        <div class="layui-col-md3" style="margin-left: -10px">
+                            <div class="layui-row">
+                                <div class="layui-col-md5">
+                                    <input type="text" class="layui-input dateTime" name="squadGroupFeeStartTime" >
+                                </div>
+                                <div class="layui-col-md1 layui-col-md-offset1" style="margin-top: 10px;">
+                                    -
+                                </div>
+                                <div class="layui-col-md5">
+                                    <input type="text" class="layui-input dateTime" name="squadGroupFeeEndTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-form-item" style="margin-top: 10px;padding-bottom: 20px">
+                        <div class="layui-col-md1 label-center">
+                            <label>岗位级别</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left" id="postLevel">
+                            <input type="text" name="postLevel"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md1 label-center layui-col-md-offset1">
+                            <label>岗位名称</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left" id="teamBoss">
+                            <input type="text" name="postName"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md1 label-center layui-col-md-offset1">
+                            <label>实施部</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left">
+                            <input type="text" name="departmentName"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <button type="button" class="layui-btn layui-col-md-offset1 search" style="margin-left: 250px;" id="search-post" data-type="reload">搜索</button>
+                        <button type="button" class="layui-btn layui-btn-primary clear" id="clear-post" data-type="reload">清空</button>
+                    </div>
+                </div>
+                <table class="layui-hide" id="LAY_table_post" lay-filter="barPost"></table>
+            </div>
+            <!--  计量单位  -->
+            <div class="layui-tab-item">
+                <div class="header-search layui-form">
+                    <div class="layui-row layui-form-item" style="padding-top: 10px">
+                        <div class="layui-col-md1 label-center">
+                            <label>计量单位编号</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="squadGroupFeeGenre">
+                                <option value="">全部</option>
+                                <option value="开票">开票</option>
+                                <option value="普票">普票</option>
+                                <option value="不需开">不需开</option>
+                                <option value="3%专票">3%专票</option>
+                            </select>
+                        </div>
+                        <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                            <label>录入时间</label>
+                        </div>
+                        <div class="layui-col-md3" style="margin-left: -10px">
+                            <div class="layui-row">
+                                <div class="layui-col-md5">
+                                    <input type="text" class="layui-input dateTime" name="squadGroupFeeStartTime" >
+                                </div>
+                                <div class="layui-col-md1 layui-col-md-offset1" style="margin-top: 10px;">
+                                    -
+                                </div>
+                                <div class="layui-col-md5">
+                                    <input type="text" class="layui-input dateTime" name="squadGroupFeeEndTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-form-item" style="margin-top: 10px;padding-bottom: 20px">
+                        <div class="layui-col-md1 label-center">
+                            <label>计量单位</label>
+                        </div>
+                        <div class="layui-col-md1 layui-form  input-left">
+                            <input type="text" name="professionUnitName"  placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                            <label>状态</label>
+                        </div>
+                        <div class="layui-col-md1 input-left">
+                            <select name="squadGroupFeeStatusId">
+                                <option value="">全部</option>
+                                <option value="1">正常</option>
+                                <option value="2">冻结</option>
+                            </select>
+                        </div>
+                        <button type="button" class="layui-btn layui-col-md-offset1 search" style="margin-left: 250px;" id="search-measure" data-type="reload">搜索</button>
+                        <button type="button" class="layui-btn layui-btn-primary clear" id="clear-measure" data-type="reload">清空</button>
+                    </div>
+                </div>
+                <table class="layui-hide" id="LAY_table_measure" lay-filter="barPost"></table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 测量部 -->
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button type="button" class="layui-btn layui-summary" data-id="1"  data-title="测量部新增页面" data-href="../set/WorkSetMeasure.html"><i class="fa fa-plus" aria-hidden="true"> </i> 添加</button>
+            <button type="button" class="layui-inline layui-right" id="layui-measure" title="导出全部数据" data-size="auto"><i class="layui-icon layui-icon-download-circle"></i> </button>
+            <div class="clearfix"></div>
+        </div>
+    </script>
+
+    <script type="text/html" id="barDemo">
+        <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit" ><i class="layui-icon"></i>编辑</button>
+    </script>
+
+    <!-- 勘察部 -->
+    <script type="text/html" id="surveyDemo">
+        <div class="layui-btn-container">
+            <button type="button" class="layui-btn layui-summary" data-id="2" data-title="勘察部新增页面" data-href="../set/WorkSetMeasure.html"><i class="fa fa-plus" aria-hidden="true"> </i> 添加</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="surveyOperation">
+        <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit" ><i class="layui-icon"></i>编辑</button>
+    </script>
+
+    <!-- 咨询部 -->
+    <script type="text/html" id="ConsultationDemo">
+        <div class="layui-btn-container">
+            <button type="button" class="layui-btn layui-summary" data-id="3" data-title="咨询部新增页面" data-href="../set/WorkSetMeasure.html"><i class="fa fa-plus" aria-hidden="true"> </i> 添加</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="consultationOperation">
+        <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit" ><i class="layui-icon"></i>编辑</button>
+    </script>
+
+    <!-- 实验室 -->
+    <script type="text/html" id="ExperimentDemo">
+        <div class="layui-btn-container">
+            <button type="button" class="layui-btn layui-summary" data-id="4" data-title="实验室新增页面·" data-href="../set/WorkSetMeasure.html"><i class="fa fa-plus" aria-hidden="true"> </i> 添加</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="experimentOperation">
+        <button class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit" ><i class="layui-icon"></i>编辑</button>
+    </script>
+
+    <!--- 许金的 -->
+    <script type="text/html" id="toolbarPost">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">批量正常</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量冻结</button>
+            <button class="layui-btn layui-btn-sm addCase" data-href="WorkSetEdit/postEdit.html" name="addCase" style="float: right" data-title="添加岗位">新增岗位</button>
+        </div>
+    </script>
+    <script type="text/html" id="barPost">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        {{# if(d.squadGroupFeeStatusBean == "" || d.squadGroupFeeStatusBean == '1' ){ }}
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="nomal">正常</a>
+        {{# }
+        else { }}
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="del">冻结</a>
+        {{#  }}}
+    </script>
+
+    <script type="text/html" id="toolbarUserPost">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">批量正常</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量冻结</button>
+            <button class="layui-btn layui-btn-sm addCase" data-href="WorkSetEdit/userPostEdit.html" name="addCase" style="float: right" data-title="添加用户对应岗位">新增用户对应岗位</button>
+        </div>
+    </script>
+
+    <script type="text/html" id="toolbarMeasure">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">批量正常</button>
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量冻结</button>
+            <button class="layui-btn layui-btn-sm addCase" data-href="WorkSetEdit/measureEdit.html" name="addCase" style="float: right" data-title="添加计量单位">新增计量单位</button>
+        </div>
+    </script>
+</div>
+</body>
+</html>

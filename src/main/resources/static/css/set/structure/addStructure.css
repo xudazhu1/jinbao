@@ -1,0 +1,29 @@
+/*下级结构弹出框*/
+.sub-container {
+    padding: 10px;
+}
+.sub-info {
+    width: 100%;
+    padding: 0px 15px;
+    min-height: 38px;
+    background: #eceff4;
+    line-height: 38px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+.sub-info-add>div {
+    padding: 10px 10px 2px 10px;
+}
+.sub-info-btn {
+    padding-top: 40px;
+}
+body .layui-form-label {
+    width: 84px;
+}
+body .layui-input-block  {
+    margin-left: 120px;
+}
+
+body .hidden {
+    display:  none;
+}

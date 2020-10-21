@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta id="permission-tag" data-name="财务汇总详情" data-class="财务管理-财务汇总" data-remark="财务汇总详情页"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/finance/financialSummary/financialSummary-detail.js"></script>
+    <style>
+        table.layui-table th, table.layui-table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-sm8 layui-col-sm-offset2">
+        <div style="text-align: center;font-size: 16px;margin-top: 15px">
+            <span id="date"></span>
+            <span>收支汇总表</span>
+        </div>
+        <table class="layui-table" id="table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th colspan="2">名称</th>
+                <th>金额</th>
+                <th>月合计金额</th>
+                <th>年小计金额</th>
+                <th>年累合计金额</th>
+            </tr>
+            </thead>
+            <tbody id="incomeTbody">
+            <!--<tr>-->
+                <!--<td rowspan="2">1</td>-->
+                <!--<td rowspan="2">收入</td>-->
+                <!--<td>十月前项目收入</td>-->
+                <!--<td>756736.00</td>-->
+                <!--<td rowspan="2">3002046.00</td>-->
+                <!--<td></td>-->
+                <!--<td rowspan="2"></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>十月后项目收入</td>-->
+                <!--<td>796954.00</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            </tbody>
+            <tbody id="companyTbody">
+            <!--<tr>-->
+                <!--<td rowspan="4">2</td>-->
+                <!--<td rowspan="4">公司费用</td>-->
+                <!--<td>公司日常</td>-->
+                <!--<td>726224.00</td>-->
+                <!--<td rowspan="4">692986.00</td>-->
+                <!--<td></td>-->
+                <!--<td rowspan="4"></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>税金</td>-->
+                <!--<td>692986.00</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            </tbody>
+            <tbody id="departmentTbody">
+            <!--<tr>-->
+                <!--<td rowspan="4">3</td>-->
+                <!--<td rowspan="4">部门费用</td>-->
+                <!--<td>部门日常花销</td>-->
+                <!--<td>989946</td>-->
+                <!--<td rowspan="4">2944318</td>-->
+                <!--<td></td>-->
+                <!--<td rowspan="4"></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>个人报销</td>-->
+                <!--<td>792704</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>工资</td>-->
+                <!--<td>506315.00</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>社保、公积金</td>-->
+                <!--<td>655353</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            </tbody>
+            <tbody id="disburseTbody">
+            <!--<tr>-->
+                <!--<td rowspan="4">4</td>-->
+                <!--<td rowspan="4">项目支出</td>-->
+                <!--<td>十月前项目支出</td>-->
+                <!--<td>2446462.00</td>-->
+                <!--<td rowspan="4">9822454.00</td>-->
+                <!--<td></td>-->
+                <!--<td rowspan="4"></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>十月后项目支出</td>-->
+                <!--<td>4362364.00</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>1910后项目支出</td>-->
+                <!--<td>3013628.00</td>-->
+                <!--<td></td>-->
+            <!--</tr>-->
+            </tbody>
+            <thead>
+            <tr>
+                <th>5</th>
+                <th colspan="2">利润 = 收入 - 公司费用 - 部门费用 - 项目支出</th>
+                <th>本月利润</th>
+                <th class="profit"></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>6</td>
+                <td>利润分配</td>
+                <td></td>
+                <td>本月分配</td>
+                <td class="profit-distribution"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+            <thead>
+            <tr>
+                <th>7</th>
+                <th>未分配利润</th>
+                <th></th>
+                <th></th>
+                <th class="no-profit-distribution"></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

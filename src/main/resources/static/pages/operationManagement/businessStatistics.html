@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="业务统计表" data-class="经营管理-业务统计表" data-remark="业务统计表">
+    <title>业务统计表</title>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendor/layui-soul-table/soulTable.css">
+    <link rel="stylesheet" href="../../vendor/layui-soul-table/layui/css/layui.css">
+    <script src="../../vendor/jquery/jquery.js"></script>
+    <script src="../../vendor/layui-soul-table/layui/layui.js"></script>
+    <script src="../../vendor/layui-soul-table/ext/soulTable.js"></script>
+    <script src="../../vendor/layui-soul-table/ext/tableFilter.js"></script>
+    <script src="../../js/operationManagement/businessStatistics.js"></script>
+    <script type="text/html" id="toolbarDemo">
+        <div class="">
+            <input type="text" title="" placeholder="搜索..." autocomplete="off" class="layui-input" id="globalSearch-input"
+                                                style="height: 32px; float: left; width: 150px; ">
+            <button type="button" id="globalSearch" class=" layui-btn " style="  height: 30px;  line-height: 30px; ">
+                <i class="layui-icon layui-icon-search"></i>
+            </button>
+        </div>
+    </script>
+</head>
+<style>
+    .table-title {
+        margin: 5px 0;
+        line-height: 40px;
+        font-size: 24px;
+    }
+</style>
+<body>
+<header class="webTop">
+    <nav class="webTop-right">
+        <ul class="nav nav-tabs webNav">
+            <li class="active   permissions-elem" data-href="./disburseExpense.html" >
+                <a href="./businessStatistics.html" class="nav-item" id="my-business">我的业务统计表</a>
+            </li>
+            <li class="   permissions-elem" data-href="./disburseExpenseAudit.html">
+                <a href="./businessStatisticsAudit.html" class="nav-item">业务统计表审核</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="project-show project-show-margin">
+<!--    <div class="ctl-div">-->
+<!--            <span class="ctl-glyphicon table-title" title="业务统计表">-->
+<!--                业务统计表-->
+<!--            </span>-->
+<!--    </div>-->
+    <form id="searchForm">
+        <div id="myTable" lay-filter="myTable"></div>
+    </form>
+</div>
+
+</body>
+</html>

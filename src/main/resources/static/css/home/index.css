@@ -1,0 +1,139 @@
+body iframe {
+    min-height: calc(100% - 5px) !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.layui-header {
+    z-index: 999;
+}
+
+.layui-header .layui-layout-left {
+    padding-top: 22px;
+}
+
+.layui-logo {
+    position: fixed;
+    left: 0;
+    top: 0;
+    /*z-index: 1002;*/
+    width: 220px;
+    height: 49px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: 300;
+    background: no-repeat center center;
+}
+
+.layui-side-scroll .layui-nav {
+    top: 50px;
+}
+
+.layui-layout-admin .layui-header {
+    background-color: #fff;
+}
+
+.layui-layout-admin .layui-side {
+    top: 0;
+}
+
+.layui-layout-admin .layui-body {
+    /* top: 60px; */
+    bottom: 0;
+}
+
+body .layui-tab-title {
+    /*width: calc(100% - 60px);*/
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 30px;
+}
+
+body .layui-tab {
+    height: 100%;
+}
+
+body .layui-body {
+    overflow: hidden;
+    /*overflow-y: hidden;*/
+}
+
+body .layui-tab-content {
+    height: 100%;
+}
+
+body .layui-tab-item {
+    overflow-y: auto;
+    height: calc(100% - 50px);
+}
+
+.layui-tab {
+    margin: 0;
+}
+
+.layui-nav-item i {
+    width: 40px;
+    display: inline-block;
+}
+
+/*顶部导航栏右侧*/
+.layui-layout-right {
+    margin-right: 20px;
+}
+
+.layui-layout-right a cite {
+    color: #333;
+}
+
+.layui-layout-right .layui-nav-more {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid dashed dashed;
+    border-color: #666 transparent transparent;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    margin-top: -3px;
+}
+
+.layui-nav-tree dd, .layui-nav-tree li {
+    cursor: pointer;
+}
+
+.layui-icon-notice {
+    text-align: center;
+    color: #333;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.all-notice-num {
+    line-height: 16px;
+    padding: 0 6px 0 4px;
+    height: 15px;
+    margin-top: -15px !important;
+    width: 5px;
+    border-radius: 50%;
+}
+
+.layui-header {
+    height: 50px!important;
+}
+
+.layui-nav .layui-nav-item {
+    line-height: 50px !important;
+}
+
+.layui-layout-admin .layui-body {
+    top: 50px!important;
+}

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta id="permission-tag" data-name="项目总计信息详情页" data-class="经营管理-项目总计" data-remark="项目总计信息详情页,支出开票回款"/>
+    <title>项目总计信息详情页</title>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css" media="all">
+    <link rel="stylesheet" href="../../vendor/build.css" media="all">
+    <link rel="stylesheet" href="../../css/set/role.css" media="all">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css" media="all">
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../vendor/layui/css/soulTable.css" media="all">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.js"></script>
+    <script src="../../js/xudazhu.js"></script>
+    <script src="../../vendor/echart/echarts.js"></script>
+    <script src="../../js/operationManagement/projectInformation.js"></script>
+</head>
+<style>
+    label{
+        margin-bottom:0;
+    }
+    .layui-table-tips-c{
+        padding:0;
+    }
+    .soul-bottom-contion .editCondtion{
+        display: none;
+    }
+    .soul-bottom-contion{
+        display: none;
+    }
+     .layui-tab-title .layui-this{
+        background-color: #eee;
+        color: #666;
+    }
+    .layui-tab-title li{
+        font-size: 16px;
+        padding: 0 40px;
+    }
+    .layui-table-tool-temp{
+        padding-right: 100px;
+    }
+    .layui-tab-content{
+        padding: 25px 15px;
+    }
+    .layui-table th{
+        text-align: center;
+    }
+    .layui-tbody td,.layui-statistics td,.layui-table td{
+        text-align: center;
+    }
+    .clearfix{
+        clear:both;
+    }
+    .layui-btn{
+        padding: 0 25px;
+        margin-left: 15px
+    }
+    .layui-a{
+        color:#fff;
+        width: 78px;
+        text-decoration: none;
+        height: 38px;
+    }
+    .orderType button{
+       border: 1px solid #e6e6e6;
+       outline: none;
+       background-color: #009688;
+       padding: 0 8px;
+       margin-right: 12px;
+       width: 88px;
+       line-height: 32px;
+       height: 32px;
+      color: #fff;
+    }
+    .orderType button:hover{
+        background-color: #fff;
+        color: #009688;
+        border: 1px solid #fff;
+        cursor: pointer;
+        border: 1px solid #009688;
+    }
+    .orderType .orderType-btn{
+        background-color: #fff;
+        color: #009688;
+        border: 1px solid #fff;
+        cursor: pointer;
+        border: 1px solid #009688;
+    }
+    .order span{
+        height: 32px;
+        line-height: 32px;
+    }
+    .money span{
+        height: 32px;
+        line-height: 32px;
+    }
+     .money input{
+       margin-right: 12px;
+       width: 88px;
+       line-height: 32px;
+       height: 32px;
+       text-align: center;
+    }
+    .moneyType input{
+        background-color: #fff;
+        text-shadow: none ;
+        box-shadow: none;
+        border: #d6d6d6 1px solid;
+    }
+    .type-form{
+        display: none;
+    }
+    .layui-Histogram{
+        width: 800px;
+    }
+    .layui-Histogram .layui-Histogram-title{
+        text-align: center;
+        font-size: 18px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .layui-Histogram .layui-Histogram-time{
+        font-size: 16px;
+    }
+</style>
+<body>
+<div class="project-show project-show-margin">
+    <div class="layui-tab" lay-filter="tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">项目基本信息表</li>
+            <li>回款统计表</li>
+            <li>项目成本表</li>
+            <li>回款金额-总成本（含税）</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form layui-form-pane layui-fieldset" action="">
+                    <div class="layui-row pms-layui-row">
+                            <div class="layui-row pms-layui-row">
+                                <div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">项目编号</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" name="projectNum" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">项目名称</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" name="projectName" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">立项时间</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" name="projectApprovalTime" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">所属类型</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" name="projectBelongsType" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">经营类型</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" name="projectManagementType" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">项目地点</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-place">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">收益单位</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-company">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">甲方单位</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" name="projectFirstPartyName" class="layui-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">经营负责人</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-personIncharge">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">提成模式</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-royalty">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">业务人</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-businessMan">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">实施部</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-department">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">合同状态</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-state">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">合同金额（含概算）</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-money">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">签订时间</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" disabled="disabled" autocomplete="off" class="layui-input layui-time">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                        <div class="layui-form-item" >
+                                            <label class="layui-form-label">扫描件</label>
+                                            <div class="layui-input-inline">
+                                                <button type="button" class="layui-btn layui-btn-normal layui-Buttons"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="layui-form" style="margin-top:15px">
+                                    <table class="layui-table">
+                                        <thead>
+                                        <tr>
+                                            <th>实施部</th>
+                                            <th>实施部负责人</th>
+                                            <th>项目类型</th>
+                                            <th>乙方名称</th>
+                                            <th>实施进度</th>
+                                            <th>项目状态</th>
+                                            <th>实施记录</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="layui-tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <form class="layui-form layui-form-pane layui-fieldset" action="">
+                    <div class="layui-row pms-layui-row">
+                        <div class="layui-row pms-layui-row">
+                            <div>
+                                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label">开票总金额</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" disabled="disabled" autocomplete="off" placeholder="请输入" class="layui-input layui-Invoice">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label">回款总金额</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" disabled="disabled" autocomplete="off" placeholder="请输入" class="layui-input layui-moneyBack">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="layui-form" style="margin-top:15px">
+                                <table class="layui-table">
+                                    <thead>
+                                        <tr>
+                                            <th>收入编号</th>
+                                            <th>收入类型</th>
+                                            <th>内容</th>
+                                            <th>开票金额</th>
+                                            <th>回款金额</th>
+                                            <th>回款时间</th>
+                                            <th>回款进度</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="layui-statistics">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <div class="layui-row pms-card-screen put-row">
+                    <div class="pull-left" style="padding: 14px 0;">
+                        <div class="order">
+                            <span>类别：</span>
+                            <span class="orderType" >
+                                <button data-typeId="type1" class="type-btn orderType-btn">项目花销</button>
+                                <button data-typeId="type2" class="type-btn">税费</button>
+                                <button data-typeId="type3" class="type-btn">管理费</button>
+                                <button data-typeId="type4" class="type-btn">人员成本</button>
+                                <button data-typeId="type5" class="type-btn">技术提成</button>
+                                <button data-typeId="type6" class="type-btn">年总奖金</button>
+                                <button data-typeId="type7" class="type-btn">设备使用费</button>
+                                <button data-typeId="type8" class="type-btn">班组费</button>
+                                <button data-typeId="type9" class="type-btn">其他费</button>
+                            </span>
+                        </div>
+                        <div class="money" style="margin-top: 20px;">
+                            <span>金额：</span>
+                            <span class="moneyType" >
+                                <input disabled="disabled" type="text" class="layui-projectExpense">
+                                <input disabled="disabled" type="text" class="layui-taxation">
+                                <input disabled="disabled" type="text" class="layui-managementExpense">
+                                <input disabled="disabled" type="text" class="layui-personnelCost">
+                                <input disabled="disabled" type="text" class="layui-technicalCommission">
+                                <input disabled="disabled" type="text" class="layui-annualTotalBonus">
+                                <input disabled="disabled" type="text" class="layui-equipmentUseFee">
+                                <input disabled="disabled" type="text" class="layui-teamExpenses">
+                                <input disabled="disabled" type="text" class="layui-otherCharges">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="type1" class="layui-form type-form" style="margin-top:15px; display:block;">
+                    <div style="font-size: 18px;">项目花销详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>支出编号</th>
+                            <th>日期</th>
+                            <th>费用明细</th>
+                            <th>支出费用</th>
+                            <th>付款方式</th>
+                            <th>费用归属单位</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-expenses">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type2" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">税费详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>收入编号</th>
+                            <th>收入时间</th>
+                            <th>回款金额</th>
+                            <th>税率</th>
+                            <th>税费</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-Taxation">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type3" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">管理费详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>收入编号</th>
+                            <th>收入时间</th>
+                            <th>回款金额</th>
+                            <th>管理费率</th>
+                            <th>管理费</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-ManagementExpense">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type4" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">人员成本详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>实施部</th>
+                            <th>日期</th>
+                            <th>工作天数</th>
+                            <th>员工</th>
+                            <th>人员成本</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-PersonnelCost">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type5" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">技术提成详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>实施部</th>
+                            <th>日期</th>
+                            <th>工种类型</th>
+                            <th>工作量</th>
+                            <th>员工</th>
+                            <th>员工单价</th>
+                            <th>员工提成</th>
+                            <th>主管</th>
+                            <th>主管提成</th>
+                            <th>队长</th>
+                            <th>队长提成</th>
+                            <th>技术提成</th>
+                            <th>年终奖金比例</th>
+                            <th>年终奖金</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-TechnicalCommission">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type6" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">年总奖金详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>实施部</th>
+                            <th>日期</th>
+                            <th>工种类型</th>
+                            <th>工作量</th>
+                            <th>员工</th>
+                            <th>员工单价</th>
+                            <th>员工提成</th>
+                            <th>主管</th>
+                            <th>主管提成</th>
+                            <th>队长</th>
+                            <th>队长提成</th>
+                            <th>技术提成</th>
+                            <th>年终奖金比例</th>
+                            <th>年终奖金</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-AnnualTotalBonus">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type7" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">设备使用费详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>序号</th>
+                            <th>设备使用费类型</th>
+                            <th>天数</th>
+                            <th>金额</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-equipment">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type8" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">班组费详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>序号</th>
+                            <th>班组费类型</th>
+                            <th>班组老板</th>
+                            <th>金额</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-Team">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="type9" class="layui-form type-form" style="margin-top:15px">
+                    <div style="font-size: 18px;">其他费详情信息</div>
+                    <table class="layui-table">
+                        <thead class="layui-thead">
+                        <tr>
+                            <th>序号</th>
+                            <th>其他类型</th>
+                            <th>金额</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody class="layui-Other">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="layui-form layui-tab-item">
+                <form class="layui-form layui-form-pane layui-fieldset" action="">
+                    <div class="layui-row pms-layui-row">
+                        <div class="layui-row pms-layui-row">
+                            <div>
+                                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label">合同金额</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" disabled="disabled" autocomplete="off" placeholder="请输入" class="layui-input layui-backMone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label">回款金额</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" disabled="disabled" autocomplete="off" placeholder="请输入" class="layui-input layui-contractMoney">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label">总成本(含税)</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" disabled="disabled" autocomplete="off" placeholder="请输入" class="layui-input layui-theSum">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3" >
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label">当前利润</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" disabled="disabled" autocomplete="off" placeholder="请输入" class="layui-input layui-profit">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="layui-Histogram">
+                                <div class="layui-Histogram-title"><span class="layui-number"></span>经营状态图</div>
+                                <div class="layui-Histogram-time">截止日期：<span class="layui-tiem"></span></div>
+                            </div>
+                            <div id="mian" style="width: 800px; height: 600px;">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

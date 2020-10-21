@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报销单基础页</title>
+    <meta id="permission-tag" data-name="报销单基础页" data-class="财务管理-报销" data-remark="报销单基础页"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <!--<link rel="stylesheet" href="../../../css/xudazhu-layui.css">-->
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/jQueryPrint/jQuery.print.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/finance/disburseExpense/disburseExpense-add.js"></script>
+    <style>
+
+        body.hideNum .disburseNum-td  , body.hideNum .disburseNum-th {
+            display: none!important;
+        }
+
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #333;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+
+        body .layui-textarea {
+            padding: 10px 10px;
+        }
+
+        body label {
+            color: #333;
+        }
+
+        body .all-card label {
+            color: rgb(255, 70, 70);
+        }
+
+        body p {
+            margin: 6px 0;
+            line-height: 26px;
+            color: #333;
+        }
+
+        body.print {
+            font-size: 12px !important;
+        }
+
+        .add-card table {
+            table-layout: fixed;
+        }
+
+        .add-card th {
+            color: #333;
+            text-align: center;
+            padding: 9px 2px;
+        }
+
+        body.print .add-card td p {
+            font-size: 12px;
+        }
+
+        .add-card td {
+            padding: 2px;
+            vertical-align: top;
+            min-width: 75px;
+        }
+
+        .add-card td span {
+            cursor: pointer;
+            line-height: 100px;
+        }
+
+        .add-card td p {
+            margin: 5px;
+            line-height: 26px;
+            color: #111;
+            text-align: center;
+        }
+
+        .add-card .layui-input, .add-card .layui-select, .add-card .layui-textarea {
+            border-width: 0;
+        }
+
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: #bfbfbf;
+        }
+
+        .layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table[lay-even] tr:nth-child(even) {
+            background-color: transparent;
+        }
+
+        #inputForm {
+            display: none;
+        }
+        .audit-div{
+            display: none;
+        }
+        .advice-div table th {
+            color: #7db68d;
+            text-align: center;
+            padding: 9px 2px;
+        }
+
+        .advice-div .advice-people .layui-input-block {
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .advice-div .advice-div-inner {
+            border-bottom: 1px solid #666;
+            height: 45px;
+            line-height: 45px;
+        }
+
+        .advice-div .advice-div-inner span {
+            width: 36%;
+            display: inline-block;
+        }
+        .layui-btn-sm{
+            width: 80px;
+            margin: 7px 0;
+            font-size: 14px;
+        }
+        .layui-form-item{
+            margin-bottom:0;
+        }
+        .layui-btn-warm{
+            background-color:#009688;
+        }
+
+        /*汇总*/
+        body .summary-tbody td {
+            text-align: center;
+            vertical-align: middle;
+            color: #111;
+            padding: 9px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-card" id="typeDiv">
+    <div class="layui-card-body">
+        <div class="layui-form-item layui-form">
+            <label class="layui-form-label">报销类型：</label>
+            <div class="layui-input-block" id="expense_radio">
+                <input type="radio" name="type" title="部门报销" value="部门报销">
+                <input type="radio" name="type" title="项目报销" value="项目报销">
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align: right; margin-bottom: 5px;">
+    <button class="layui-btn layui-btn-sm print-btn" style="margin: 5px;cursor: pointer;display: none" title="打印">打印
+    </button>
+</div>
+<form class="layui-form" id="inputForm">
+    <!--汇总-->
+    <div id="advice-div" class="layui-card summary-div" style="display: none">
+        <div class="layui-card-header form-header form-header-summary">
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-col-space5 sum-card">
+                <div class="layui-col-xs3 offset3-div">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报销总编号：</label>
+                    <div class="layui-input-block">
+                        <p data-text="expenseAccountNum"></p>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报销人：</label>
+                    <div class="layui-input-block">
+                        <select title="" class="userName" lay-filter="userName" lay-search
+                                autocomplete="off"></select>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报销月份：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountMonth"  placeholder="请选择..." autocomplete="off"
+                               class="layui-input expenseAccountMonth">
+                    </div>
+                </div>
+                <div class="layui-col-xs3 offset3-div">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">报销时间：</label>
+                    <div class="layui-input-block">
+                        <input type="text" readonly="readonly" name="expenseAccountTime" class="layui-input expenseAccountTime" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">报销总金额:</label>
+                    <div class="layui-input-block allDisbursePaymentAmount">
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">发票总金额:</label>
+                    <div class="layui-input-block allDisburseInvoiceMoney">
+                    </div>
+                </div>
+            </div>
+            <table class="layui-table summary-table">
+                <thead>
+                <tr>
+                    <th width="40">序号</th>
+                    <th width="100">收益单位</th>
+                    <th width="100">报销金额</th>
+                    <th width="150" class="type-project">项目编号</th>
+                    <th class="type-project">项目名称</th>
+                    <th class="type-department">费用明细</th>
+                    <th width="150">报销金额</th>
+                    <th width="150">发票金额</th>
+                </tr>
+                </thead>
+                <!--<tbody class="summary-tbody">-->
+                <!--<tr>-->
+                <!--<td rowspan="2">十月前</td>-->
+                <!--<td>5000</td>-->
+                <!--<td>1</td>-->
+                <!--<td>ZYS19SY-00454</td>-->
+                <!--<td>三亚槟榔河文旅特色小镇项目（三期）房屋建筑面积预测绘工程</td>-->
+                <!--<td>2000</td>-->
+                <!--<td>3000</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>5000</td>-->
+                <!--<td>1</td>-->
+                <!--<td>ZYS19SY-00454</td>-->
+                <!--<td>三亚槟榔河文旅特色小镇项目（三期）房屋建筑面积预测绘工程</td>-->
+                <!--<td>2000</td>-->
+                <!--<td>3000</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            </table>
+            <div class="layui-row layui-col-space20 advice-people" style="page-break-after: always">
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label">报销人:</label>
+                    <div class="layui-input-block">
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label">审核人:</label>
+                    <div class="layui-input-block">
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label">财务部:</label>
+                    <div class="layui-input-block">
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label">总经理:</label>
+                    <div class="layui-input-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--明细-->
+    <div class="layui-card">
+        <div class="layui-card-header form-header form-header-detail"></div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-col-space5 sum-card">
+                <div class="layui-col-xs3 offset3-div">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报销总编号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountNum" placeholder="自动生成" autocomplete="off"
+                               class="layui-input expenseAccountNum " readonly>
+                        <input type="hidden" name="expenseAccountType" title="报销类型" placeholder="报销类型"
+                               class="expenseAccountType">
+                        <input type="hidden" name="expenseAccountId" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报销人：</label>
+                    <div class="layui-input-block">
+                        <select name="expenseAccountUserName" title="" class="userName" lay-filter="userName" lay-search
+                                autocomplete="off"></select>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报销月份：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountMonth" placeholder="请选择..." autocomplete="off"
+                               class="layui-input need-input expenseAccountMonth" id="test-laydate-type-month">
+                    </div>
+                </div>
+                <div class="layui-col-xs3 offset3-div">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">报销时间：</label>
+                    <div class="layui-input-block">
+                        <input type="text" readonly="readonly" name="expenseAccountTime" class="layui-input expenseAccountTime expenseAccountTime-time" placeholder="">
+                    </div>
+                </div>
+                <div class="layui-col-xs3 money-div" >
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">报销总金额:</label>
+                    <div class="layui-input-block allDisbursePaymentAmount">
+                    </div>
+                </div>
+                <div class="layui-col-xs3 money-div" >
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">发票总金额:</label>
+                    <div class="layui-input-block allDisburseInvoiceMoney">
+                    </div>
+                </div>
+            </div>
+            <div class="add-card">
+                <button type="button" class="layui-btn layui-btn-sm layui-btn-warm add-btn">添加</button>
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th class="disburseNum-th">报销单号</th>
+                        <th class="project-th projectNum-th">*项目编号</th>
+                        <th class="project-th projectName-th">*项目名称</th>
+                        <th class="disburseTime-th">*支出时间</th>
+                        <th class="content-th" style="display: none;">*内容</th>
+                        <th class="disburseDetail-th">*费用明细</th>
+                        <th class="change-th department-th">*归属部门</th>
+                        <!--<th >*费用归属公司</th>-->
+                        <!--<th>*项目费用归属部门</th>-->
+                        <th style="display: none">*费用归属(隐藏)</th>
+                        <th class="earningsCompany-th">*收益单位</th>
+                        <th class="disbursePaymentAmount-th">*报销金额</th>
+                        <th class="disburseInvoiceMoney-th">*发票金额</th>
+                        <th class="disburseRemarks-th">备注</th>
+                        <th class="to-do">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbody">
+                    <!--<tr id="project_tr_a">-->
+                    <!--&lt;!&ndash;报销单号&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<input type="text" class="layui-input disburseNum changeName" id="disburse_num_a" title=""-->
+                    <!--placeholder="自动生成" name="disburseBeans[0].disburseNum" readonly>-->
+                    <!--<input type="text" name="disburseBeans[0].disburseAffiliation" title="" value="报销">-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;项目编号&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<select id="projectNum_a" class="projectNum" lay-search lay-filter="projectNum"  title="" >-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;项目名称&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<select  id="projectName_a" class="projectName" lay-search lay-filter="projectName" title="">-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;支出时间&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<input type="text" class="layui-input changeName" title="" placeholder="请选择..."-->
+                    <!--id="test-laydate-normal-cn" name="disburseBeans[0].disburseTime" autocomplete="off">-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;内容&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<textarea placeholder="请输入..." class="layui-textarea layui-input disburseExpenseAccountContent" style="min-height: 80px"-->
+                    <!--name="disburseBeans[0].disburseExpenseAccountContent"></textarea>-->
+                    <!--</td>-->
+
+                    <!--&lt;!&ndash;费用明细&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<select title="" id="disburse_detail_a"-->
+                    <!--name="disburseBeans[0].disburseDetailBean.disburseDetailId" lay-filter="disburseDetail" class="disburseDetail">-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;1 部门报销  费用归属部门(所有部门,不包含公司)&ndash;&gt;-->
+                    <!--<td class="department">-->
+                    <!--<select name="disburseBeans[0].departmentBean.departmentId" title="" id="department_a"-->
+                    <!--lay-filter="disburse_department" class="disburse_department changeName">-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;2 公司报销 所有公司&ndash;&gt;-->
+                    <!--<td class="company">-->
+                    <!--<select name="disburseBeans[0].companyBean.companyId" title="" id="company_a"-->
+                    <!--class="changeName disburse_company" lay-filter="disburse_company">-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;3 项目报销 项目带来实施部门&ndash;&gt;-->
+                    <!--<td class="project">-->
+                    <!--<select name="disburseBeans[0].implementDepartmentBean.implementDepartmentId" title="" id="project_a" class="changeName implementDepartmentId" lay-filter="implementDepartmentId">-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;隐藏的另一个费用归属部门&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<input type="text" class="disburse_attribution_department changeName"-->
+                    <!--name="disburseBeans[0].disburseAttributionDepartment" title="">-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;收益单位&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<select title="" id="earnings_company_a"-->
+                    <!--name="disburseBeans[0].earningsCompanyBean.earningsCompanyId">-->
+                    <!--<option></option>-->
+                    <!--</select>-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;报销金额&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<input name="disburseBeans[0].disburseExpenseAccountMoney" type="number" class="layui-input"-->
+                    <!--title="" placeholder="请输入...">-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;发票金额&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<input name="disburseBeans[0].disburseInvoiceMoney" type="number" class="layui-input"-->
+                    <!--title=""-->
+                    <!--placeholder="请输入...">-->
+                    <!--</td>-->
+                    <!--&lt;!&ndash;备注&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<textarea name="disburseBeans[0].disburseRemarks" placeholder="请输入..." class="layui-textarea"-->
+                    <!--style="min-height: 80px"></textarea>-->
+                    <!--</td>-->
+                    <!--<td style="text-align: center;width: 60px">-->
+                    <!--<span class="layui-icon layui-icon-delete del-btn" style="color: #ff4646" title="删除"></span>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+                <div class="layui-card advice-div" style="display:none ">
+                    <div class="layui-card-body">
+                        <div class="layui-row layui-col-space20 .advice-people">
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label">报销人:</label>
+                                <div class="layui-input-block">
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label">审核人:</label>
+                                <div class="layui-input-block">
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label">财务部:</label>
+                                <div class="layui-input-block">
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label">总经理:</label>
+                                <div class="layui-input-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主管审核-->
+    <div class="layui-card audit-div layui-executiveDirector">
+        <div class="layui-card-header">
+            主管审核信息
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-col-space5">
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核人：</label>
+                    <div class="layui-input-block executiveDirector-userId">
+                        <input type="text" autocomplete="off" placeholder="请输入" class="layui-input executiveDirector-people" >
+                    </div>
+                </div>
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核时间：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountSupervisorAuditTime" placeholder="点击选择时间" class="layui-input test-item executiveDirector-time">
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核状态：</label>
+                    <div class="layui-input-block">
+                        <select id="testSelect" lay-filter="text" class="approvalStatus executiveDirector-approvalStatus audit-only-write">
+                            <option value="">请选择</option>
+                            <option value="1">通过</option>
+                            <option value="6">退回</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核备注：</label>
+                    <div class="layui-input-block layui-executiveDirector-p">
+                        <textarea class="layui-textarea audit-only-write expenseAccountRemark" placeholder=""
+                                  name="expenseAccountSupervisorAuditRemark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--财务审核-->
+    <div class="layui-card audit-div layui-finance">
+        <div class="layui-card-header">
+            财务审核信息
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-col-space5">
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核人：</label>
+                    <div class="layui-input-block finance-userId">
+                        <input type="text" autocomplete="off" placeholder="请输入" class="layui-input finance-people" >
+                    </div>
+                </div>
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核时间：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountAuditTime" placeholder="点击选择时间" class="layui-input test-item finance-time">
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核状态：</label>
+                    <div class="layui-input-block">
+                        <select lay-filter="text" class="approvalStatus finance-approvalStatus audit-only-write">
+                            <option value="">请选择</option>
+                            <option value="5">通过</option>
+                            <option value="3">退回</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核备注：</label>
+                    <div class="layui-input-block layui-finance-p">
+                        <textarea class="layui-textarea audit-only-write expenseAccountRemark" placeholder="" name="expenseAccountRemark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--总经办审核-->
+    <div class="layui-card audit-div layui-generalManager">
+        <div class="layui-card-header">
+            总经办审核信息
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-col-space5">
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核人：</label>
+                    <div class="layui-input-block generalManager-userId">
+                        <input type="text" autocomplete="off" placeholder="请输入" class="layui-input generalManager-people" >
+                    </div>
+                </div>
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核时间：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountGeneralManagerOfficeAuditTime" placeholder="点击选择时间" class="layui-input test-item generalManager-time">
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核状态：</label>
+                    <div class="layui-input-block">
+                        <select lay-filter="text" class="approvalStatus generalManager-approvalStatus audit-only-write">
+                            <option value="">请选择</option>
+                            <option value="9">通过</option>
+                            <option value="7">退回</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核备注：</label>
+                    <div class="layui-input-block layui-generalManager-p">
+                        <textarea class="layui-textarea audit-only-write expenseAccountRemark" placeholder=""
+                                  name="expenseAccountGeneralManagerOfficeAuditRemark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--待财务终审-->
+    <div class="layui-card audit-div layui-finalJudgment">
+        <div class="layui-card-header">
+            待财务终审信息
+        </div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-col-space5">
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">终审操作人：</label>
+                    <div class="layui-input-block finalJudgment-userId">
+                        <input type="text" autocomplete="off" placeholder="请输入" class="layui-input finalJudgment-people" >
+                    </div>
+                </div>
+                <div class="layui-col-sm3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核时间：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="expenseAccountFinalJudgmentTime" placeholder="点击选择时间" class="layui-input test-item finalJudgment-time">
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核状态：</label>
+                    <div class="layui-input-block">
+                        <select lay-filter="text" class="approvalStatus finalJudgment-approvalStatus audit-only-write">
+                            <option value="">请选择</option>
+                            <option value="2">通过</option>
+                            <option value="10">退回</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-xs12  layui-col-md3">
+                    <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核备注：</label>
+                    <div class="layui-input-block layui-finalJudgment-p">
+                        <textarea class="layui-textarea audit-only-write expenseAccountRemark" placeholder=""
+                                  name="expenseAccountFinalJudgmentRemark"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--提交-->
+    <div class="layui-form-item submit-div">
+        <div class="layui-input-block" style="text-align: right;margin-left: 0px; margin-top: 20px;">
+            <button class="layui-btn submit-btn" type="button">立即提交</button>
+            <button class="layui-btn layui-draft" type="button">保存草稿</button>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

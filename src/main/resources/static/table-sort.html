@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="vendor/layui/css/layui.css">
+</head>
+<body>
+<table class="layui-table disburse_detail" data-table="disburse_detail" style="width: 1000px;margin: 0 auto;">
+    <caption>费用明细(小类)</caption>
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>费用明细</th>
+            <th>费用明细备注</th>
+            <th>费用来源</th>
+            <th>所属费用类型</th>
+            <th>所属费用类别</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="newTr">
+        <td></td>
+        <!--费用明细-->
+        <td>
+            <input type="text" class="layui-input" name="disburseDetailName" title="" autocomplete="off"
+                   placeholder="请输入......">
+        </td>
+        <!--费用明细备注-->
+        <td>
+            <input class="layui-input" name="disburseDetailRemarks" title="" autocomplete="off" placeholder="请输入......">
+        </td>
+        <!--费用明细来源-->
+        <td>
+            <input class="layui-input" name="disburseDetailSource" title="" placeholder="请输入......">
+        </td>
+        <!--费用类型-->
+        <td>
+            <select title="" name="disburseTypeBean.disburseTypeId" class="disburseTypeName"
+                    data-select-way="disburse_type" lay-filter="disburseTypeName" id="disburse_type_select"
+                    data-name3="disburseType" data-parent="disburseCategory">
+                <option></option>
+            </select>
+        </td>
+        <td class="show-td"></td>
+        <td>
+            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                  style="margin-right: 10px;color: #009688"></span>
+        </td>
+    </tr>
+    </tbody>
+    <tbody class="dataTr">
+        <tr>
+            <td>1</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="合作费">合作费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="64"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="付款申请单">付款申请单</td>
+            <td class="select-td" data-value="协调合作" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="20">协调合作
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="电子电脑设备">电子电脑设备</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="60"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="交通运输工具">交通运输工具</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="59"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="机器设备">机器设备</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="58"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="其他设备">其他设备</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="57"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="电子电脑设备">电子电脑设备</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="56"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="交通运输工具">交通运输工具</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="55"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="机器设备">机器设备</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="54"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="设备折旧" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="28">设备折旧
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="奖金">奖金</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="53"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="工资、奖金" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="27">工资、奖金
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="工资">工资</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="52"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="工资、奖金" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="27">工资、奖金
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="公积金">公积金</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="51"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="社保、公积金" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="26">社保、公积金
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="社保">社保</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="50"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="社保、公积金" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="26">社保、公积金
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="残疾人保障金">残疾人保障金</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="49"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="印花税">印花税</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="48"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="工会经费">工会经费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="47"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="附加税">附加税</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="46"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="个人所得税">个人所得税</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="45"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="企业所得税">企业所得税</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="44"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="增值税">增值税</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="43"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="税费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="25">税费
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="其他费">其他费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="42"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="快递费">快递费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="41"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="水电费">水电费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="40"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="打印费">打印费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="39"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="交通费">交通费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="38"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="差旅费">差旅费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="37"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="招待费">招待费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="36"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="个人保销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="24">个人保销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>27</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="其他">其他</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="35"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="其他">其他</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="部门报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="23">部门报销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>28</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="设备折旧">设备折旧</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="34"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="设备折旧">设备折旧</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="无">无</td>
+            <td class="select-td" data-value="部门报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="23">部门报销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="办公耗材">办公耗材</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="33"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value=""></td>
+            <td class="select-td" data-value="部门报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="23">部门报销
+            </td>
+            <td class="show-td" data-value="部门支出">部门支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>30</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="其他">其他</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="32"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>31</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="金税盘缴款费">金税盘缴款费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="31"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>32</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="银行信息费">银行信息费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="30"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>33</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="回执单打印费">回执单打印费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="29"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>34</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="办公耗材">办公耗材</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="28"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>35</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="打印费">打印费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="25"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>36</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="手续费">手续费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="24"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>37</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="成本票">成本票</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="23"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="财务日常">财务日常</td>
+            <td class="select-td" data-value="公司报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="22">公司报销
+            </td>
+            <td class="show-td" data-value="公司支出">公司支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>38</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="其他费">其他费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="22"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="付款申请单">付款申请单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>39</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="会务费">会务费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="21"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="付款申请单">付款申请单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>40</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="打印费">打印费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="20"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>41</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="交通费">交通费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="19"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>42</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="差旅费">差旅费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="18"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>43</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="招待费">招待费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="17"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>44</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="专家费">专家费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="16"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="报销单">报销单</td>
+            <td class="select-td" data-value="项目报销" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="21">项目报销
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>45</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="协调费">协调费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="15"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="付款申请单">付款申请单</td>
+            <td class="select-td" data-value="协调合作" data-name="disburseTypeBean.disburseTypeId"
+                data-name2="disburseTypeName" data-name3="disburseType" data-parent="disburseCategory"
+                data-way="disburse_type" data-id="20">协调合作
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+        <tr>
+            <td>46</td>
+            <td class="edit-td data-td " data-name="disburseDetailName" data-value="班组费">班组费</td>
+            <td style="display: none" class="display-td"><input type="text" name="disburseDetailId" value="13"></td>
+            <td class="edit-td data-td" data-name="disburseDetailRemarks" data-value="无">无</td>
+            <td class="edit-td data-td" data-name="disburseDetailSource" data-value="付款申请单">付款申请单</td>
+            <td class="select-td" data-value="班组费" data-name="disburseTypeBean.disburseTypeId" data-name2="disburseTypeName"
+                data-name3="disburseType" data-parent="disburseCategory" data-way="disburse_type" data-id="18">班组费
+            </td>
+            <td class="show-td" data-value="项目支出">项目支出</td>
+            <td class="do-td"><span class="layui-icon layui-icon-edit edit-btn" style="margin-right: 5px;color: orange"
+                                    title="编辑"></span><span class="layui-icon layui-icon-delete del-btn"
+                                                            style="color: #ff4646" title="删除"></span></td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+<script>
+    function tableColumnSort(table,index) {
+        if(typeof table  === 'undefined'){
+            table = $("#tableColumnSort");
+        }
+        console.log(table.children("tbody"));
+        console.log(index);
+    }
+    tableColumnSort(null,0);
+</script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>录入工作量</title>
+    <meta id="permission-tag" data-name="工作量录入" data-class="项目管理-工作量" data-remark="录入工作量" />
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/Mtils/Mtils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/workload/workload-add.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+        body .layui-card-header {
+            color: #efb019;
+        }
+        button {
+            margin:2px 4px;
+        }
+        body .layui-input {
+            height: 34px;
+        }
+        .all-remove {
+            color: #1E9FFF;
+            cursor: pointer;
+        }
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+        .file-div {
+            border: 1px solid #e6e6e6;
+            border-radius: 2px;
+            padding: 2px;
+        }
+        .commit-div{
+            margin-left: 1300px;
+        }
+        .layui-card{
+            min-height: 400px;
+        }
+        .layui-btn-sm{
+            margin-bottom: 15px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .layui-elem-quote{
+            padding: 20px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">项目</li>
+                <!--<li>员工</li>-->
+            </ul>
+            <div class="layui-tab-content">
+                <!--项目工作量录入-->
+                <form class="layui-form" id="workloadForm">
+                    <div class="layui-tab-item layui-show">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <div class="layui-row layui-form-item">
+                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                                    <label class="layui-form-label">*项目编号：</label>
+                                    <div class="layui-input-block">
+                                        <select  class="projectId need-input" lay-verify="required" title="" lay-filter="projectId" lay-search>
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                                    <label class="layui-form-label">项目名称：</label>
+                                    <div class="layui-input-block">
+                                        <input type="text"  autocomplete="off" readonly lay-verify="require"
+                                               class="layui-input projectName" style="width: 90%">
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                                    <label class="layui-form-label">*实施部：</label>
+                                    <div class="layui-input-block">
+                                        <select id="implementDepartment" name="implementId" class="implementDepartment department-relate" lay-verify="required" title="" lay-filter="implementDepartment" lay-search >
+                                            <option></option>
+                                        </select>
+                                        <input type="hidden" id="implementId" name="implementId" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card-body">
+                            <button type="button" class="layui-btn layui-btn-warm layui-btn-sm add-workLoad-btn-project">添加工作量</button>
+                            <div id="workBody">
+                                <div class="add-project-div">
+                                    <!--第一个项目工作量添加-->
+                                    <blockquote class="layui-elem-quote layui-quote-nm work-content" style="position: relative">
+                                        <div class="layui-row layui-form-item">
+
+                                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md3 layui-col-space12">
+
+                                                <label class="layui-form-label">*日期：</label>
+                                                <div class="layui-input-block" >
+                                                    <input type="text"  name="workLoadBeans[0].workLoadDate"  title="日期"  autocomplete="off"
+                                                           class="layui-input workLoadDate need-input"  >
+                                                </div>
+
+                                                <label class="layui-form-label">*员工：</label>
+                                                <div class="layui-input-block">
+                                                    <select name="workLoadBeans[0].staffUserBean.userId" data-notice-path="staffUserBean.userName" lay-verify="require" class="staffUserBean need-input" title="" lay-filter="staffUserBean" lay-search>
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="layui-col-xs4 layui-col-sm12 layui-col-md3 layui-col-space12">
+                                                <label class="layui-form-label">*工种类型：</label>
+                                                <div class="layui-input-block">
+                                                    <select name="workLoadBeans[0].professionBean.professionId" data-notice-path="professionBean.professionName" class="professionId need-input" title="" lay-filter="professionId" lay-verify="require"  lay-search>
+                                                        <option></option>
+                                                    </select>
+                                                    <input type="hidden" class="workLoadProfessionName" name="workLoadBeans[0].workLoadProfessionName">
+                                                    <input type="hidden"  name="workLoadBeans[0].workLoadStatusBean.workLoadStatusId" value="1">
+                                                </div>
+                                                <label class="layui-form-label" >*工作量：</label>
+                                                <div class="layui-input-block">
+                                                    <input type="number"  name="workLoadBeans[0].workLoadWorkLoad"  placeholder="" autocomplete="off" lay-verify="require"
+                                                           class="layui-input workLoadWorkLoad">
+                                                </div>
+                                                <!--人员成本禁用-->
+                                                <!--<input type="hidden" placeholder="" autocomplete="off" readonly lay-verify="require"-->
+                                                <!--class="layui-input salary" style="border: none;align-items: center">-->
+                                                <input title="单价" type="hidden"  class="workLoadPriceStaff price" name="workLoadBeans[0].workLoadPriceStaff" readonly data-name="workLoadPriceStaff" style="border: none;align-items: center" >
+                                                <input title="单价" type="hidden" name="workLoadBeans[0].workLoadPriceManage" class="workLoadPriceManage price" readonly data-name="workLoadPriceManage" style="border: none;align-items: center">
+                                                <input title="单价" type="hidden"  name="workLoadBeans[0].workLoadPriceCaptain" class="workLoadPriceCaptain price" readonly data-name="workLoadPriceCaptain" style="border: none;align-items: center">
+
+
+                                            </div>
+
+                                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md3 layui-col-space12">
+                                                <label class="layui-form-label">主管：</label>
+                                                <div class="layui-input-block">
+                                                    <select name="workLoadBeans[0].supervisorUserBean.userId" data-notice-path="supervisorUserBean.userName" class="supervisorUserBean project-relate" title="" lay-filter="supervisorUserBean" lay-search>
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+                                                <label class="layui-form-label" >工作天数：</label>
+                                                <div class="layui-input-block">
+                                                    <label>
+                                                        <input type="number" class="dayNum layui-input"  name="workLoadBeans[0].workLoadDuration">
+                                                    </label>
+                                                </div>
+
+                                                <input title="提成金额" type="hidden" style="border: none" name="workLoadBeans[0].workLoadAmountStaff" class="workLoadAmountStaff price" data-name="workLoadAmountStaff" readonly>
+                                                <!--<input title="人员成本" type="hidden"  class="layui-input laborCost" name="workLoadBeans[0].workLoadLaborCost" style="border: none;align-items: center" readonly  >-->
+                                                <input title="提成金额" type="hidden"  name="workLoadBeans[0].workLoadAmountManage" class="workLoadAmountManage price" data-name="workLoadAmountManage" readonly>
+                                                <input title="提成金额" type="hidden"  name="workLoadBeans[0].workLoadAmountCaptain" class="workLoadAmountCaptain price" data-name="workLoadAmountCaptain" readonly>
+                                                <input title='提成金额' type='hidden'  name='workLoadBeans[0].createJobBean' class='BelongJob'  >
+
+                                            </div>
+
+                                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md3 layui-col-space12">
+                                                <label class="layui-form-label">队长：</label>
+                                                <div class="layui-input-block">
+                                                    <select name="workLoadBeans[0].captainUserBean.userId" data-notice-path="captainUserBean.userName" class="captainUserBean project-relate" title="" lay-filter="captainUserBean" lay-search>
+                                                        <option></option>
+                                                    </select>
+                                                </div>
+
+                                                <label class="layui-form-label">工作备注：</label>
+                                                <div class="layui-input-block">
+                                                    <textarea name="workLoadBeans[0].workLoadRemark" data-notice-path="workLoadRemark" class="workLoadRemark project-relate layui-textarea" placeholder="请输入内容" >
+
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </blockquote>
+
+                                    <blockquote class="layui-elem-quote layui-quote-nm work-audit">
+                                        <div class="layui-row layui-form-item">
+                                            <div class="layui-col-xs6 layui-col-sm6 layui-col-md3 layui-col-space12">
+                                                <label class="layui-form-label">*审核：</label>
+                                                <div class="layui-input-block">
+                                                    <select name="workLoadStatusBean.workLoadStatusId" class="workLoadStatusId"  title="审核" >
+                                                        <option></option>
+                                                        <option value="1">待审核</option>
+                                                        <option value="2">通过</option>
+                                                        <option value="3">退回</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-xs4 layui-col-sm12 layui-col-md3 layui-col-space12">
+                                                <label class="layui-form-label" >备注：</label>
+                                                <div class="layui-input-block">
+                                                    <textarea   name="workLoadAuditRemark"  placeholder=""  lay-verify="require" class="layui-input workLoadAuditRemark"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </blockquote>
+                                </div>
+                            </div>
+
+                        </div>
+                    <!--<div class="layui-card-body">-->
+                        <!--<div class="layui-row">-->
+                            <!--<div class="layui-col-sm6 choose-parent">-->
+                                <!--<blockquote class="layui-elem-quote layui-quote-nm">-->
+                                    <!--<button class="layui-btn layui-btn-sm layui-btn-normal add-people select-tree-btn" data-href="../../set/user/user-select.html?" type="button">添加通知人</button>-->
+                                    <!--<div class="user-div choose-wait" >-->
+                                        <!--&lt;!&ndash;<button class="layui-btn layui-btn-sm layui-btn-primary" type="button">林建丰&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<i class="layui-icon layui-icon-close"></i>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+                                        <!--&lt;!&ndash;<span class="all-remove">清空</span>&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</blockquote>-->
+                            <!--</div>-->
+                            <!--<div class="layui-col-sm6 choose-parent">-->
+                                <!--<blockquote class="layui-elem-quote layui-quote-nm" >-->
+                                    <!--<button class="layui-btn layui-btn-sm layui-btn-normal" type="button">待办人</button>-->
+                                    <!--<div class="user-div choose-wait">-->
+                                    <!--</div>-->
+                                <!--</blockquote>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    </div>
+                    <div class="layui-input-block commit-div" style="align-content: center">
+                        <button class="layui-btn" id="workload_submit_project" type="button">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+                </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

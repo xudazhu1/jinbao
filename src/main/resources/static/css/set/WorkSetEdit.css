@@ -1,0 +1,39 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+
+.layui-form{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 40px;
+}
+
+.title{
+    background-color: white;
+    /*width: 120%;*/
+    /*min-width: 800px;*/
+    /* display: flex; */
+    margin-left: 5px;
+    /*margin-top: 5px;*/
+    margin-right: 5px;
+}
+
+.layui-input-block{
+    margin-right: 100px;
+}
+
+.layui-form-label {
+    width: 90px;
+}
+
+label {
+    font-weight: 400;
+}
+
+.require_field{
+    color: red;
+}

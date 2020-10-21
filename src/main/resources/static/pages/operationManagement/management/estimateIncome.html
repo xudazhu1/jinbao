@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预估回款展示</title>
+    <meta id="permission-tag" data-name="预估回款展示" data-class="经营管理-经营" data-remark="预估回款展示页"/>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../../../vendor/laydate_custom/theme/default/laydate.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../vendor/laydate_custom/laydate.js"></script>
+    <script type="text/javascript" src="../../../js/operationManagement/management/estimateIncome.js"></script>
+    <style>
+        header {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        header span.comeback-btn {
+            font-size: 24px;
+            color: orange;
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header class="webTop">
+    <nav class="webTop-right">
+        <ul class="nav nav-tabs webNav">
+            <li class=" permissions-elem" data-href="./disburseExpense.html" >
+                <a href="../management.html" class="nav-item" id="my-expense">经营</a>
+            </li>
+            <li class=" active  permissions-elem" data-href="./disburseExpenseAudit.html">
+                <a href="./management/estimateIncome.html" class="nav-item">预估回款金额</a>
+            </li>
+            <li class="   permissions-elem" data-href="./disburseExpenseAudit.html">
+                <a href="../incomeImplMoney.html" class="nav-item">回款金额分配</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="table-div">
+    <form id="searchForm">
+        <table data-table="contract"
+               class="show-altrowstable no-copy-show-altrowstable first-line-table table table-bordered table-hover"
+               id="operating_record_table">
+            <thead class="thead-dark">
+            <tr>
+                <th>
+                    <span>项目编号</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="projectBean.projectNum" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>项目名称</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="projectBean.projectNum" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>审计金额</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="projectBean.projectNum" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>财评金额</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="projectBean.projectName" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm ">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>预算金额</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1" style="display: none;">-->
+                    <!--<div class="filter-body pre-scrollable test-1 check_type_parent_inner" data-property="projectBean.projectManagementType">-->
+                    <!--<input type="text" class="form-control input-sm" name="projectBean.projectManagementType" value=""-->
+                    <!--autocomplete="off" placeholder="键入或勾选">-->
+                    <!--<input type="hidden" name="$D.projectBean.projectManagementType" value="自营">-->
+                    <!--<div class="checkbox checkbox-info checkbox-circle check_type2">-->
+                    <!--<input checked type="checkbox"  id="item_id_501" class="zy">-->
+                    <!--<label  for="item_id_501">自营</label>-->
+                    <!--</div>-->
+                    <!--<div class="checkbox checkbox-info checkbox-circle check_type2">-->
+                    <!--<input type="checkbox" id="item_id_691" class="hz">-->
+                    <!--<label for="item_id_691">合作</label>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>合同金额</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="contractState" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--<input type="hidden" name="$D.contractState" value="">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+
+                <th>
+                    <span>部门</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="contractEstimateMoney" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>部门进度</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="contractMoney" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+
+                <th>
+                    <span>报价金额</span>
+                </th>
+                <th>
+                    <span>项目进度</span>
+                </th>
+                <th>
+                    <span>预估收入</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<div class="layui-input-inline">-->
+                    <!--<input type="text" class="form-control input-sm laydate_double"-->
+                    <!--name="$S.contractSigningDate" value="" autocomplete="off"-->
+                    <!--placeholder="请输入时间范围">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <th>
+                    <span>已回款金额</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" name="contractRawFileCount" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+                <!--<th>-->
+                <!--<span>剩余折旧</span>-->
+                <!--&lt;!&ndash;<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="filter-div" tabindex="1">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="filter-body pre-scrollable test-1">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="text" class="form-control input-sm" name="contractAccessoryCount" value="" autocomplete="off" placeholder="键入或勾选">&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="scrollbar">&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--</th>-->
+                <th>
+                    <span>待回款金额</span>
+                    <!--<i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>-->
+                    <!--<div class="filter-div" tabindex="1">-->
+                    <!--<div class="filter-body pre-scrollable test-1">-->
+                    <!--<input type="text" class="form-control input-sm" value="" autocomplete="off" placeholder="键入或勾选">-->
+                    <!--<input type="hidden" value="">-->
+                    <!--</div>-->
+                    <!--<div class="scrollbar">-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-xs btn-warning btn-confirm">确定</button>-->
+                    <!--</div>-->
+                </th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="items">
+
+            </tbody>
+        </table>
+    </form>
+</div>
+<div id="page" class="page_div"></div>
+</body>
+</html>

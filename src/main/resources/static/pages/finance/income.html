@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="回款展示" data-class="财务管理-回款" data-remark="回款录入,回款审核展示页"/>
+    <title>回款展示</title>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/layer-v3.1.1/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/sweetalert/sweet-alert.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script src="../../js/finance/income.js"></script>
+    <!--suppress CssUnusedSymbol -->
+    <style>
+
+        .table-utils-td-text {
+            background-color: initial;
+            width: 100%;
+            border: 0;
+            /*outline : none;*/
+            text-align: center;
+        }
+
+        .table-utils-td-text:hover {
+        }
+
+        .type-filter {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+            <span class="ctl-glyphicon table-title" title="项目">
+                回款
+            </span>
+        <div style="position: absolute;top: 33px;left: 100px;">
+            <label class="checkbox-inline">
+                <input type="checkbox" class="incomeAuditStatus-select" id="incomeAuditStatus-select-all" value=" 1 = 1  "> 全部
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" class="incomeAuditStatus-select" value=" incomeBean.incomeAuditStatus is null "> 待回款
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" class="incomeAuditStatus-select" value=" incomeBean.incomeAuditStatus = '0' "> 待审核
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" class="incomeAuditStatus-select" value=" incomeBean.incomeAuditStatus = '1' "> 已通过
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" class="incomeAuditStatus-select" value=" incomeBean.incomeAuditStatus = '2' "> 被退回
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" class="incomeAuditStatus-select" value=" incomeBean.incomeAuditStatus = '4' "> 已作废
+            </label>
+        </div>
+        <!--<form class="layui-form type-filter">-->
+        <!--<div class="type-filter">-->
+        <!--<input type="radio" lay-filter="filter-form" name="todoStatus" value="自营" title="自营" checked>-->
+        <!--<input type="radio" lay-filter="filter-form" name="todoStatus" value="合作" title="合作" >-->
+        <!--</div>-->
+        <!--</form>-->
+
+        <div class="time-area ctl-glyphicon" title="自定义展示列">
+            <div class="th-checkbox">
+                <i class="glyphicon glyphicon-th-list show-i test-normal"></i>
+                <div class="filter-div" tabindex="1">
+                    <div class="filter-body pre-scrollable test-1" id="label_list">
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectNum" checked>
+                            <label for="projectNum">项目编号</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectName" checked>
+                            <label for="projectName">项目名称</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectManagementType" checked>
+                            <label for="projectManagementType">经营类型</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectManagementType1" checked>
+                            <label for="projectManagementType1">经营主负责人</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectManagementType12" checked>
+                            <label for="projectManagementType12">经营负责人</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectLocationName" checked>
+                            <label for="projectLocationName">实施部</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="managementMainHead" checked>
+                            <label for="managementMainHead">推荐人</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectWorkContent" checked>
+                            <label for="projectWorkContent">内部合伙人</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectWorkContent1" checked>
+                            <label for="projectWorkContent1">外部合伙人</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectWorkContent2" checked>
+                            <label for="projectWorkContent2">合作伙伴</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="implementDepartment" checked>
+                            <label for="implementDepartment">协调费/协作费</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="implementImplementHead" checked>
+                            <label for="implementImplementHead">税率</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="implementImplementHead1" checked>
+                            <label for="implementImplementHead1">财评金额</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="implementImplementHead2" checked>
+                            <label for="implementImplementHead2">结算金额</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="implementImplementHead3" checked>
+                            <label for="implementImplementHead3">审计金额</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="a1" checked>
+                            <label for="a1">操作人</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="a2" checked>
+                            <label for="a2">操作时间</label>
+                        </div>
+                        <!--<div class="checkbox checkbox-info checkbox-circle">-->
+                        <!--<input type="checkbox" id="a3" checked>-->
+                        <!--<label for="a3">数据归属职位</label>-->
+                        <!--</div>-->
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="operateBox" checked>
+                            <label for="operateBox">操作框</label>
+                        </div>
+                    </div>
+                    <div class="scrollbar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="th-checkbox add-div ctl-glyphicon permissions-elem " data-href="income/income-insert.html?way=add"
+             title="录入回款" data-title="录入回款">
+            <i class="glyphicon glyphicon-plus show-i test-normal"></i>
+        </div>
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <form id="searchForm">
+        <!--开票状态通过才显示回款-->
+        <input type="hidden" name="table_utils.custom_where" id="top-audit-checkbox"
+               value=" 1 = 1 ">
+        <input type="hidden" name="table_utils.custom_where"
+               value="  incomeBean.incomeAuditStatus is not null or  incomeBeanXUDAZHUinvoiceBean.invoiceAuditStatus = '1'  ">
+        <div class="table-div table-utils-div" id="myTable">
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>

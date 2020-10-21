@@ -1,0 +1,86 @@
+body .checkbox {
+    display: initial;
+}
+
+.tree-info .glyphicon-chevron-right, .tree-info .glyphicon-chevron-down {
+    cursor: pointer;
+}
+
+.checkbox, .radio {
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table td {
+    padding: 0 3px;
+}
+
+table .middle button {
+    width: 100%;
+}
+
+.select-div {
+    position: absolute;
+    line-height: 100%;
+    width: 30%;
+    min-width: 650px;
+    margin: auto;
+    height: 30%;
+    min-height: 400px;
+    padding: 15px;
+    /*background-color: #ddd;*/
+    border: 1px #ddd solid;
+    border-radius: 4px 4px 0 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.select-div-inner {
+    border: 1px #ddd solid;
+    height: 100%;
+    /*width: 100%;*/
+    overflow: auto;
+    white-space:nowrap;
+}
+
+html, body {
+    height: 100%;
+    position: relative;
+}
+
+.select-div table {
+    height: calc(100% - 30px);
+    width: 100%;
+    table-layout:fixed;
+}
+
+.t-body {
+    height: calc(100% - 50px);
+}
+
+.select-div thead th {
+    line-height: 30px;
+}
+
+.select-btn button, .select-btn button:hover {
+    width: 100%;
+    color: #ddd;
+}
+
+.select-th-left {
+    width: 50%;
+}
+
+#selected-div div {
+    line-height: 24px;
+    margin: 2px;
+}
+
+.ctrl-btn-div {
+    padding: 5px;
+    text-align: right;
+}

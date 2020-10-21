@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>其他费类型列表</title>
+    <meta id="permission-tag" data-name="其他费类型列表展示" data-class="设置-其他费类型" data-remark="其他费类型列表展示页" />
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../css/set/teamManageList.css">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/soulTable.css" media="all">
+
+    <!--    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>-->
+    <!--    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>-->
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/set/teamManage/otherFeeTypeList.js"></script>
+
+    <style type="text/css" >
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="layui-container header-search layui-form" id="search-one" >
+        <div class="layui-row layui-form-item" style="padding-top: 10px">
+            <div class="layui-col-md1 label-center">
+                <label>其他费编号</label>
+            </div>
+            <div class="layui-col-md1 input-left">
+                <select name="squadGroupFeeGenre">
+                    <option value="">全部</option>
+                    <option value="开票">开票</option>
+                    <option value="普票">普票</option>
+                    <option value="不需开">不需开</option>
+                    <option value="3%专票">3%专票</option>
+                </select>
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>状态</label>
+            </div>
+            <div class="layui-col-md1 input-left">
+                <select name="squadGroupFeeStatusId">
+                    <option value="">全部</option>
+                    <option value="1">正常</option>
+                    <option value="2">冻结</option>
+                </select>
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>录入时间</label>
+            </div>
+            <div class="layui-col-md3" style="margin-left: -10px">
+                <div class="layui-row">
+                    <div class="layui-col-md5">
+                        <input type="text" class="layui-input dateTime" name="squadGroupFeeStartTime" >
+                    </div>
+                    <div class="layui-col-md1 layui-col-md-offset1" style="margin-top: 10px;">
+                        -
+                    </div>
+                    <div class="layui-col-md5">
+                        <input type="text" class="layui-input dateTime" name="squadGroupFeeEndTime">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-form-item" style="margin-top: 10px;padding-bottom: 20px">
+            <div class="layui-col-md1 label-center">
+                <label>其他费类型</label>
+            </div>
+            <div class="layui-col-md1 layui-form  input-left" id="teamBoss">
+                <input type="text" name="teamBoss"  placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>备注</label>
+            </div>
+            <div class="layui-col-md2 layui-form  input-left" id="search-two">
+                <input type="text" name="squadGroupFeeCompany" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            <button type="button" class="layui-btn layui-col-md-offset1" style="margin-left: 250px;" id="search" data-type="reload">搜索</button>
+            <button type="button" class="layui-btn layui-btn-primary" id="clear">清空</button>
+        </div>
+    </div>
+    <div class="layui-container">
+        <table class="layui-hide" id="test" lay-filter="test"></table>
+    </div>
+</div>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">批量正常</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量冻结</button>
+        <button class="layui-btn layui-btn-sm addCase" data-href="otherFeeTypeEdit.html" style="float: right" data-title="添加其他费类型">新增其他费类型</button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    {{# if(d.squadGroupFeeStatusBean == "" || d.squadGroupFeeStatusBean == '1' ){ }}
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="nomal">正常</a>
+    {{# }
+    else { }}
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="del">冻结</a>
+    {{#  }}}
+</script>
+</body>
+</html>
+
+<!--, {field: 'squadGroupFeeStatusId', title: '状态', width: 80, edit: 'text', sort: true} layui-btn-normal-->

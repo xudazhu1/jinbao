@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转账-基础页</title>
+    <meta id="permission-tag" data-name="转账-基础页" data-class="财务管理-转账" data-remark="转账-基础页"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script src="../../../js/utils/createNotice.js"></script>
+    <script src="../../../js/finance/transferAccounts/transferAccounts-add.js"></script>
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+            z-index: -1;
+        }
+
+        body .layui-form-label {
+            color: #79c1c9
+        }
+
+        body .layui-input-block p {
+            margin-top: 8px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-sm-offset3 layui-col-sm6">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card" id="sumCard">
+                <div class="layui-card-header form-header">
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-lg6 layui-col-space5">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*日期：</label>
+                            <div class="layui-input-block">
+                                <input type="text" class="layui-input transferAccountsDate need-input show-text" placeholder="请选择..." name="transferAccountsDate" autocomplete="off">
+                                <input type="hidden" class="layui-input" placeholder="" name="transferAccountsId" >
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" class="layui-input need-input show-text" placeholder="请输入..." name="transferAccountsMoney" autocomplete="off">
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*转出账户：</label>
+                            <div class="layui-input-block">
+                                <select class="bankCardId need-input comeBankCard" name="comeBankCardBean.bankCardId" title="" lay-filter="bankCardId" autocomplete="off" lay-search>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">转账类型：</label>
+                            <div class="layui-input-block">
+                                <select class="transferAccountsType show-select-text" name="transferAccountsType" title="" lay-filter="" autocomplete="off" lay-search>
+                                    <option></option>
+                                    <option>公对公</option>
+                                    <option>公对私</option>
+                                    <option>私对私</option>
+                                    <option>私对公</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 layui-col-space5">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*转入账户：</label>
+                            <div class="layui-input-block">
+                                <select class="bankCardId need-input enterBankCard" name="enterBankCardBean.bankCardId" title="" lay-filter="bankCardId" autocomplete="off" lay-search>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*经办人：</label>
+                            <div class="layui-input-block">
+                                <input type="text" class="layui-input userName show-text" placeholder="请输入..." name="transferAccountsResponsiblePerson" autocomplete="off">
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">备注：</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="请输入" class="layui-textarea show-text"
+                                          name="transferAccountsRemark" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--审核信息-->
+            <div class="layui-card audit-div">
+                <div class="layui-card-header">
+                    审核信息
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核操作：</label>
+                            <div class="layui-input-block audit-inner-div">
+                                <input type="text" name="paymentStatusBean.paymentStatusId"
+                                       class="layui-input paymentStatus-1" placeholder="" value="3">
+                                <select title="" class="audit-select" name="paymentStatusBean.paymentStatusId" lay-filter="paymentStatus"
+                                        lay-search>
+                                    <option value="8">审核通过</option>
+                                    <option value="4">退回</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*转款时间：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="transferAccountsPayDate" placeholder="点击选择时间" class="layui-input test-item " lay-verify="required">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核备注：</label>
+                            <div class="layui-input-block">
+                                <textarea class="layui-textarea disburseApprovalRemark2" placeholder=""
+                                          name="transferAccountsAffirmRemark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn submit-btn" type="button">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

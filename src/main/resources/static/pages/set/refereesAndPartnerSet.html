@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>推荐人/合伙人设置页面</title>
+    <meta id="permission-tag" data-name="推荐人/合伙人设置页" data-class="设置-推荐人/合伙人" data-remark="可以对推荐人、合伙人进行增加、删除、修改操作" />
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../js/set/refereesAndPartnerSet.js"></script>
+    <script src="../../js/xudazhu.js"></script>
+    <!--suppress CssUnusedSymbol -->
+    <style>
+
+        [lay-filter='managementPartnersIdentity'] {
+            display: none!important;
+        }
+        html {
+            height: 100%;
+            background-color: #f2f2f2;
+            color: #666;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100%;
+        }
+
+        caption {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        tr {
+            height: 50px;
+        }
+
+        td .layui-input {
+            height: 30px;
+            border: none;
+            padding-left: 0;
+        }
+
+        td .layui-icon {
+            cursor: pointer;
+        }
+
+        select[readonly] + .layui-form-select .layui-anim {
+            display: none !important;
+        }
+
+        select[readonly] + .layui-form-select .layui-edge {
+            display: none !important;
+        }
+
+        select[readonly] + .layui-form-select .layui-input {
+            cursor: auto !important;
+            background-color: initial;
+        }
+
+        select[readonly] + .layui-form-select .layui-input:hover {
+            background-color: initial;
+        }
+        body .contain {
+            overflow: scroll;
+            position: relative;
+        }
+
+        body .contain .trueTable {
+            margin: 0;
+        }
+
+        body .contain .copyTable {
+            position: fixed;
+            z-index: 1000;
+            margin: 0;
+        }
+
+        body .contain .copyTable th {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+<div class="layui-card" style="height: 100%;overflow: auto">
+    <div class="layui-card-body">
+        <!--suppress HtmlUnknownAttribute -->
+        <div class="layui-tab layui-tab-brief" lay-filter="component-tabs-hash">
+            <ul class="layui-tab-title">
+                <li class="layui-this">合伙人</li>
+                <li>推荐人</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item  layui-show">
+                    <div class="layui-row">
+                        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                            <form class="layui-form" id="disburse_category">
+                                <table class="layui-table " data-table="management_partners">
+                                    <!--<caption>内部合伙人</caption>-->
+                                    <thead>
+                                    <tr>
+                                        <th  >序号</th>
+                                        <th style="width: 15%" >用户</th>
+                                        <th style="width: 15%" >身份</th>
+                                        <th style="width: 15%" >推荐人</th>
+                                        <th style="width: 15%" >初始等级</th>
+                                        <th style="width: 15%" >等级</th>
+                                        <th style="width: 15%" >操作框</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <td>
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title="" class="userId" lay-filter="userBean.userId" name="userBean.userId" lay-search>
+                                                <option></option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title="" class="managementPartnersIdentity" name="managementPartnersIdentity"
+                                                    lay-filter="managementPartnersIdentity">
+                                                <option></option>
+                                                <option value="内部合伙人">内部合伙人</option>
+                                                <option value="外部合伙人">外部合伙人</option>
+                                                <option value="合作伙伴">合作伙伴</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title="" class="refereesUserId" name="refereesUserBean.userId"
+                                                    lay-filter="refereesUserBean.userId" lay-search>
+                                                <option></option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title="" class="managementPartnersRefereesInitLevel" name="managementPartnersRefereesInitLevel"
+                                                    lay-filter="managementPartnersRefereesInitLevel">
+                                                <option></option>
+                                                <option value="P1">P1</option>
+                                                <option value="P2">P2</option>
+                                                <option value="P3">P3</option>
+                                                <option value="P4">P4</option>
+                                                <option value="P5">P5</option>
+                                                <option value="P6">P6</option>
+                                                <option value="P7">P7</option>
+                                                <option value="P8">P8</option>
+                                                <option value="P9">P9</option>
+                                                <option value="P10">P10</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title="" class="managementPartnersRefereesLevel" name="managementPartnersRefereesLevel"
+                                                    lay-filter="managementPartnersRefereesLevel">
+                                                <option></option>
+                                                <option value="P1">P1</option>
+                                                <option value="P2">P2</option>
+                                                <option value="P3">P3</option>
+                                                <option value="P4">P4</option>
+                                                <option value="P5">P5</option>
+                                                <option value="P6">P6</option>
+                                                <option value="P7">P7</option>
+                                                <option value="P8">P8</option>
+                                                <option value="P9">P9</option>
+                                                <option value="P10">P10</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                                  style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr" id="management_partners">
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row">
+                        <div class="layui-col-sm8 layui-col-md7 layui-col-lg6">
+                            <form class="layui-form" id="disburse_category1">
+                                <table class="layui-table " data-table="user">
+                                    <caption>推荐人</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>用户</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <td>
+                                            <input type="hidden" name="roleBeans[0].roleId" id="refereesId">
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title="" class="userId" name="userId" lay-filter="userBean.userIdA" lay-search>
+                                                <option></option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                      style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr" id="referees_users">
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

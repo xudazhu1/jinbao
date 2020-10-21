@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户信息</title>
+    <meta id="permission-tag" data-name="添加/编辑用户" data-class="设置-用户管理" data-remark="添加或者编辑用户信息" />
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/set/structure/editStructure.css">
+    <link rel="stylesheet" href="../../../css/set/user/user-inner.css">
+    <link rel="stylesheet" href="../../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/share.js"></script>
+    <script type="text/javascript" src="../../../vendor/sweetalert/sweet-alert.js"></script>
+    <script type="text/javascript" src="../../../js/set/user/user-inner.js"></script>
+</head>
+<body>
+<form class="layui-form structure-form" id="inputForm">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm4">
+                <div class="layui-card">
+                    <div class="layui-card-header">用户信息</div>
+                    <div class="layui-card-body layui-text">
+                        <div class="layui-row sub-info-add">
+                            <div>
+                                <label class="layui-form-label">用户名：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="userName" autocomplete="off" class="layui-input need-input userName" title="">
+                                    <input type="hidden" name="userId" autocomplete="off" class=" userId" title="">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">密码：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="userPassword" autocomplete="off" class="layui-input need-input userPassword" title="">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">电话：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="userTelephone" autocomplete="off" class="layui-input userTelephone" title="">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">职位：</label>
+                                <div class="layui-input-block select-tree-btn"  data-href="../job/job-select.html?num=1">
+                                    <input type="hidden" id="jobId" readonly name="jobBean.jobId"  autocomplete="off" class="layui-input userTelephone">
+                                    <input type="text" id="jobName" readonly  placeholder="请选择" class="layui-input userTelephone need-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-sm8">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-tab layui-tab-brief" >
+                            <ul class="layui-tab-title">
+                                <!--<li class="layui-this">职位分配</li>-->
+                                <li class="layui-this">角色分配</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show">
+                                    <button type="button" class="layui-btn layui-btn-sm select-tree-btn " data-href="../role/role-select.html">
+                                        添加
+                                    </button>
+                                    <button type="button" class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                            style="display: none">批量删除
+                                    </button>
+                                    <div class="checked-count">
+                                        <span>已选择</span>
+                                        <span class="checked-num">0</span>
+                                        <span>项</span>
+                                    </div>
+                                    <table class="layui-table">
+                                        <!--<colgroup>-->
+                                            <!--<col width="40">-->
+                                            <!--<col width="60">-->
+                                            <!--<col>-->
+                                            <!--<col width="80">-->
+                                        <!--</colgroup>-->
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" lay-skin="primary" title="">
+                                            </th>
+                                            <th>序号</th>
+                                            <th>角色名称</th>
+                                            <th>角色描述</th>
+                                            <th>操作框</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="roles">
+                                        <!--<tr>-->
+                                            <!--<td>-->
+                                                <!--<input title="" type="checkbox" lay-skin="primary">-->
+                                            <!--</td>-->
+                                            <!--<td>1</td>-->
+                                            <!--<td>超级管理员</td>-->
+                                            <!--<td>我就是大哥 不需要解释</td>-->
+                                            <!--<td>-->
+                                                <!--<button type="button"-->
+                                                        <!--class="layui-btn layui-btn-xs layui-btn-danger delete-btn">删除-->
+                                                <!--</button>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="fixed-bottom">
+    <button class="layui-btn confirm-btn">确认</button>
+    <button type="reset" class="layui-btn layui-btn-primary cancel-btn">取消</button>
+</div>
+</body>
+</html>

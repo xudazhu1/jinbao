@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="职位选择" data-class="设置-职位管理" data-remark="职位选择页 , 很多地方会用到"/>
+    <title>职位选择页</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/build.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/utils/myTree.css">
+    <script>
+        var myType = "job";
+    </script>
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../js/utils/myTree.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+
+
+</head>
+<body>
+
+<div class="select-div">
+    <table>
+        <thead>
+        <tr>
+            <th class="select-th-left">请选择<span class="num"></span></th>
+            <!--<th style="min-width: 50px; width: 10%;"></th>-->
+            <th>已选择</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="t-body">
+            <td class="select-th-left">
+                <div class="select-div-inner" id="myTreeTest">
+
+                </div>
+            </td>
+            <td>
+                <div class="select-div-inner" id="selected-div">
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="ctrl-btn-div">
+        <button class="btn btn-default btn-sm" id="submit" type="button">确认</button>
+        <button class="btn btn-default btn-sm cancel-btn" type="button">取消</button>
+    </div>
+</div>
+
+
+</body>
+
+<script>
+
+    let num =  getParamForUrl("num");
+    $(function () {
+
+        if ( num  !== null ) {
+            $(".num").text( " 最多" + num + "项");
+        }
+
+        $.get("/job/tree", function (data) {
+            createMyTree(data, "#myTreeTest");
+        }, "json");
+
+        $(document).on('click', '.cancel-btn', function () {
+            window.parent.layer.close(window.parent.layerIndex);
+        });
+
+
+        //选择子项后 父项的样式
+        $(document).on("click", ".my-tree .tree-info input[type='checkbox']", function () {
+            //获取已选择的权限
+            setTimeout(function () {
+                let selected_div = $("#selected-div");
+                selected_div.empty();
+                $(".my-tree .tree-info .checkbox-info input[type='checkbox']:checked").each(function () {
+                    if (!$(this).closest(".tree-info").hasClass("tree-class") && $(this).attr("data-type") === "job") {
+                        selected_div.append("<div class='info-label'  title='"+$(this).prop("title")+"' data-id='" + $(this).attr("data-id") + "'>" + $(this).attr("data-name") + "</div>")
+                    }
+                });
+            }, 50);
+        });
+
+        //提交按钮
+        $("#submit").click(function () {
+            const ids = [];
+            let bool = true;
+
+            $("#selected-div").find("div[data-id]").each(function ( index ) {
+                if ( num !== null &&  index + 1 > num ) {
+                    bool = false;
+                    layer.msg('最多只能选择' + num + '项', {
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    } ,  function () {
+                    });
+                }
+                ids.push($(this).attr("data-id"));
+            });
+            if ( ! bool ) {
+                return false;
+            }
+            if ( ! $.isEmptyObject(window.parent) ) {
+                window.parent.jobTreeSelected(ids.toString().replace(/,/g , "$"));
+            }
+
+            $(".cancel-btn").trigger("click");
+
+        });
+
+
+    });
+</script>
+
+</html>

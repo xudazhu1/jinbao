@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>消息中心</title>
+    <meta id="permission-tag" data-name="消息中心" data-class="系统" data-remark="消息中心 , 查看待办和通知"/>
+    <link rel="stylesheet" href="../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../vendor/sweetalert/sweet-alert.css">
+    <link rel="stylesheet" href="../css/message.css">
+    <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../vendor/sweetalert/sweet-alert.js"></script>
+    <script src="../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../js/share.js"></script>
+    <script type="text/javascript" src="../js/message.js"></script>
+
+</head>
+<body>
+<form class="layui-form" id="inputForm">
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" >
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">待办<span class="layui-badge todo-num">0</span></li>
+                        <li class="job-show">通知<span class="layui-badge notice-num" >0</span></li>
+                        <li class="job-show">我发起的</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <div class="todo-filter">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input type="radio" lay-filter="filter-form" name="todoStatus" value="" title="全部" checked>
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input type="radio" lay-filter="filter-form" name="todoStatus" value="待办" title="去处理" >
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input type="radio" lay-filter="filter-form" name="todoStatus" value="已办" title="已办" >
+                            </div>
+                            <div class="todo-content todo-data" >
+                                <!--<div class="layui-card">-->
+                                    <!--<div class="layui-card-body">-->
+                                        <!--<span class="notice-title" >项目录入</span>-->
+                                        <!--<span class="notice-time" >2019年6月21日 11:00</span>-->
+                                        <!--<div class="notice-content">-->
+                                            <!--小林发起了一个报价,报价编号为:bj00001;项目名称为:广西梧州市藤县太平镇至平福乡公路;待您去录入项目信息-->
+                                            <!--<a class="notice-href" href="http://baidu.com" >去处理</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="todo-filter">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input  type="radio" lay-filter="filter-form" name="noticeStatus" value="" title="全部" checked>
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input  type="radio" lay-filter="filter-form" name="noticeStatus" value="未读" title="未读" >
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input  type="radio" lay-filter="filter-form" name="noticeStatus" value="已读" title="已读">
+                                <span class="delete-divs">
+                                    <span>已选择</span>
+                                    <span class="checked-num">0</span>
+                                    <span>项</span>
+                                    <button class="layui-btn layui-btn-primary layui-btn-xs" type="button" id="someRead">标为已读</button>
+                                    <button class="layui-btn layui-btn-xs" type="button" id="allRead">标为全部已读</button>
+                                </span>
+                            </div>
+                            <!--<div class="checked-count">-->
+                                <!--</div>-->
+                            <div class="todo-content notice-data" >
+                                <!--<div class="layui-card">-->
+                                    <!--<div class="layui-card-body">-->
+                                        <!--<span class="notice-title" >项目录入</span>-->
+                                        <!--<span class="notice-time" >2019年6月21日 11:00</span>-->
+                                        <!--<div class="notice-content">-->
+                                            <!--小林发起了一个报价,报价编号为:bj00001;项目名称为:广西梧州市藤县太平镇至平福乡公路;待您去录入项目信息-->
+                                            <!--<a class="notice-href" href="http://baidu.com" >去处理</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="layui-tab-item"  >
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <span class="notice-title" >项目录入</span>
+                                    <span class="notice-time" >2019年6月21日 11:00</span>
+                                    <div class="notice-content">
+                                        小林发起了一个报价,报价编号为:bj00001;项目名称为:广西梧州市藤县太平镇至平福乡公路;待您去录入项目信息
+                                        <a class="notice-href" href="http://baidu.com" >去处理</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <span class="notice-title" >项目录入</span>
+                                    <span class="notice-time" >2019年6月21日 11:00</span>
+                                    <div class="notice-content">
+                                        小林发起了一个报价,报价编号为:bj00001;项目名称为:广西梧州市藤县太平镇至平福乡公路;待您去录入项目信息
+                                        <a class="notice-href" href="http://baidu.com" >去处理</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <span class="notice-title" >项目录入</span>
+                                    <span class="notice-time" >2019年6月21日 11:00</span>
+                                    <div class="notice-content">
+                                        小林发起了一个报价,报价编号为:bj00001;项目名称为:广西梧州市藤县太平镇至平福乡公路;待您去录入项目信息
+                                        <a class="notice-href" href="http://baidu.com" >去处理</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-card">
+                                <div class="layui-card-body">
+                                    <span class="notice-title" >项目录入</span>
+                                    <span class="notice-time" >2019年6月21日 11:00</span>
+                                    <div class="notice-content">
+                                        小林发起了一个报价,报价编号为:bj00001;项目名称为:广西梧州市藤县太平镇至平福乡公路;待您去录入项目信息
+                                        <a class="notice-href" href="http://baidu.com" >去处理</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

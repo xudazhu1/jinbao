@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计量单位编辑</title>
+    <meta id="permission-tag" data-name="计量单位编辑" data-class="计量单位编辑" data-remark="计量单位编辑/新建页"/>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/set/WorkSetEdit.css">
+<!---->
+<!--    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>-->
+<!--    <script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.js"></script>-->
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/set/WorkSet/measureEdit.js"></script>
+
+    <style type="text/css">
+        .layui-form-label{
+            width: 110px;
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    <form class="layui-form" id="teamForm" action="">
+        <div class="layui-form-item num" id="add-num" style="display: none">
+            <div class="layui-form-label">
+            <label><span class="require_field">*</span>计量单位编号</label>
+            </div>
+            <div class="layui-input-block">
+                <label name="squadGroupFeeNum"></label>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="require_field">*</span>计量单位</label>
+            <div class="layui-input-block">
+                <input type="text" name="professionUnitName" placeholder="" autocomplete="off" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="require_field">*</span>状态</label>
+            <div class="layui-input-block">
+                <select name="squadGroupFeeStatusBean.squadGroupFeeStatusId" lay-verify="required" class="squadGroupFeeStatusBean" lay-verify="required">
+                    <option value="1">正常</option>
+                    <option value="2">冻结</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item submit" hidden>
+            <button type="button" class="layui-btn" lay-submit="" lay-filter="save" id="save">提交</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+<script>
+    //Demo
+
+</script>

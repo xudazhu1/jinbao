@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加报价/编辑报价</title>
+    <meta id="permission-tag" data-name="添加报价/编辑报价" data-class="项目管理-报价" data-remark="添加报价/编辑报价"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/quote/quote-add.js"></script>
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+
+        body .layui-form label {
+            color: #79c1c9;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-lg-offset3 layui-col-lg6">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    基本信息
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">*报价编号：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="quoteNum" placeholder="自动生成" autocomplete="off"
+                                       class="layui-input quoteNum" readonly>
+                                <input type="hidden" class="quoteId" name="quoteId">
+                            </div>
+                            <label class="layui-form-label">报价单位：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="quotePlace" placeholder="" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*报价项目名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="quoteName" placeholder="" autocomplete="off"
+                                       class="layui-input need-input">
+                            </div>
+                            <label class="layui-form-label">*报价金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="quoteMoney" placeholder="" autocomplete="off"
+                                       class="layui-input need-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-form-item layui-col-space10">
+                        <label class="layui-form-label">项目内容：</label>
+                        <div class="layui-input-block">
+                            <textarea name="quoteProjectContent" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-form-item">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">*报价人：</label>
+                            <!--<div class="layui-input-block">-->
+                            <!--<input type="text" name="quotePeople"  placeholder="" autocomplete="off"-->
+                            <!--class="layui-input need-input" >-->
+                            <!--</div>-->
+                            <div class="layui-input-block">
+                                <!--<input type="text" name="quotePeople" placeholder="" autocomplete="off"-->
+                                <!--class="layui-input select-tree-btn head" readonly data-href="../../set/user/user-select.html?num=1" data-type="报价人">-->
+                                <select name="quotePeople" title="" class="userName" lay-filter="userName"
+                                        lay-search autocomplete="off"></select>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">*报价状态：</label>
+                            <div class="layui-input-block">
+                                <select name="quoteStatus" class="need-input" title="" lay-filter="quoteStatus">
+                                    <option></option>
+                                    <option>待审核</option>
+                                    <option>已作废</option>
+                                    <option>中标通过</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-form-item">
+                        <label class="layui-form-label">报价内容：</label>
+                        <div class="layui-input-block">
+                            <textarea name="quoteContent" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div  class="layui-row layui-form-item">
+                    <label class="layui-form-label">附件上传：</label>
+                    <div class="layui-input-block">
+                    <div class="file-div">
+                    <input type="hidden" name="del_file_ids" class="delFileIds">
+                    <!--已上传好的文件-->
+                    <div class="download_file" >
+                    <!--<p style="color: #2c2c2c">-->
+                    <!--<span>09_素材中国sccnn.com.jpg</span>-->
+                    <!--<button type="button" class="layui-btn layui-btn-xs layui-btn-normal">-->
+                    <!--<a download="宣传册文字版.docx" href="/file/宣传册文字版.docx144095c4-b72e-4e13-8b52-ca2b3c005b21.docx" style="color: #fff">下载</a>-->
+                    <!--</button>-->
+                    <!--<button type="button" class="delete-file layui-btn layui-btn-danger layui-btn-xs">删除</button>-->
+                    <!--</p>-->
+                    </div>
+                    <!--扫描件上传-->
+                    <button type="button" class="layui-btn layui-btn-warm layui-btn-sm" id="btn_file_upload"><i class="layui-icon"></i>上传文件</button>
+
+                    <div id="uploaded_file">
+
+                    </div>
+                    <div class="layui-progress" style="margin-top: 20px;">
+                    <div class="layui-progress-bar"><span class="layui-progress-text"></span></div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-row">
+                        <div class="layui-col-sm6">
+                            <blockquote class="layui-elem-quote layui-quote-nm">
+                                <button class="layui-btn layui-btn-sm layui-btn-normal add-people select-tree-btn"
+                                        data-href="../../set/user/user-select.html?" type="button">添加通知人
+                                </button>
+                                <div class="user-div" id="notifier">
+                                    <!--<button class="layui-btn layui-btn-sm layui-btn-primary" type="button">林建丰-->
+                                    <!--<i class="layui-icon layui-icon-close"></i>-->
+                                    <!--</button>-->
+
+                                    <!--<span class="all-remove">清空</span>-->
+                                </div>
+                            </blockquote>
+                        </div>
+                        <div class="layui-col-sm6">
+                            <blockquote class="layui-elem-quote layui-quote-nm">
+                                <button class="layui-btn layui-btn-sm layui-btn-normal" type="button">待办人</button>
+                                <div class="user-div">
+                                    <button class="layui-btn layui-btn-sm layui-btn-primary">徐大柱
+                                    </button>
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" id="quoteSubmit" type="button">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

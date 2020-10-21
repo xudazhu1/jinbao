@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="工作量展示" data-class="项目管理-工作量" data-remark="工作量展示页" />
+    <title>工作量展示页</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/theme/default/layer.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script src="../../../js/xudazhu.js"></script>
+    <style>
+        [data-title="待审核"]{
+            background-color: #f0ad4e !important;
+            border-color: #eea236 !important;
+        }
+        [data-title="退回"] {
+            background-color: #428bca !important;
+            border-color: #357ebd !important;
+        }
+    </style>
+</head>
+
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+            <span class="ctl-glyphicon table-title" title="项目">
+                工作量
+            </span>
+        <div class="time-area ctl-glyphicon" title="自定义展示列">
+            <div class="th-checkbox">
+                <i class="glyphicon glyphicon-th-list show-i test-normal"></i>
+                <div class="filter-div" tabindex="1">
+                    <div class="filter-body pre-scrollable test-1" id="label_list">
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectNum" checked>
+                            <label for="projectNum">项目编号</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="projectName" checked>
+                            <label for="projectName">项目名称</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="workTime" checked>
+                            <label for="workTime">日期</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="duration" checked>
+                            <label for="duration">天数</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="workType" checked>
+                            <label for="workType">工种类型</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="workLoad" checked>
+                            <label for="workLoad">工作完成量</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="staff" checked>
+                            <label for="staff">员工</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="unitPriceStaff" checked>
+                            <label for="unitPriceStaff">员工单价</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="totalStaff" checked>
+                            <label for="totalStaff">员工提成</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="workSupervisor" checked>
+                            <label for="workSupervisor">主管</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="unitPriceSupervisor" checked>
+                            <label for="unitPriceSupervisor">主管单价</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="totalSupervisor" checked>
+                            <label for="totalSupervisor">主管提成</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="implementDepartment" checked>
+                            <label for="implementDepartment">实施部</label>
+                        </div>
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="opera" checked>
+                            <label for="opera">操作框</label>
+                        </div>
+                    </div>
+                    <div class="scrollbar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="th-checkbox add-div ctl-glyphicon" data-href="workload-add.html" title="录入" data-title="录入工作量" >
+            <i class="glyphicon glyphicon-plus show-i test-normal"></i>
+        </div>
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..." title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+
+        <form id="searchForm">
+            <div class="table-div table-utils-div" id="myTable" >
+            </div>
+        </form>
+
+</div>
+<script>
+    $(function () {
+        getPageDataUtils(
+            {
+                pageable: { //分页配置
+                    pageNum: 1, //当前页
+                    pageSize: 10, // 每页数量
+                    sortField: ["workLoadId"], //排序字段 可以多个
+                    sort: "false" // 排序正反
+                },
+                fixed : {
+                    fixedTh : true ,  //首行固定 默认 true
+                    fixedTd : true ,  // 固定列 默认 false
+                    fixedTdLength : 2 ,  // 固定列数 默认0
+                } ,
+                tableName: "work_load",
+                elem: $("#myTable"),
+                // rowspanLength: "projectBean.implementBeans",
+                cols: [
+                    {name: "工作量编号", field: "workLoadId" , search : true },
+                    {name: "项目编号", field: "implementBean.projectBean.projectNum" , search : true },
+                    {name: "项目名称", field: "implementBean.projectBean.projectName"  ,  search : true },
+                    {name: "实施部", field: "implementBean.departmentBean.departmentName", search : true },
+                    {name: "日期", field: "workLoadDate", type:"date" , search : true },
+                    {name: "员工", field: "staffUserBean.userName",  search : true , multipleSelection: true },
+                    {name: "工种类型", field: "professionBean.professionName",  search : true , multipleSelection: true },
+                    {name: "工作量", field: "workLoadWorkLoad", count : true ,   search : true },
+                    {name: "成本天数", field: "workLoadDuration", type:"float" , count : true ,  search : true},
+                    {name: "员工单价", field: "workLoadPriceStaff", type:"float" , count : true ,  search : true },
+                    {name: "员工提成", field: "workLoadAmountStaff", type:"float" , count : true ,  search : true },
+                    {name: "主管", field: "supervisorUserBean.userName",  search : true , multipleSelection: true },
+                    {name: "主管提成", field: "workLoadAmountManage", type:"float" , count : true ,  search : true },
+                    {name: "队长", field: "captainUserBean.userName",  search : true , multipleSelection: true },
+                    {name: "队长提成", field: "workLoadAmountCaptain", type:"float" , count : true ,  search : true },
+                    {name: "工作备注", field: "workLoadRemark", search : true },
+                    {name: "录入时间", field: "workLoadCreateDate", type:"date", search : true },
+                    // {name: "修改时间", field: "workLoadUpdateDate", type:"date", search : true },
+                ],
+                buttons: [
+                    {
+                        buttonName: "待初审",  //按钮名称
+                        buttonPath: "workload-audit.html?id=${workLoadId}&way=audit",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 1,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "待终审",  //按钮名称
+                        buttonPath: "workload-audit.html?id=${workLoadId}&way=audit",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 2,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "待支付",  //按钮名称
+                        buttonPath: "workload-pay.html?id=${workLoadId}&way=pay",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 3,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "已支付",  //按钮名称
+                        buttonPath : "workload-info.html?id=${workLoadId}&way=info" ,  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                        {
+                            key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                            value: 4,  //条件 value
+                            comparisons: "eq"
+                        }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "初审退回",  //按钮名称
+                        buttonPath: "workload-return.html?id=${workLoadId}&way=add",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 5,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "终审退回",  //按钮名称
+                        buttonPath: "workload-return.html?id=${workLoadId}&way=add",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 6,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "支付退回",  //按钮名称
+                        buttonPath: "workload-return.html?id=${workLoadId}&way=add",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 7,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    {
+                        buttonName: "已作废",  //按钮名称
+                        buttonPath: "workload-return.html?id=${workLoadId}&way=add",  //  删除不要写path
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadStatusBean.workLoadStatusId",  //条件key
+                                value: 8,  //条件 value 必填 任何比较条件
+                                comparisons: "eq"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    },
+                    // {
+                    //     buttonName: "编辑",  //按钮名称
+                    //     buttonPath : "workload-edit.html?id=${workLoadId}" ,  //  删除不要写path
+                    //     // condition: [ // 按钮出现条件 可以是多个
+                    //         // {
+                    //         //     key: "managementId",  //条件key
+                    //         //     value: 0,  //条件 value
+                    //         //     comparisons: "gt"
+                    //         // }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                    //     // ]
+                    // },
+                    {
+                        isDelete: true,
+                        buttonName: "删除",  //按钮名称
+                        // buttonPath : "management/management-add.html?id=${managementId}" ,  //按钮路径 ${field} 支持查出值用于拼接路径
+                        condition: [ // 按钮出现条件 可以是多个
+                            {
+                                key: "workLoadId",  //条件key  如果是删除 把主键写在这儿
+                                // value : 0 ,  //条件 value 不要写value
+                                comparisons: "gt"
+                            }  //比较方式  gt(大于) ,|  lt(小于) , eq(等于|默认值|) , notNull(不为空) , isNull(为空)
+                        ]
+                    }
+                ]
+            }
+        );
+
+    });
+
+</script>
+</body>
+</html>

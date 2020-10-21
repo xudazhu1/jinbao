@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财务收入展示</title>
+    <meta id="permission-tag" data-name="财务收入展示" data-class="财务管理-财务收入" data-remark="财务收入展示页"/>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../js/finance/financialIncome.js"></script>
+</head>
+<body>
+<header class="webTop">
+    <nav class="webTop-right">
+        <ul class="nav nav-tabs webNav">
+            <li>
+                <a href="./financialSummary.html" class="nav-item" id="index-btn">财务汇总</a>
+            </li>
+            <li class="active">
+                <a href="./financialIncome.html" class="nav-item">财务收入</a>
+            </li>
+            <li>
+                <a href="./financialDisburse.html" class="nav-item">财务支出</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+        <span class="ctl-glyphicon table-title">财务收入</span>
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <form id="searchForm">
+        <!--<input type="hidden" name="disburseBeans.disburseAffiliation" value="报销" title="">-->
+        <div class="table-div table-utils-div" id="myTable">
+        </div>
+        <input type="hidden" name="incomeAuditStatus" value="1">
+    </form>
+</div>
+</body>
+</html>

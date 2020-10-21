@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转账展示</title>
+    <meta id="permission-tag" data-name="转账展示" data-class="财务管理-转账" data-remark="转账展示页"/>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../js/finance/transferAccounts.js"></script>
+</head>
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+        <div class="time-area ctl-glyphicon">
+        </div>
+        <div class="add-divs">
+            <div class="th-checkbox add-div ctl-glyphicon"
+                 data-href="transferAccounts/transferAccounts-insert.html" title="添加转账" data-title="录入转账"
+                 style="display: block">
+                <i class="glyphicon glyphicon-plus show-i test-normal"></i>
+            </div>
+        </div>
+
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容" autocomplete="off">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn btn-confirm">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <form id="searchForm">
+        <div class="table-div table-utils-div" id="myTable">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>录入人员工资</title>
+    <meta id="permission-tag" data-name="录入人员工资" data-class="财务管理-人员工资" data-remark="录入人员工资"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script src="../../../js/utils/createNotice.js"></script>
+    <script src="../../../js/finance/salary/salary-add.js"></script>
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+            z-index: -1;
+        }
+
+        body .layui-form-label {
+            color: #79c1c9
+        }
+
+        body .layui-input-block p {
+            margin-top: 8px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-sm3" style="margin:  0 auto;float: none">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card" id="sumCard">
+                <div class="layui-card-header form-header">
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-lg12">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*每日工资：</label>
+                            <div class="layui-input-block">
+                                <input type="number" class="layui-input need-input" placeholder="请选择..." name="salaryDailyCost" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg12">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*员工姓名：</label>
+                            <div class="layui-input-block">
+                                <input type="text"  class="layui-input userName head select-tree-btn need-input disburseResponsiblePerson"
+                                       data-href="../../set/user/user-select.html?num=1" data-type="员工姓名" placeholder="请输入..." autocomplete="off">
+                                <input type="hidden" class="userId layui-input" name="userBean.userId" placeholder="用户id">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn submit-btn" type="button">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

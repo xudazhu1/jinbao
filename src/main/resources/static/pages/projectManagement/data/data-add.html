@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传/编辑资料</title>
+    <meta id="permission-tag" data-name="上传/编辑资料" data-class="项目管理-资料" data-remark="上传/编辑资料" />
+    <link rel="stylesheet" href="../../../css/projectManagement/data/data-add.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/data/data-add.js"></script>
+    <style type="text/css">
+        body .altrowstable-data tr {
+            width: 33%;
+            float: left;
+        }
+
+        body .altrowstable-data td {
+            display: none;
+        }
+
+        body .altrowstable-data th {
+            display: none;
+        }
+
+        .container {
+            cursor: pointer;
+            width: 200px;
+            height: 40px;
+            background-color: gray;
+            margin-left: 679px;
+            border-radius:5px;
+            /*display: none;*/
+        }
+
+        #progress {
+            line-height: 40px;
+            text-align: center;
+            width: 200px;
+            height: 40px;
+            background-color:#519ef1;
+            border-radius:5px;
+            display: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="middle">
+    <!--<div class="top-shows">-->
+    <!--<img src="../../images/工单.png" alt="">-->
+    <!--<span>资料上传页面</span>-->
+
+    <!--</div>-->
+    <div class="add-data">
+        <div id="addDataPaging">
+            <div>
+                <div class="data-head">
+                    <form id="update_datum">
+                        <table class="altrowstable altrowstableHead">
+                            <thead>
+                            <tr>
+                                <th>项目编号</th>
+                                <td>
+                                    <input type="text" autocomplete="off" class="info" id="itemNumbering"
+                                           name="datum_num"
+                                           list="itemNumberlist" onkeyup="this.value=this.value.replace(/\s+/g,'')"
+                                           title="项目编号" style="margin-top: 10px;height: 30px;width: 220px">
+                                    <datalist id="itemNumberlist">
+
+                                    </datalist>
+                                </td>
+                                <th>项目名称</th>
+                                <td>
+                                    <input type="text" id="itemName" autocomplete="off" list="itemNamelist"
+                                           class="draw_prop info"
+                                           onkeyup="this.value=this.value.replace(/\s+/g,'')" title="项目名称" title="项目名称"
+                                           style="margin-top: 10px;height: 30px;width: 220px">
+                                    <datalist id="itemNamelist">
+                                        <option></option>
+                                        <option class="itemNames" data-itemId="ZY19SY-CL0061">育才大道雨污水管修复及完善工程</option>
+                                        <option class="itemNames" data-itemId="ZY19SY-KC0062">育才大道雨污水管修复及完善工程</option>
+                                        <option class="itemNames" data-itemId="HZ19HK-KC0063">
+                                            国家海洋局临高观测点验潮井及配套工程建设用海地质勘探项目（补充）
+                                        </option>
+                                        <option class="itemNames" data-itemId="ZY19SY-CL0236">
+                                            三亚市新海罗小区人才住房安居工程（同心家园三十二期）项目
+                                        </option>
+                                    </datalist>
+                                </td>
+
+                                <th>费用归属部门</th>
+                                <td>
+                                    <select type="text" name="implementBean.implementId" class="info"
+                                            id="datumDepartment"></select>
+                                </td>
+                            </tr>
+                            <input type="hidden" id="Depart" name="department">
+                            </thead>
+                        </table>
+                        <table class="altrowstable altrowstable-data">
+                            <tbody>
+                            <input type="hidden" name="datumId" id="datum_id">
+                            <tr>
+                                <th class="hi type_name cont" data-type="合同">合同</th>
+                                <td class="hi cont">
+                                    <select name="datumContfile" class="addForm cont-select" id="data_cont">
+                                        <option selected="selected"></option>
+                                        <option value="有">有</option>
+                                        <option value="无">无</option>
+                                        <option value="不需">不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data zx-data cl-data type_name" data-type="甲方提供资料">甲方提供资料</th>
+                                <td class="kc-data zx-data cl-data">
+                                    <select name="datumParafile" class="addForm datumParafile">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="zx-data type_name" data-type="*报告文本">*报告文本</th>
+                                <td class="zx-data">
+                                    <select name="datumReporttext" class="addForm datumReporttext">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="zx-data type_name" data-type="监测方案">监测方案</th>
+                                <td class="zx-data">
+                                    <select name="datumSupervise" class="addForm datumSupervise">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data zx-data type_name" data-type="审计">审计</th>
+                                <td class="kc-data zx-data">
+                                    <select name="datumAudit" class="addForm datumAudit">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data cl-data type_name" data-type="概算">概算</th>
+                                <td class="kc-data cl-data">
+                                    <select name="datumRough" class="addForm datumRough">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data type_name" data-type="勘察方案">勘察方案</th>
+                                <td class="kc-data">
+                                    <select name="datumSursche" class="addForm datumSursche">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="cl-data type_name" data-type="测量方案">测量方案</th>
+                                <td class="cl-data">
+                                    <select name="datumMeasure" class="addForm datumMeasure">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data zx-data cl-data type_name" data-type="财评">财评</th>
+                                <td class="kc-data zx-data cl-data">
+                                    <select name="datumEvalua" class="addForm datumEvalua">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data zx-data cl-data type_name" data-type="*预算">*预算</th>
+                                <td class="kc-data zx-data cl-data">
+                                    <select name="datumBudget" class="addForm datumBudget">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="zx-data cl-data kc-data type_name" data-type="结算">结算</th>
+                                <td class="zx-data cl-data kc-data">
+                                    <select name="datumClose" class="addForm datumClose">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="zx-data type_name" data-type="*批复文件">*批复文件</th>
+                                <td class="zx-data">
+                                    <select name="datumWrittenfile" class="addForm datumWrittenfile">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="kc-data cl-data type_name" data-type="*资料成果">*资料成果</th>
+                                <td class="kc-data cl-data">
+                                    <select name="datumResults" class="addForm datumResults">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th class="kc-data cl-data type_name" data-type="中标通知书">中标通知书</th>
+                                <td class="kc-data cl-data">
+                                    <select name="datumAdvicenote" class="addForm datumAdvicenote">
+                                        <option selected="selected"></option>
+                                        <option>有</option>
+                                        <option>无</option>
+                                        <option>不需</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th rowspan="2" class="kc-data zx-data cl-data">备注</th>
+                                <td rowspan="2" class="kc-data zx-data cl-data ">
+                                    <textarea class="remaks" name="datumRemaks" cols="24" rows="4" ></textarea>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <!-- 提交 -->
+                <div class="table-submit">
+                    <!--<button type="button" id="submit" >提交</button>-->
+                    <div class='container' id="submit" >
+                        <span id="progress">提交</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body {
+    margin-top: 15px;
+    box-sizing: border-box;
+}
+/*固定表底*/
+.fixed-bottom {
+    border: 1px solid #f2f2f2;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px #ccc;
+    padding: 10px 40px 10px 10px;
+    text-align: right;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+}

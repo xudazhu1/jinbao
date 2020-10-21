@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设备列表</title>
+    <meta id="permission-tag" data-name="设备列表展示" data-class="设置-设备" data-remark="设备列表展示页" />
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../css/set/teamManageList.css">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/soulTable.css" media="all">
+
+    <!--    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>-->
+    <!--    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>-->
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/set/teamManage/equipment.js"></script>
+
+    <style type="text/css" >
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="layui-container header-search layui-form" id="search-one" >
+        <div class="layui-row layui-form-item" style="padding-top: 10px">
+            <div class="layui-col-md1 label-center">
+                <label>费用类型</label>
+            </div>
+            <div class="layui-col-md1 input-left">
+                <select name="productionCostsDetailType" id="productionCostsDetailType">
+                    <option value="">全部</option>
+                    <option value="设备使用费">设备使用费</option>
+                    <option value="班组费">班组费</option>
+                    <option value="其他费">其他费</option>
+                </select>
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>编号</label>
+            </div>
+            <div class="layui-col-md1 input-left">
+                <input type="text" class="layui-input" name="productionCostsDetailNum" >
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>录入时间</label>
+            </div>
+            <div class="layui-col-md3" style="margin-left: -10px">
+                <div class="layui-row">
+                    <div class="layui-col-md5">
+                        <input type="text" class="layui-input dateTime" name="squadGroupFeeStartTime" >
+                    </div>
+                    <div class="layui-col-md1 layui-col-md-offset1" style="margin-top: 10px;">
+                        -
+                    </div>
+                    <div class="layui-col-md5">
+                        <input type="text" class="layui-input dateTime" name="squadGroupFeeEndTime">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-form-item" style="margin-top: 10px;padding-bottom: 20px">
+            <div class="layui-col-md1 label-center useCost" style="display: none" id="add_costEquipment">
+                <label>单天使用费</label>
+            </div>
+            <div class="layui-col-md1 layui-form useCost input-left" id="teamBoss" style="display: none">
+                <input type="text" name="teamBoss"  placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>名称</label>
+            </div>
+            <div class="layui-col-md2 layui-form  input-left" id="search-two">
+                <input type="text" name="squadGroupFeeCompany" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-col-md1 layui-col-md-offset1 label-center">
+                <label>状态</label>
+            </div>
+            <div class="layui-col-md1 input-left">
+                <select name="squadGroupFeeStatusId">
+                    <option value="">全部</option>
+                    <option value="上线">正常</option>
+                    <option value="下线">冻结</option>
+                </select>
+            </div>
+            <button type="button" class="layui-btn layui-col-md-offset1" id="search" data-type="reload">搜索</button>
+            <button type="button" class="layui-btn layui-btn-primary" id="clear">清空</button>
+        </div>
+    </div>
+    <div class="layui-container">
+        <table class="layui-hide" id="test" lay-filter="test"></table>
+    </div>
+</div>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+<!--        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">批量正常</button>-->
+<!--        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">批量冻结</button>-->
+        <button class="layui-btn layui-btn-sm addCase" data-href="equipmentEdit.html" style="float: right;margin-top: 10px" data-title="添加设备">新增</button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    {{# if(d.squadGroupFeeStatusName == "" || d.squadGroupFeeStatusName == '上线' ){ }}
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="nomal">正常</a>
+    {{# }
+    else { }}
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="del">冻结</a>
+    {{#  }}}
+</script>
+</body>
+</html>
+
+<!--, {field: 'squadGroupFeeStatusId', title: '状态', width: 80, edit: 'text', sort: true} layui-btn-normal-->

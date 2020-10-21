@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="开票基础页" data-class="财务管理-开票" data-remark="开票基础页 , 支撑开票申请, 审核 , 详情 等页面"/>
+    <title>开票基础页</title>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/xudazhu-layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/Mtils/Mtils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script src="../../../js/finance/invoice/invoice-add.js"></script>
+    <!--suppress CssUnusedSymbol -->
+    <style>
+        select[data-select-hidden] + .layui-form-select {
+            display: none !important;
+        }
+
+        .layui-card-header {
+            text-align: center;
+        }
+
+        .no-tab {
+            white-space: nowrap;
+        }
+
+        .management-money-back-estimation tr td button {
+            width: 24px;
+            margin: 0 !important;
+        }
+
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form-label {
+            width: 98px;
+            padding: 9px 7px;
+        }
+
+        body .layui-elem-quote > span {
+            color: #47a3dc;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 2px 4px;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+
+        .payment-condition .layui-col-sm4 {
+            padding-right: 20px;
+            margin-top: 5px;
+        }
+    </style>
+
+
+</head>
+<body class="way">
+<form id="inputForm" class="layui-form layui-col-sm12 layui-col-md9 layui-col-lg7 " style="float: inherit ; margin: 0 auto;">
+    <div class="layui-card">
+        <!--<div class="layui-card-header">基本信息</div>-->
+        <div class="layui-card-body">
+            <div class="layui-row layui-form-item">
+                <div class="layui-col-sm6 layui-col-space5">
+                    <div class="layui-card-header">基本信息</div>
+                    <label class="layui-form-label">申请日期：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceApplyDate"
+                               autocomplete="off"
+                               class="layui-input lay_date">
+                        <input type="hidden" value="" title="" name="invoiceBean.invoiceId"
+                               autocomplete="off"
+                               class="layui-input ">
+                        <input type="hidden" value="" title="" name="incomeId"
+                               autocomplete="off"
+                               class="layui-input ">
+                        <input type="hidden" value="项目收入-项目收入" title="" name="incomeType"
+                               autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">项目编号：</label>
+                    <div class="layui-input-block">
+                        <!--suppress HtmlUnknownAttribute -->
+                        <select class="layui-input projectNum" name="projectBean.projectId" lay-search
+                                lay-filter="projectNum" title=""></select>
+                    </div>
+                    <label class="layui-form-label">项目名称：</label>
+                    <div class="layui-input-block">
+                        <!--suppress HtmlUnknownAttribute -->
+                        <select class="layui-input projectName" data-notice-path="projectBean.projectName" lay-search lay-filter="projectName" title=""></select>
+                    </div>
+                    <label class="layui-form-label  "> 收益单位：</label>
+                    <div class="layui-input-block ">
+                        <!--suppress HtmlUnknownAttribute -->
+                        <select title="" name="invoiceBean.earningsCompanyBean.earningsCompanyId" lay-filter="earningsCompanyId" class="">
+                            <!--<option>十月后</option>-->
+                            <!--<option>十月前</option>-->
+                        </select>
+                    </div>
+                    <label class="layui-form-label">开票种类：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceType"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">开票内容：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceContent"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">开票金额：</label>
+                    <div class="layui-input-block">
+                        <input type="number" value="" title="" name="invoiceBean.invoiceMoney"
+                               autocomplete="off"
+                               class="layui-input ">
+                    </div>
+                    <!--<label class="layui-form-label">税率：</label>-->
+                    <!--<div class="layui-input-block">-->
+                        <!--<input type="number" value="" title="" name="invoiceBean.invoiceRate"-->
+                               <!--autocomplete="on"-->
+                               <!--class="layui-input ">-->
+                    <!--</div>-->
+                    <!--<label class="layui-form-label">税额：</label>-->
+                    <!--<div class="layui-input-block">-->
+                        <!--<input type="number" value="" title="" name="invoiceBean.invoiceRateMoney"-->
+                               <!--autocomplete="off"-->
+                               <!--class="layui-input ">-->
+                    <!--</div>-->
+                    <label class="layui-form-label">通知开票人：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceNoticeMans"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label" >开票备注：</label>
+                    <div class="layui-input-block">
+                        <textarea type="text" style="height: 60px;" name="invoiceBean.invoiceRemark"  title=""
+                                  autocomplete="on"
+                                  class="layui-input "></textarea>
+                    </div>
+
+                </div>
+
+                <div class="layui-col-sm6 layui-col-space5">
+                    <div class="layui-card-header">购买方</div>
+                    <label class="layui-form-label">甲方单位：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoicePartyFirst"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">纳税识别号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceTaxes"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">地址：</label>
+                    <div class="layui-input-block">
+                        <textarea type="text" title="" name="invoiceBean.invoiceSite"
+                                  autocomplete="on"
+                                  class="layui-input "></textarea>
+                    </div>
+                    <label class="layui-form-label">电话：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoicePhone"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">开户行：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceBank"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                    <label class="layui-form-label">账号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceAccount"
+                               autocomplete="on"
+                               class="layui-input ">
+                    </div>
+                </div>
+                <br>
+                <div class="layui-col-sm6 layui-col-space5">
+                    <div class="layui-card-header">销售方</div>
+                    <label class="layui-form-label " title="收款单位(开票)">收款单位：</label>
+                    <div class="layui-input-block">
+                        <!--suppress HtmlUnknownAttribute -->
+                        <select title="收款单位(开票)" name="invoiceBean.secondPartyBean.secondPartyId" lay-filter="secondPartyId" class="">
+                            <option></option>
+                            <option>牛逼</option>
+                            <option>小挣</option>
+                            <option>劳务</option>
+                            <option>合作</option>
+                            <option>同行</option>
+                        </select>
+                    </div>
+                    <!--<br>-->
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header">开票审核</div>
+        <div class="layui-card-body">
+            <div class="layui-row layui-form-item">
+
+                <div class="layui-col-sm6 layui-col-space5">
+                    <label class="layui-form-label">审核：</label>
+                    <div class="layui-input-block">
+                        <!--suppress HtmlUnknownAttribute -->
+                        <select title="" name="invoiceBean.invoiceAuditStatus"  lay-filter="invoiceAuditStatus" class="audit-only-write">
+                            <option  ></option>
+                            <option value="0" >待审核</option>
+                            <option value="1">通过</option>
+                            <option value="2" >退回</option>
+                            <option value="3" >不需要</option>
+                        </select>
+                    </div>
+                    <label class="layui-form-label">开票编号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceNumber"
+                               autocomplete="on"
+                               class="layui-input audit-only-write">
+                    </div>
+                </div>
+                <div class="layui-col-sm6 layui-col-space5">
+                    <label class="layui-form-label">审核备注：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceAuditRemark"
+                               autocomplete="on"
+                               class="layui-input audit-only-write">
+                    </div>
+                    <label class="layui-form-label">开票日期：</label>
+                    <div class="layui-input-block">
+                        <input type="text" value="" title="" name="invoiceBean.invoiceDate"
+                               autocomplete="on"
+                               class="layui-input lay_date audit-only-write">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<button class="layui-btn confirm-btn" style="margin-top: 15px; float: right" type="button">提交</button>-->
+    </div>
+    <button class="layui-btn confirm-btn" style="margin-top: 15px; float: right" type="button">提交</button>
+    <button class="layui-btn no-invoice" style="margin-top: 15px; float: right; display: none" type="button">不需要</button>
+</form>
+
+
+</body>
+</html>

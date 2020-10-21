@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="回款分配金额" data-class="经营管理-回款分配" data-remark="回款分配金额展示页"/>
+    <title>回款分配金额展示页</title>
+    <link rel="stylesheet" href="../../vendor/layui-soul-table/soulTable.css">
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendor/layui-soul-table/layui/css/layui.css">
+    <script src="../../vendor/jquery/jquery.js"></script>
+    <script src="../../vendor/layui-soul-table/layui/layui.js"></script>
+    <script src="../../vendor/layui-soul-table/ext/soulTable.js"></script>
+    <script src="../../vendor/layui-soul-table/ext/tableFilter.js"></script>
+    <script src="../../js/operationManagement/incomeImplMoney.js"></script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs income-impl-edit" lay-my-id="{{#  d.incomeId }}" lay-event="edit">编辑</a>
+    </script>
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" id="oneKeyFlush" lay-event="getCheckData">一键分配</button>
+        </div>
+    </script>
+</head>
+<body>
+<header class="webTop">
+    <nav class="webTop-right">
+        <ul class="nav nav-tabs webNav">
+            <li class="   permissions-elem" data-href="./management.html" >
+                <a href="./management.html" class="nav-item" id="my-expense">经营</a>
+            </li>
+            <li class="   permissions-elem" data-href="./management/estimateIncome.html">
+                <a href="./management/estimateIncome.html" class="nav-item">预估回款金额</a>
+            </li>
+            <li class=" active  permissions-elem" data-href="./incomeImplMoney.html">
+                <a href="./incomeImplMoney.html" class="nav-item">回款金额分配</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+    <div id="myTable" ></div>
+</body>
+</html>

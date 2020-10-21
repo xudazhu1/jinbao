@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借款-打印</title>
+    <meta id="permission-tag" data-name="借款-打印" data-class="财务管理-借款" data-remark="借款-打印"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/jQueryPrint/jQuery.print.js"></script>
+    <script type="text/javascript" src="../../../js/finance/borrowMoney/borrowMoney-print.js"></script>
+    <style>
+        table.main caption {
+            font-size: 24px;
+            color: #111;
+        }
+
+        table.main th, table.main td {
+            text-align: center;
+            height: 30px;
+            color: #111;;
+        }
+
+        table.main th {
+            color: #7db68d;
+        }
+
+        table.main .basic-tr td {
+            height: 20px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        table.main .basic-tr td:first-child {
+            text-align: left;
+        }
+
+        table.main .basic-tr td:last-child {
+            text-align: right;
+        }
+
+        .audit-tr th:first-child {
+            min-width: 80px;
+        }
+
+        .audit-tr th:not(:first-child) {
+            min-width: 50px;
+        }
+
+        .audit-tr td {
+            min-width: 70px;
+        }
+
+        table.innerTable {
+            margin: 0 auto;
+        }
+
+        table.innerTable td {
+            padding: 6px;
+            width: 10px;
+            border: none;
+        }
+
+        table.innerTable td:nth-child(odd) {
+            color: rgb(38, 173, 33);
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-sm6 layui-col-sm-offset3">
+        <button class="layui-btn layui-btn-sm print-btn" style="margin: 5px; cursor: pointer;float: right" title="打印">打印
+        </button>
+        <div class="print-div" style="padding: 40px 10px 0;">
+            <table class="layui-table main">
+                <caption>
+                    借款单
+                </caption>
+                <tbody>
+                <tr class="basic-tr">
+                    <td colspan="4" data-text="borrowMoneyDate" class="borrowMoneyDate"></td>
+                    <td colspan="6">字第 <span data-text="borrowMoneyId"></span> 号</td>
+                </tr>
+                <tr style="height:10px;">
+                    <th>借款人:</th>
+                    <td data-text="personalBankCardBean.userBean.userName"></td>
+                    <th>部门:</th>
+                    <td data-text="personalBankCardBean.userBean.jobBean.departmentBean.departmentName"></td>
+                    <th>借款金额:</th>
+                    <td colspan="6" data-text="borrowMoneyMoney" style="color: #ff3340;font-size: 18px"></td>
+                </tr>
+                <tr style="height: 60px;">
+                    <th>借款用途:</th>
+                    <td colspan="8" data-text="borrowMoneyRemark"></td>
+                </tr>
+                <tr>
+                    <th>借款人卡号:</th>
+                    <td colspan="3" data-text="personalBankCardBean.personalBankCardNum" style="font-size: 15px"></td>
+                    <th>借款人开户行:</th>
+                    <td colspan="4" data-text="personalBankCardBean.personalBankCardName"></td>
+                </tr>
+                <tr>
+                    <th style="padding: 9px 0;">合计人民币大写:</th>
+                    <td colspan="9">
+                        <table class="innerTable">
+                            <tr>
+                                <td></td>
+                                <td>零</td>
+                                <td>仟</td>
+                                <td>零</td>
+                                <td>佰</td>
+                                <td>零</td>
+                                <td>拾</td>
+                                <td>零</td>
+                                <td>万</td>
+                                <td>零</td>
+                                <td>仟</td>
+                                <td>零</td>
+                                <td>佰</td>
+                                <td>零</td>
+                                <td>拾</td>
+                                <td>零</td>
+                                <td>元</td>
+                                <td>零</td>
+                                <td>角</td>
+                                <td>零</td>
+                                <td>分</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="audit-tr">
+
+                    <th >总经办:</th>
+                    <td colspan="2" ></td>
+                    <th>出纳:</th>
+                    <td colspan="2"></td>
+                    <th>借款人:</th>
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="audit-tr">
+                    <th>总经理:</th>
+                    <td colspan="2"></td>
+                    <th>会计主管:</th>
+                    <td colspan="2"></td>
+                    <th>部门负责人:</th>
+                    <td colspan="2"></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta id="permission-tag" data-name="报销单-汇总打印" data-class="财务管理-报销" data-remark="报销单-汇总打印"/>
+    <title>报销单-汇总打印</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/soulTable.css" media="all">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/jQueryPrint/jQuery.print.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../../js/finance/disburseExpense/disburseExpense-summary.js"></script>
+</head>
+<style>
+    label{
+        margin-bottom:0;
+    }
+    .layui-table-tips-c{
+        padding:0;
+    }
+    .soul-bottom-contion .editCondtion{
+        display: none;
+    }
+    .soul-bottom-contion{
+        display: none;
+    }
+    .layui-title{
+        font-size: 20px;
+        color: #333;
+        text-align: center;
+    }
+    .layui-form-label{
+        min-width: 75px;
+        padding: 9px 0px;
+        text-align: right;
+    }
+    .layui-input-block p{
+        line-height: 39px;
+        width: 80px;
+    }
+    body{
+        font: 16px Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif;
+    }
+    .layui-form-item .layui-inline{
+        margin-right: 90px;
+    }
+    .layui-input-block{
+        margin-left: 85px;
+    }
+    .print-btn{
+        width: 80px;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+    }
+    .layui-title{
+        margin-top:20px;
+    }
+    .layui-tab-content{
+        padding: 10px 15px;
+    }
+    .layui-form-item{
+        margin-bottom: 10px;
+    }
+    .layui-form-item .layui-inline{
+        margin-right:70px;
+    }
+</style>
+<body>
+<div class="project-show project-show-margin" id="layui-Summary">
+    <div style="padding:0 27px;">
+        <!-- 标题 -->
+        <div class="layui-title"><span class="layui-year"></span>年<span class="layui-month"></span>月报销汇总表</div>
+        <!-- 报销人 -->
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">报销人：</label>
+                <div class="layui-input-block">
+                    <p class="reimbursement-person"></p>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">报销月份：</label>
+                <div class="layui-input-block">
+                    <p class="reimbursement-month"></p>
+                </div>
+            </div>
+        </div>
+        <!--  表格渲染  -->
+        <div class="pms-table-wrap">
+            <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table>
+        </div>
+        <!-- 借款信息 -->
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">本月借款：</label>
+                <div class="layui-input-block">
+                    <p class="borrowing"></p>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">上月余款：</label>
+                <div class="layui-input-block">
+                    <p class="last-months-balance"></p>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">本月余款：</label>
+                <div class="layui-input-block">
+                    <p class="balance-ofthe-month"></p>
+                </div>
+            </div>
+        </div>
+        <!-- 审核人 -->
+        <div class="layui-form-item layui-height">
+            <div class="layui-inline">
+                <label class="layui-form-label">报销人：</label>
+                <div class="layui-input-block">
+                    <p></p>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">审核人：</label>
+                <div class="layui-input-block">
+                    <p></p>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">财务部：</label>
+                <div class="layui-input-block">
+                    <p></p>
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">总经理：</label>
+                <div class="layui-input-block">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align: right; padding-right:20px;">
+    <button class="layui-btn print-btn" title="打印">打印</button>
+</div>
+</body>
+</html>

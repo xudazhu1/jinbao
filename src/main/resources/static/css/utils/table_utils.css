@@ -1,0 +1,525 @@
+/*滚动条*/
+.scrollbar {
+    width: 30px;
+    margin: 0 auto;
+}
+
+.test-1::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.test-1::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
+}
+
+.test-1::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #EDEDED;
+}
+/**/
+.project-show-margin {
+    padding: 15px;
+}
+.item-num-search {
+    float: right;
+    display: inline-block;
+}
+
+.item-num-search-xudaz {
+    float: right;
+    width: 320px;
+}
+.item-num-search input {
+    width: 200px;
+    display: inline-block;
+}
+.item-num-search span {
+    font-size: 14px;
+}
+.time-area {
+    display: inline-block;
+    text-align: right;
+    /*margin: 2px;*/
+    float: right;
+}
+.layui-input-inline {
+    display: inline-block;
+}
+body .time-area-input {
+    display: inline-block;
+    width: 200px;
+}
+/*th-checkbox筛选*/
+.th-checkbox {
+    display: inline-block;
+    /*margin-left: 10px;*/
+    position: relative;
+}
+.th-checkbox i {
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.th-checkbox .filter-div {
+    position: absolute;
+    top:30px;
+    right: 0;
+    width: 130px;
+    border: 1px solid #ccc;
+    background-color:#fff ;
+    color: #0C0C0C;
+    font-weight: 400;
+    display: none;
+    word-wrap:break-word;
+    overflow: hidden;
+    outline: none;
+    padding: 6px;
+    box-sizing: border-box;
+    z-index:10;
+}
+/*表格*/
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle!important;
+}
+.table .thead-dark th {
+    white-space: nowrap;
+    color: #fff;
+    background-color: #212529;
+    border-color: #32383e;
+}
+.table th {
+    position: relative;
+    /*min-width: 120px;*/
+}
+.table th i {
+    /*position: absolute;*/
+    /*top:12px;*/
+    /*right: 10px;*/
+    cursor: pointer;
+}
+.table th .checkbox{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.table th button{
+    margin-top: 7px;
+}
+.table .test-normal {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transition: transform .5s;
+}
+
+.table .test-inverse {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transition: transform .5s;
+}
+.table th .filter-div {
+    /*max-width: 100%;*/
+    position: absolute;
+    top:38px;
+    /*right: -1px;*/
+    width: 90%;
+    min-width: 130px;
+    border: 1px solid #ccc;
+    background-color:#fff ;
+    color: #0C0C0C;
+    font-weight: 400;
+    display: none;
+    word-wrap:break-word;
+    overflow: hidden;
+    outline: none;
+    padding: 6px;
+    box-sizing: border-box;
+}
+.filter-div> div {
+    text-align: left;
+    padding-left: 5px;
+}
+.filter-body {
+    max-height: 300px;
+    overflow: auto;
+    /*margin-bottom: 8px;*/
+}
+
+/*.show-altrowstable {*/
+/*height: 400px;*/
+/*}*/
+
+.filter-body >input[name] {
+    width: 100%;
+}
+
+.add-div {
+    float: right;
+}
+
+.ctl-glyphicon {
+    margin: 8px;
+}
+
+.ctl-div {
+    height: 40px;
+}
+
+.table-title {
+    margin: 5px 0;
+    line-height: 40px;
+    font-size: 24px;
+}
+
+html {
+    background-color: #f2f2f2;
+    color: #666;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.table-div {
+    overflow-y: scroll;
+    overflow-x: auto;
+    width: 100%;
+    min-height: 150px;
+    position: relative;
+}
+.table-div table {
+    table-layout: fixed;
+}
+
+/*按钮一行*/
+.table-div td.buttons-td {
+    text-align: center;
+    white-space: nowrap;
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+}
+
+
+.show-altrowstable {
+    margin-bottom: 0 !important;
+}
+
+.table-utils-div .copy-first-line {
+    top: 0;
+    position: relative;
+    z-index: 1;
+}
+.table-utils-div.table-utils-fixed-first-line .copy-first-line {
+    position: sticky;
+}
+
+.table-utils-div .no-copy-show-altrowstable {
+    position: absolute;
+    top: 0;
+}
+
+.table-utils-div > .JCLRgrips {
+    position: absolute;
+    top: 0;
+}
+
+.table-utils-div + .page_div {
+    padding: 5px 0;
+    /*border-top: 1px solid #ddd;*/
+    z-index: 9;
+    bottom: 0;
+    position: sticky;
+    background-color: white;
+    width: calc(100% - 15px);
+}
+
+
+.table-utils-div table {
+    width: auto;
+}
+
+.table-utils-div .copy-first-column td {
+    display: none;
+}
+
+.table-utils-div .copy-first-column-th  {
+    z-index: 2;
+    margin-top: -999px;
+    position: sticky;
+    left: 0;
+    top: 0;
+    /*display: inherit;*/
+}
+.table-utils-div.table-utils-fixed-first-line .copy-first-column-th  {
+    top: 0;
+}
+.table-utils-div.table-utils-fixed-column .copy-first-column-th  {
+    left: 0;
+    /*display: inherit;*/
+}
+
+.table-utils-div .copy-first-column  {
+    z-index: 1;
+    margin-top: -999px;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
+.table-utils-div.table-utils-fixed-column .copy-first-column  {
+    position: sticky;
+}
+
+.table-utils-div table tbody td {
+    padding: 5px;
+}
+
+.table-utils-div table th i  {
+    display: none;
+}
+.table-utils-div table th   {
+    padding: 8px 2px !important;
+}
+.table-utils-div table th.table-utils-search i  {
+    display: inline-block;
+    z-index: 0;
+}
+
+/*真实的下拉 隐藏掉 用首行的就行*/
+.table-utils-div .no-copy-show-altrowstable th.table-utils-search i {
+    /*display: none;*/
+    z-index: 0;
+}
+
+/*.table-utils-div {*/
+    /*!*width: calc( 100% - 50px );*!*/
+/*}*/
+
+
+/*重写padding*/
+.table-utils-div .JColResizer > tbody > tr > td, .table-utils-div .JColResizer > tbody > tr > th {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.table-utils-div .table-utils-td-text {
+    background-color: initial;
+    width: 100%;
+    border: 0;
+    /*outline : none;*/
+    text-align: center;
+}
+.table-utils-div .table-utils-td-text:hover {
+}
+
+.table-utils-div .type-filter {
+    display: inline-block;
+}
+.table-utils-div .JCLRgrips {
+    z-index: 1;
+}
+
+.table-utils-div .no-copy-show-altrowstable {
+    /*min-width: 100%!important;*/
+    /*width: inherit!important;*/
+}
+
+.table-utils-div .JCLRLastGrip .JColResizer {
+    right: 0;
+}
+
+/* resize */
+.table-utils-div th span.resize-span {
+    cursor: s-resize;
+}
+
+/*按钮颜色适配*/
+[data-title="编辑"] {
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+[data-title="编辑"]:hover {
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+[data-title="编辑"]:focus {
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
+}
+[data-title="删除"] {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+[data-title="删除"]:hover {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+[data-title="删除"]:focus {
+    background-color: #d9534f !important;
+    border-color: #d43f3a !important;
+}
+[data-title="详情"] {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+[data-title="详情"]:hover {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+[data-title="详情"]:focus {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+[data-title="待审核"] {
+    background-color: #428bca !important;
+    border-color: #357ebd !important;
+}
+[data-title="待审核"]:hover {
+    background-color: #428bca !important;
+    border-color: #357ebd !important;
+}
+[data-title="待审核"]:focus {
+    background-color: #428bca !important;
+    border-color: #357ebd !important;
+}
+[data-title="退回/待审核"] {
+    background-color: #eb6b59 !important;
+    border-color: #eb6b59 !important;
+}
+[data-title="退回/待审核"]:hover {
+    background-color: #eb6b59!important;
+    border-color: #eb6b59 !important;
+}
+[data-title="退回/待审核"]:focus {
+    background-color: #eb6b59 !important;
+    border-color: #eb6b59 !important;
+}
+[data-title="待确认"] {
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+[data-title="待确认"]:hover {
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+[data-title="待确认"]:focus {
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
+}
+[data-title="退回/待确认"] {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+[data-title="退回/待确认"]:hover {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+[data-title="退回/待确认"]:focus {
+    background-color: #e74c3c !important;
+    border-color: #e74c3c !important;
+}
+[data-title="已完成"] {
+    background-color: #d9b0f0;
+    border-color: #d9b0f0;
+}
+[data-title="已完成"]:hover {
+    background-color: #d9b0f0;
+    border-color: #d9b0f0;
+}
+[data-title="已完成"]:focus {
+    background-color: #d9b0f0 !important;
+    border-color: #d9b0f0 !important;
+}
+[data-title="待支付"] {
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+}
+[data-title="待支付"]:hover {
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+}
+[data-title="待支付"]:focus {
+    background-color: #1abc9c !important;
+    border-color: #1abc9c !important;
+}
+[data-title="退回/待支付"] {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+[data-title="退回/待支付"]:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+[data-title="退回/待支付"]:focus {
+    background-color: #c0392b !important;
+    border-color: #c0392b !important;
+}
+
+[data-title="已支付"] {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+}
+[data-title="已支付"]:hover {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+}
+[data-title="已支付"]:focus {
+    background-color: #f1c40f !important;
+    border-color: #f1c40f !important;
+}
+
+[data-title="退回/已支付"] {
+    background-color: #66bec6;
+    border-color: #66bec6;
+}
+[data-title="退回/已支付"]:hover {
+    background-color: #66bec6;
+    border-color: #66bec6;
+}
+[data-title="退回/已支付"]:focus {
+    background-color: #66bec6 !important;
+    border-color: #66bec6 !important;
+}
+[data-title="打印"] {
+    background-color: #69c698;
+    border-color: #6bbe81;
+}
+[data-title="打印"]:hover {
+    background-color: #69c698;
+    border-color: #6bbe81;
+}
+[data-title="打印"]:focus {
+    background-color: #69c698 !important;
+    border-color: #6bbe81 !important;
+}
+
+
+/*范围框架的css*/
+.table-utils-number-scope  + .popover {
+    position: relative!important;
+    left: 0!important;
+    top: 0!important;
+}
+
+.table-utils-count-div {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: none;
+}
+.table-utils-count-table {
+    border: 1px solid #ddd;
+    text-align: center;
+    table-layout: fixed;
+    overflow-x: auto;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+}
+.table-utils-count-table td {
+    padding: 5px;
+    border: 1px solid #ddd;
+}

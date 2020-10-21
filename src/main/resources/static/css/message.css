@@ -1,0 +1,46 @@
+/*待办*/
+.span-wait {
+    color: #FFB800;
+}
+
+/*已办*/
+.span-done {
+    color: #009688;
+}
+
+.layui-table tbody td span {
+    cursor: pointer;
+}
+
+.layui-tab-item {
+    background-color: #e4f2f75e;
+    padding: 10px;
+}
+
+.notice-title {
+    color: #333;
+    font-weight: 700;
+}
+
+.notice-time {
+    color: #999;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+.notice-href {
+    color: #1389bf;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.todo-filter {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e9ef;
+}
+
+.delete-divs {
+    position: relative;
+    top: 4px;
+}

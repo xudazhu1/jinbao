@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="回款分配金额编辑" data-class="经营管理-回款分配" data-remark="回款分配金额编辑"/>
+    <title>回款分配金额编辑</title>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.css">
+    <script src="../../vendor/jquery/jquery.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../../js/xudazhu.js"></script>
+    <script src="../../js/operationManagement/incomeImplMoney-add.js"></script>
+    <style type="text/css" >
+        body .draw-info .input-group {
+            width: 50%;
+            float: left;
+        }
+        body .impls {
+            margin-top: 50px;
+        }
+
+        body .submit-div{
+            width: 55px;
+            margin: 15px auto;
+        }
+    </style>
+</head>
+<body style="padding: 10px;">
+<form id="data1">
+    <div class="draw-info" >
+        <div class="input-group">
+            <span class="input-group-addon" >收入流水编号</span>
+            <input type="text" class="form-control incomeNum" placeholder="" readonly  value="流水编号" aria-describedby="basic-addon1">
+            <input type="hidden" name="incomeId" class="incomeId" placeholder="">
+            <input type="hidden" name="tableName" value="income" class="table_utils" placeholder="">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" >回款金额</span>
+            <input type="text" class="form-control incomeMoney" readonly placeholder="" value="回款金额" aria-describedby="basic-addon1">
+        </div>
+    </div>
+
+    <div class="impls" >
+        <!--<div class="input-group">-->
+        <!--<span class="input-group-addon" >咨询部</span>-->
+        <!--<input type="text" class="form-control" placeholder="请输入分配金额" aria-describedby="basic-addon1">-->
+        <!--</div>-->
+        <!--<div class="input-group">-->
+        <!--<span class="input-group-addon" >测量部</span>-->
+        <!--<input type="text" class="form-control" placeholder="请输入分配金额" aria-describedby="basic-addon1">-->
+        <!--</div>-->
+        <!--<div class="input-group">-->
+        <!--<span class="input-group-addon" >勘察部</span>-->
+        <!--<input type="text" class="form-control" placeholder="请输入分配金额" aria-describedby="basic-addon1">-->
+        <!--</div>-->
+    </div>
+    <div class="submit-div">
+        <button type="button" class="btn btn-default submit-update" >提交</button>
+    </div>
+</form>
+
+</body>
+</html>

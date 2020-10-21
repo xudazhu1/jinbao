@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="技术提成展示页" data-class="项目管理-工作量" data-remark="技术提成展示页"/>
+    <title>技术提成展示</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/soulTable.css" media="all">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script src="../../../js/projectManagement/workload/thnicalCommission.js"></script>
+    <!--suppress CssUnusedSymbol -->
+    <style>
+
+        .table-utils-td-text {
+            background-color: initial;
+            width: 100%;
+            border: 0;
+            /*outline : none;*/
+            text-align: center;
+        }
+        .table-utils-td-text:hover {
+        }
+
+        .type-filter {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+            <span class=" ctl-glyphicon table-title" title="技术提成信息">
+                技术提成
+            </span>
+
+        <!--  搜索框  -->
+        <div class="pull-right layui-form-pane pms-search-box">
+            <div class="layui-inline">
+                <label class="layui-form-label">信息查询</label>
+                <div class="layui-input-block">
+                    <input type="text" name="globalSearch" placeholder="请输入..." autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button id="search" class="layui-btn" data-type="reload">
+                    <i class="fa fa-search"></i> 查询
+                </button>
+                <button class="layui-btn layui-btn-primary" id="reset">
+                    <i class="fa fa-refresh"></i> 重置
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--  表格渲染  -->
+    <div class="pms-table-wrap">
+        <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table>
+    </div>
+
+
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="getCheckData" id="layui-hideen">导出全部数据</button>
+        </div>
+    </script>
+</div>
+
+</body>
+
+</html>

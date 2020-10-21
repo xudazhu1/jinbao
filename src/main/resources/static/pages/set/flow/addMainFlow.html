@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加主流程</title>
+    <meta id="permission-tag" data-name="添加主流程" data-class="设置-流程管理" data-remark="添加然后编辑流程的页面,添加主流程的名字和所属公司" />
+
+    <link rel="stylesheet" href="../../../css/set/structure/addStructure.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../vendor/formSelects-v4/formSelects-v4.css">
+    <link rel="stylesheet" href="../../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../js/flow/addMainFlow.js"></script>
+    <script type="text/javascript" src="../../../vendor/sweetalert/sweet-alert.js"></script>
+</head>
+<body>
+
+<div class="sub-container">
+    <div class="sub-info">添加<span class="type-name">动态</span>信息</div>
+    <div class="layui-row sub-info-add">
+        <form id="inputForm">
+            <div class="layui-col-space10 layui-form">
+                <label class="layui-form-label">主流程名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="flowName"  placeholder="" autocomplete="off" class="layui-input need-input company-input">
+                </div>
+            </div>
+            <div class="layui-col-space10 layui-form">
+                <label class="layui-form-label">所属公司：</label>
+                <div class="layui-input-block company-select">
+                    <select  id="company" xm-select="select1" title="">
+                        <!--<option value="海口分公司">海口分公司</option>-->
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="layui-input-block sub-info-btn">
+        <button class="layui-btn confirm-btn submit">确认</button>
+        <button type="reset" class="layui-btn layui-btn-primary cancel-btn">取消</button>
+    </div>
+</div>
+<script type="text/javascript">
+    //全局定义一次, 加载formSelects
+    layui.extend({
+        formSelects: '../../../vendor/formSelects-v4/formSelects-v4'
+    });
+
+</script>
+</body>
+</html>

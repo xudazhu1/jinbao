@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="进度详情页" data-class="经营管理-进度" data-remark="进度详情页" />
+    <title>进度详情页</title>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/set/structure/editStructure.css">
+    <link rel="stylesheet" href="../../../css/set/user/user-inner.css">
+    <link rel="stylesheet" href="../../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/set/user/user-inner.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/share.js"></script>
+
+    <script type="text/javascript" src="../../../vendor/sweetalert/sweet-alert.js"></script>
+   <!-- <style>
+    body .layui-table{
+            position: relative;
+            padding: 9px 15px;
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+            height: 50px;
+        }
+    </style>-->
+</head>
+<body>
+<form class="layui-form structure-form" id="inputForm">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm10">
+                <div class="layui-card">
+                    <div class="layui-card-header">进度详情
+                        <i class=" layui-icon layui-icon-close" style="margin-left: 1400px"></i>
+                    </div>
+                    <div class="layui-card-body layui-text">
+                        <table class="layui-table" lay-size="lg">
+                            <colgroup>
+                                <col width="150">
+                                <col width="250">
+                                <col width="150">
+                                <col width="250">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th style="text-align: center">项目编号</th>
+                                <th style="background-color: #fbfbfb; text-align: center">ZY19CM-0777</th>
+                                <th style="text-align: center">合同签订日期</th>
+                                <th style="background-color: #fbfbfb; text-align: center"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">项目名称</td>
+                                <td style="background-color: #fbfbfb; text-align: center">海南老城经济开发区建设市政消防栓项目</td>
+                                <td style="background-color: #f2f2f2; text-align: center">合同金额</td>
+                                <td style="background-color: #fbfbfb; text-align: center">0</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">介绍人</td>
+                                <td style="background-color: #fbfbfb; text-align: center">林大大</td>
+                                <td style="background-color: #f2f2f2; text-align: center">合同状态</td>
+                                <td style="background-color: #fbfbfb; text-align: center">未签</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">经营人</td>
+                                <td style="background-color: #fbfbfb; text-align: center">陈进</td>
+                                <td style="background-color: #f2f2f2; text-align: center">原件数</td>
+                                <td style="background-color: #fbfbfb; text-align: center"></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">项目区域</td>
+                                <td style="background-color: #fbfbfb; text-align: center">澄迈</td>
+                                <td style="background-color: #f2f2f2; text-align: center">附件数</td>
+                                <td style="background-color: #fbfbfb; text-align: center"></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">甲方名称</td>
+                                <td style="background-color: #fbfbfb; text-align: center">海南老城经济开发区发展有限公司</td>
+                                <td style="background-color: #f2f2f2; text-align: center">工作内容</td>
+                                <td style="background-color: #fbfbfb; text-align: center"></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">实施部	</td>
+                                <td style="background-color: #fbfbfb; text-align: center">测量部</td>
+                                <td style="background-color: #f2f2f2; text-align: center">开票差额</td>
+                                <td style="background-color: #fbfbfb; text-align: center">0</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">项目类型</td>
+                                <td style="background-color: #fbfbfb; text-align: center">管线</td>
+                                <td style="background-color: #f2f2f2; text-align: center">开票总金额</td>
+                                <td style="background-color: #fbfbfb; text-align: center">0</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">项目状态</td>
+                                <td style="background-color: #fbfbfb; text-align: center">外业中</td>
+                                <td style="background-color: #f2f2f2; text-align: center">回款总金额</td>
+                                <td style="background-color: #fbfbfb; text-align: center">0</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #f2f2f2; text-align: center">乙方名称</td>
+                                <td style="background-color: #fbfbfb; text-align: center">进保（总）</td>
+                                <td style="background-color: #f2f2f2; text-align: center">回款进度</td>
+                                <td style="background-color: #fbfbfb; text-align: center">无合同金额</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            </div>
+    </div>
+    </div>
+</form>
+</body>

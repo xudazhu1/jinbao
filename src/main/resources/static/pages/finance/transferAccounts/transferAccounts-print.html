@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>转账-打印</title>
+    <meta id="permission-tag" data-name="转账-打印" data-class="财务管理-转账" data-remark="转账-打印"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/jQueryPrint/jQuery.print.js"></script>
+    <script type="text/javascript" src="../../../js/finance/transferAccounts/transferAccounts-print.js"></script>
+    <style>
+        table.main caption {
+            font-size: 24px;
+            color: #111;
+        }
+
+        table.main th, table.main td {
+            text-align: center;
+            height: 32px;
+            color: #111;;
+        }
+
+        table.main th {
+            color: #7db68d;
+        }
+
+        table.main .basic-tr td {
+            height: 20px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+
+        table.main .basic-tr td:first-child {
+            text-align: left;
+        }
+
+        table.main .basic-tr td:last-child {
+            text-align: right;
+        }
+
+        .audit-tr th:first-child {
+            min-width: 80px;
+        }
+
+        .audit-tr th:not(:first-child) {
+            min-width: 50px;
+        }
+
+        .audit-tr td {
+            min-width: 70px;
+        }
+
+        table.innerTable {
+            margin: 0 auto;
+        }
+
+        table.innerTable td {
+            padding: 6px;
+            width: 10px;
+            border: none;
+        }
+
+        table.innerTable td:nth-child(odd) {
+            color: rgb(38, 173, 33);
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-sm6 layui-col-sm-offset3">
+        <button class="layui-btn layui-btn-sm print-btn" style="margin: 5px; cursor: pointer;float: right" title="打印">打印
+        </button>
+        <div class="print-div" style="padding: 40px 10px 0;">
+            <table class="layui-table main">
+                <caption>
+                    转账申请单
+                </caption>
+                <tbody>
+                <tr class="basic-tr">
+                    <td colspan="4" data-text="transferAccountsDate" class="transferAccountsDate"></td>
+                    <td colspan="4">字第 <span data-text="transferAccountsId"></span> 号</td>
+                </tr>
+                <tr>
+                    <th>转账金额:</th>
+                    <td colspan="3" data-text="transferAccountsMoney" style="color: #ff3340;font-size: 18px;"></td>
+                    <th>转账类型:</th>
+                    <td colspan="3" data-text="transferAccountsType"></td>
+                </tr>
+                <tr>
+                    <th>转出账户:</th>
+                    <td colspan="3" data-text="comeBankCardBean.bankCardName"></td>
+                    <th>转入账户:</th>
+                    <td colspan="3" data-text="enterBankCardBean.bankCardName"></td>
+                </tr>
+                <tr>
+                    <th>转出卡号:</th>
+                    <td colspan="3" data-text="comeBankCardBean.bankCardNum"></td>
+                    <th>转入卡号:</th>
+                    <td colspan="3" data-text="enterBankCardBean.bankCardNum"></td>
+                </tr>
+                <tr style="height: 100px;">
+                    <th>备注:</th>
+                    <td colspan="7" data-text="transferAccountsRemark"></td>
+                </tr>
+                <tr>
+                    <th style="padding: 9px 0;">合计人民币大写:</th>
+                    <td colspan="7">
+                        <table class="innerTable">
+                            <tr>
+                                <td></td>
+                                <td>零</td>
+                                <td>仟</td>
+                                <td>零</td>
+                                <td>佰</td>
+                                <td>零</td>
+                                <td>拾</td>
+                                <td>零</td>
+                                <td>万</td>
+                                <td>零</td>
+                                <td>仟</td>
+                                <td>零</td>
+                                <td>佰</td>
+                                <td>零</td>
+                                <td>拾</td>
+                                <td>零</td>
+                                <td>元</td>
+                                <td>零</td>
+                                <td>角</td>
+                                <td>零</td>
+                                <td>分</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="audit-tr">
+                    <th>审核领导:</th>
+                    <td></td>
+                    <th>财务主管:</th>
+                    <td></td>
+                    <th>出纳:</th>
+                    <td></td>
+                    <th>经办人:</th>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

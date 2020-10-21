@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班组费编辑</title>
+    <meta id="permission-tag" data-name="班组费编辑" data-class="班组费编辑" data-remark="班组费编辑/新建页"/>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/set/teamManage/teamManageEdit.css">
+
+<!--    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>-->
+<!--    <script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.js"></script>-->
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/set/teamManage/teamFeeTypeEdit.js"></script>
+
+    <style type="text/css">
+        .layui-form-label{
+            width: 110px;
+        }
+    </style>
+</head>
+<body>
+<div class="title">
+    <form class="layui-form" id="teamForm" action="">
+        <div class="layui-form-item num" id="add-num" style="display: none">
+            <div class="layui-form-label">
+            <label><span class="require_field">*</span>班组费编号</label>
+            </div>
+            <div class="layui-input-block">
+                <label name="squadGroupFeeNum"></label>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="require_field">*</span>班组费类型</label>
+            <div class="layui-input-block">
+                <input type="text" name="squadGroupFeeName" placeholder="" autocomplete="off" class="layui-input" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="require_field">*</span>备注</label>
+            <div class="layui-input-block">
+                <input type="text" name="squadGroupFeeCompany" placeholder="" autocomplete="off" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span class="require_field">*</span>状态</label>
+            <div class="layui-input-block">
+                <select name="squadGroupFeeStatusBean.squadGroupFeeStatusId" lay-verify="required" class="squadGroupFeeStatusBean" lay-verify="required">
+                    <option value="1">正常</option>
+                    <option value="2">冻结</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <button class="layui-btn" style="float: right" id="teamManageSubmit" type="submit" lay-submit="" lay-filter="demo1">提交</button>
+</div>
+</body>
+</html>
+<script>
+    //Demo
+
+</script>

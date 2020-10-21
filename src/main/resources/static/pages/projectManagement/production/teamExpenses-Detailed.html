@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta id="permission-tag" data-name="班组费明细展示页" data-class="项目管理-班组费" data-remark="班组费明细页面，只能进行查看"/>
+    <title>班组费信息展示页</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/build.css" media="all">
+    <link rel="stylesheet" href="../../../css/set/role.css" media="all">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../vendor/layui/css/soulTable.css" media="all">
+
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/layui-soul-table/layui/layui.js"></script>
+    <script src="../../../vendor/layui-soul-table/ext/soulTable.js"></script>
+    <script src="../../../vendor/layui-soul-table/ext/tableFilter.js"></script>
+    <script src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/production/teamExpenses-Detailed.js"></script>
+</head>
+<style>
+    label{
+        margin-bottom:0;
+    }
+    .layui-table-tips-c{
+        padding:0;
+    }
+    .soul-bottom-contion .editCondtion{
+        display: none;
+    }
+    .soul-bottom-contion{
+        display: none;
+    }
+    .layui-right{
+        float: right;
+        margin-top: 3px;
+    }
+    .layui-table-tool-temp{
+        padding-right: 100px;
+    }
+    .clearfix{
+        clear:both;
+    }
+    .layui-table-tool .layui-inline[lay-event]{
+        background-color: #fff;
+    }
+</style>
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+            <span class=" ctl-glyphicon table-title" title="班组费信息">
+                班组费信息
+            </span>
+
+        <!--  搜索框  -->
+        <div class="pull-right layui-form-pane pms-search-box">
+            <div class="layui-inline">
+                <label class="layui-form-label">信息查询</label>
+                <div class="layui-input-block">
+                    <input type="text" name="roomNum" placeholder="请输入..." autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <button id="search" class="layui-btn" data-type="reload">
+                    <i class="fa fa-search"></i> 查询
+                </button>
+                <button class="layui-btn layui-btn-primary" id="reset">
+                    <i class="fa fa-refresh"></i> 重置
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--  表格渲染  -->
+    <div class="pms-table-wrap">
+        <table class="layui-hide" id="Detailed" lay-filter="detailed"></table>
+    </div>
+
+    <script type="text/html" id="index">
+        {{d.LAY_TABLE_INDEX+1}}
+    </script>
+    <script type="text/html" id="toolbarDemo">
+        <div class="btn-group-right">
+            <button type="button" class="layui-inline layui-right" title="导出全部数据" id="layui-hideen" data-size="auto" lay-event="getCheckData"><i class="layui-icon layui-icon-download-circle"></i> </button>
+            <div class="clearfix"></div>
+        </div>
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+select{
+    width: 200px;
+    height: 35px;
+}
+
+.header-search{
+    background-color: #f2f2f2;
+    margin-top:10px
+}
+
+.layui-container{
+    margin-top: 10px;
+    width: 100% !important;
+    margin-left: -10px;
+    min-width: 1196px;
+}
+
+.label-center{
+    text-align: center;
+    margin-top: 10px;
+}
+
+/*.input-left{*/
+/*    margin-left: -2%;*/
+/*}*/
+
+label{
+    font-weight: 400;
+}
+
+.layui-layer-iframe{
+    top: 20px !important;
+}

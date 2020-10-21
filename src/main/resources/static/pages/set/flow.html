@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>主流程展示页</title>
+    <meta id="permission-tag" data-name="主流程展示页" data-class="设置-流程管理" data-remark="主流程展示页"/>
+    <link rel="stylesheet" href="../../css/set/flow.css">
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/set/flow.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../vendor/sweetalert/sweet-alert.js"></script>
+    <script type="text/javascript" src="../../js/share.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+</head>
+<body>
+<form class="layui-form structure-form" action="">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-tab-item layui-show">
+                            <button type="button" class="layui-btn layui-btn-sm add-div"
+                                    data-href="flow/addMainFlow.html" data-width="600px" data-height="450px" data-title="添加流程">添加流程
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                    style="display: none">批量删除
+                            </button>
+                            <div class="checked-count">
+                                <span>已选择</span>
+                                <span class="checked-num">0</span>
+                                <span>项</span>
+                            </div>
+                            <table class="layui-table" data-table="flow">
+                                <colgroup>
+                                    <col width="55">
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col width="100">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" title="" lay-skin="primary">
+                                    </th>
+                                    <th>序号</th>
+                                    <th>流程名称</th>
+                                    <th>流程创建用户</th>
+                                    <th>所属公司</th>
+                                    <th>操作框</th>
+                                </tr>
+                                </thead>
+                                <tbody id="flows">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" title="" lay-skin="primary">
+                                    </td>
+                                    <td>1</td>
+                                    <td>财务报销流程</td>
+                                    <td>朱海虹</td>
+                                    <td>海口总公司</td>
+                                    <td>
+                                        <button type="button" class="layui-btn layui-btn-xs layui-btn-warm edit-btn"
+                                                title="编辑">
+                                            <i class="layui-icon layui-icon-edit"></i>
+                                        </button>
+                                        <button type="button" class="layui-btn layui-btn-xs layui-btn-danger delete-btn"
+                                                title="删除">
+                                            <i class="layui-icon layui-icon-delete"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

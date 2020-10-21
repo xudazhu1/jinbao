@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑实施信息</title>
+    <meta id="permission-tag" data-name="编辑实施信息" data-class="项目管理-实施" data-remark="编辑实施信息" />
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/Mtils/Mtils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/implement/implement-add.js"></script>
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form-label {
+            width: 95px;
+            padding: 9px 7px;
+        }
+
+        .add-implement {
+            padding: 0 10px;
+        }
+
+        .add-implement .layui-form-item {
+            margin-bottom: 0;
+        }
+        body .layui-elem-quote>span{
+            color: #47a3dc;
+            font-size: 16px;
+        }
+        button {
+            margin:2px 4px;
+        }
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+        .project-info label {
+            color: #47a3dc;
+            font-weight: 500;
+        }
+        .project-info .layui-input-block{
+            line-height: 36px;
+        }
+
+        .recordDiv{
+            position: absolute;
+            width: 360px;
+            z-index: 99;
+
+            max-height: 160px;
+            overflow: auto;
+
+            right: -7%;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-lg-offset3 layui-col-lg6">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card project-info">
+                <div class="layui-card-header">项目信息</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-form-item">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label" >*经营类型：</label>
+                            <div class="layui-input-block projectManagementType" data-text="projectBean.projectManagementType">
+
+                            </div>
+                            <label class="layui-form-label">*项目地点：</label>
+                            <div class="layui-input-block projectLocationName" data-text="projectBean.projectLocationBean.projectLocationName">
+
+                            </div>
+                            <label class="layui-form-label">甲方名称：</label>
+                            <div class="layui-input-block projectFirstPartyName" data-text="projectBean.projectFirstPartyName">
+
+                            </div>
+                            <label class="layui-form-label">*立项时间：</label>
+                            <div class="layui-input-block projectApprovalTime" data-text="projectBean.projectApprovalTime">
+
+                            </div>
+                            <label class="layui-form-label">*收益单位：</label>
+                            <div class="layui-input-block earningsCompanyName" data-text="projectBean.earningsCompanyBean.earningsCompanyName">
+
+                            </div>
+                        </div>
+
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">项目编号：</label>
+                            <div class="layui-input-block projectNum" data-text="projectBean.projectNum">
+
+                            </div>
+                            <label class="layui-form-label">*项目名称：</label>
+                            <div class="layui-input-block projectName" data-text="projectBean.projectName">
+
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*经营主负责人：</label>
+                            <div class="layui-input-block managementMainHead" data-text="projectBean.projectManagementType">
+
+                            </div>
+                            <label class="layui-form-label">工作内容：</label>
+                            <div class="layui-input-block projectWorkContent" data-text="projectWorkContent">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card project-info">
+                <div class="layui-card-header">
+                    实施信息
+                </div>
+                <div class="layui-card-body">
+
+                    <div class="layui-row layui-form-item">
+
+                        <div class="layui-row layui-form-item ">
+
+                            <div class="layui-col-sm6 layui-col-space5">
+                                <input type="hidden" class="implementId" name="implementId">
+                                <label class="layui-form-label" style="padding: 9px 0">实施部名称：</label>
+                                <div class="layui-input-block">
+                                    <select class="project-relate departmentId" lay-filter="test"  name="departmentBean.departmentId" title="实施部名称" >
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <label class="layui-form-label"  style="padding: 9px 0">项目类型：</label>
+                                <div class="layui-input-block">
+                                    <select class="project-relate projectType" lay-filter="test"  name="projectTypeBean.projectTypeId"  >
+                                        <option></option>
+                                    </select>
+                                </div>
+                                <label class="layui-form-label" style="padding: 9px 0">实施进度：</label>
+                                <div class="layui-input-block">
+                                    <input type="number" class="layui-input" placeholder="请输入不超过1的小数" name="implementProgress" >
+                                </div>
+                            </div>
+                            <div class="layui-col-sm6 layui-col-space5">
+                                <label class="layui-form-label" style="padding: 9px 6px">实施负责人：</label>
+                                <div class="layui-input-block">
+                                    <input type="text"  title="实施负责人" autocomplete="off" name="implementImplementHead" class="layui-input implementImplementHead">
+                                </div>
+                                <label class="layui-form-label" style="padding: 9px 6px">乙方名称：</label>
+                                <div class="layui-input-block">
+                                    <select class="project-relate secondParty" lay-filter="test"  name="secondPartyBean.secondPartyId" >
+                                        <option></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="layui-bg-orange">
+
+                        <div class="layui-row layui-form-item ">
+                            <div class="layui-col-sm6 layui-col-space5">
+                                <label class="layui-form-label" style="padding: 9px 0">项目状态：</label>
+                                <div class="layui-input-block">
+                                    <select class="project-relate projectStatus" lay-filter="test"  name="projectStatusBean.projectStatusId">
+                                        <option></option>
+                                    </select>
+                                </div>
+
+                                <div class="layui-input-block">
+                                    <button class="layui-btn status-btn" type="button">项目状态历史记录</button>
+                                    <div class="recordDiv statusRecord" style="display: none">
+                                        <table class="table layui-table statusTable">
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-sm6 layui-col-space5">
+                                <label class="layui-form-label">实施记录：</label>
+                                <div class="layui-input-block">
+                                    <input type="text"   title="实施记录" autocomplete="off"
+                                           class="layui-input implementRecordContent" name="implementRecordContent">
+                                </div>
+                                <div class="layui-input-block">
+                                    <button class="layui-btn impl-btn" type="button">实施记录</button>
+                                    <div class="recordDiv implRecord" style="display: none">
+                                        <table class="table layui-table implTable">
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="layui-btn confirm-btn" style="margin-top: 15px;float: right" type="button">确认</button>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div>
+                        <blockquote class="layui-elem-quote layui-quote-nm" >
+                            <div class="layui-row">
+                                <label class="layui-form-label" style="padding: 9px 0">流程动作：</label>
+                                <div class="layui-input-block  flow-select">
+                                    <select title="" name="thisFlowNodeId" lay-filter="thisFlowNodeId" >
+                                    </select>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!--通知-->
+                    <div class="choose-parent">
+                        <blockquote class="layui-elem-quote layui-quote-nm">
+                            <span>通知人</span>
+                            <button class="layui-btn layui-btn-xs layui-btn-normal add-people select-tree-btn"
+                                    data-href="../../set/user/user-select.html?" data-type="通知" type="button">添加
+                            </button>
+                            <div class="user-div choose-wait">
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!--待办-->
+                    <div>
+                        <blockquote class="layui-elem-quote layui-quote-nm">
+                            <span>待办人</span>
+                            <div class="layui-row todo-list">
+                                <!--&lt;!&ndash;合同上传&ndash;&gt;-->
+                                <!--<div class="layui-col-sm4 choose-parent">-->
+                                <!--<fieldset class="layui-elem-field">-->
+                                <!--<legend>-->
+                                <!--<button class="layui-btn layui-btn-xs layui-btn-normal select-tree-btn" type="button"-->
+                                <!--data-href="../../set/user/user-select.html?" data-type="待办">合同上传</button>-->
+                                <!--</legend>-->
+                                <!--<div class="layui-field-box" >-->
+                                <!--&lt;!&ndash; 默认待办人&ndash;&gt;-->
+                                <!--<div class="default-wait">-->
+                                <!--<button class="layui-btn layui-btn-sm layui-btn-primary" type="button">许书兰-->
+                                <!--</button>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;可选可删待办人&ndash;&gt;-->
+                                <!--<div class="choose-wait user-div">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</fieldset>-->
+                                <!--</div>-->
+                            </div>
+
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

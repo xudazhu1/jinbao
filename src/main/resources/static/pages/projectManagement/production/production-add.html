@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="添加/编辑生产费" data-class="项目管理-生产费" data-remark="生产费"/>
+    <title>添加/编辑生产费</title>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/xudazhu-layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../vendor/Mtils/Mtils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/production/production-add.js"></script>
+
+    <!--suppress CssUnusedSymbol -->
+    <style>
+        select[data-select-hidden] + .layui-form-select {
+            display: none !important;
+        }
+
+        .no-tab {
+            white-space: nowrap;
+        }
+
+        .management-money-back-estimation tr td button {
+            width: 24px;
+            margin: 0 !important;
+        }
+
+        html {
+            background-color: #f2f2f2;
+            padding: 12px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form-label {
+            width: 98px;
+            padding: 9px 7px;
+        }
+
+        body .layui-elem-quote > span {
+            color: #47a3dc;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 2px 4px;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+
+        .payment-condition .layui-col-sm4 {
+            padding-right: 20px;
+            margin-top: 5px;
+        }
+
+        .layui-tabStr {
+            background-color: #fff;
+            padding: 12px;
+        }
+
+        .layui-display {
+            display: none;
+        }
+
+        .layui-tab-content {
+            padding: 10px 0;
+        }
+
+        .layui-card-body {
+            padding: 0;
+        }
+
+        .add_equipment_money_back_estimation, .add_rests_money_back_estimation, .add_boss_money_back_estimation {
+            float: right;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .layui-clearfix {
+            clear: both;
+        }
+
+        .layui-tab-title .layui-this {
+            color: #333;
+            background-color: #eee;
+        }
+
+        .layui-money {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-lg-offset3 layui-col-lg6">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-row" style="padding: 10px 0;">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">项目编号：</label>
+                            <div class="layui-input-block">
+                                <select title="项目编号" type="text" lay-search class="projectNum"
+                                        lay-filter="projectNum"></select>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">项目名称：</label>
+                            <div class="layui-input-block">
+                                <select title="项目名称" type="text" class="projectName" lay-filter="projectName"></select>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">实施部：</label>
+                            <div class="layui-input-block">
+                                <select title="实施" name="implementId" type="text" class="implementId"
+                                        lay-filter="implementId"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card basic" style="padding-bottom: 12px;">
+                <div class="layui-card-header">基本信息</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-form-item">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <!--<label class="layui-form-label">*经营类型：</label>-->
+                            <!--<div class="layui-input-block">-->
+                            <!--<select title="" name="projectManagementType" lay-filter="projectManagementType" class=" projectManagementType">-->
+                            <!--<option></option>-->
+                            <!--<option>自营</option>-->
+                            <!--<option>合作</option>-->
+                            <!--</select>-->
+                            <!--</div>-->
+                            <label class="layui-form-label">项目花销：</label>
+                            <div class="layui-input-block">
+                                <input readonly title="项目花销" type="text" readonly
+                                       data-notice-path="projectBean.projectManagementType" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input  ">
+                            </div>
+                            <label class="layui-form-label no-tab">管理费：</label>
+                            <div class="layui-input-block">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input readonly title="管理费" type="text" readonly
+                                       data-notice-path="projectBean.projectManagementType" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input projectManagementType">
+                            </div>
+                            <label class="layui-form-label no-tab managementCooperativePartnerName"> 技术提成：</label>
+                            <div class="layui-input-block managementCooperativePartnerName">
+                                <!--suppress HtmlUnknownAttribute -->
+                                <input readonly title="技术提成" type="text" readonly
+                                       data-notice-path="projectBean.projectManagementType" value="" placeholder=""
+                                       autocomplete="off"
+                                       class="layui-input projectManagementType">
+                            </div>
+
+                        </div>
+
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label no-tab"> 税费：</label>
+                            <div class="layui-input-block">
+                                <input readonly title="税费" type="text" name="managementMainHead" class="layui-input">
+                            </div>
+                            <label readonly class="layui-form-label no-tab">人员成本：</label>
+                            <div class="layui-input-block">
+                                <input title="人员成本" type="number" name="managementRate" readonly value=""
+                                       class="layui-input management-rate">
+                            </div>
+                            <label readonly class="layui-form-label no-tab">年总奖金：</label>
+                            <div class="layui-input-block">
+                                <input title="年总奖金" type="number" readonly value="" class="summary layui-input ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--  选项卡  -->
+            <div class="layui-tabStr">
+                <div class="layui-tab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">设备使用费</li>
+                        <li>班组费</li>
+                        <li>其他费</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <!--设备使用费-->
+                        <div class="layui-tab-item layui-show">
+                            <div class="layui-card payment-condition management-money-back-estimation">
+                                <div class="layui-card-body">
+                                    <div class="layui-tab-item layui-show">
+                                        <button type="button"
+                                                class="layui-btn layui-btn-sm add_equipment_money_back_estimation">
+                                            添加设备使用费
+                                        </button>
+                                        <div class="layui-clearfix"></div>
+                                        <button type="button"
+                                                class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                                style="display: none">批量删除
+                                        </button>
+                                        <!--<div class="checked-count">-->
+                                        <!--<span>已选择</span>-->
+                                        <!--<span class="checked-num">0</span>-->
+                                        <!--<span>项</span>-->
+                                        <!--</div>-->
+                                        <table class="layui-table management_money_back_estimation"
+                                               data-table="management_money_back_estimation">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 50px;">序号</th>
+                                                <th style="width: 120px;">设备使用费类型</th>
+                                                <th style="width: 120px;">天数</th>
+                                                <th style="width: 120px;">金额</th>
+                                                <th style="width: 120px;">备注</th>
+                                                <th style="width: 50px;">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="equipment_money_back_estimation_tBody">
+                                            <!--<tr class="newTr">-->
+                                            <!--<td>1</td>-->
+                                            <!--<td>-->
+                                            <!--<select title="生产费类型">-->
+                                            <!--<option value="1">全站仪设备</option>-->
+                                            <!--<option value="2">3D扫描仪</option>-->
+                                            <!--</select>-->
+                                            <!--</td>-->
+                                            <!--<td><input title="金额" type="number" class="layui-input"></td>-->
+                                            <!--<td class="do-td">-->
+                                            <!--<button>-->
+                                            <!--<span class="layui-icon layui-icon-delete del-btn" data-id="2" style="color: #ff4646" title="删除"></span>-->
+                                            <!--</button>-->
+                                            <!--</td>-->
+                                            <!--</tr>-->
+                                            </tbody>
+
+                                        </table>
+
+                                        <div class="layui-row layui-money">
+                                            <label class="layui-form-label" style="padding: 9px 0">设备汇总金额：</label>
+                                            <div class="layui-input-block  flow-select">
+                                                <input title="汇总金额" type="number" readonly
+                                                       class="layui-input equipmentSum">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--班组费-->
+                        <div class="layui-tab-item">
+                            <div class="layui-card payment-condition management-money-back-estimation">
+                                <div class="layui-card-body">
+                                    <div class="layui-tab-item layui-show">
+                                        <button type="button"
+                                                class="layui-btn layui-btn-sm add_boss_money_back_estimation">添加班组费
+                                        </button>
+                                        <div class="layui-clearfix"></div>
+                                        <button type="button"
+                                                class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                                style="display: none">批量删除
+                                        </button>
+                                        <!--<div class="checked-count">-->
+                                        <!--<span>已选择</span>-->
+                                        <!--<span class="checked-num">0</span>-->
+                                        <!--<span>项</span>-->
+                                        <!--</div>-->
+                                        <table class="layui-table management_money_back_estimation"
+                                               data-table="management_money_back_estimation">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 50px;">序号</th>
+                                                <th style="width: 120px;">班组费类型</th>
+                                                <th style="width: 120px;">班组老板</th>
+                                                <th style="width: 120px;">金额</th>
+                                                <th style="width: 120px;">备注</th>
+                                                <th style="width: 50px;">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="boss_money_back_estimation_tBody">
+                                            <!--<tr class="newTr">-->
+                                            <!--<td>1</td>-->
+                                            <!--<td>-->
+                                            <!--<select title="班组费类型">-->
+                                            <!--<option value="1">物探测试</option>-->
+                                            <!--<option value="2">土木实验</option>-->
+                                            <!--</select>-->
+                                            <!--</td>-->
+                                            <!--<td><input title="金额" type="number" class="layui-input"></td>-->
+                                            <!--<td class="do-td">-->
+                                            <!--<button>-->
+                                            <!--<span class="layui-icon layui-icon-delete del-btn" data-id="2" style="color: #ff4646" title="删除"></span>-->
+                                            <!--</button>-->
+                                            <!--</td>-->
+                                            <!--</tr>-->
+                                            </tbody>
+                                        </table>
+                                        <div class="layui-row layui-money">
+                                            <label class="layui-form-label" style="padding: 9px 0">班组汇总金额：</label>
+                                            <div class="layui-input-block  flow-select">
+                                                <input title="汇总金额" type="number" readonly class="layui-input bossSum">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--其他费-->
+                        <div class="layui-tab-item">
+                            <div class="layui-card payment-condition management-money-back-estimation">
+                                <div class="layui-card-body">
+                                    <div class="layui-tab-item layui-show">
+                                        <button type="button"
+                                                class="layui-btn layui-btn-sm add_rests_money_back_estimation">添加其他费
+                                        </button>
+                                        <div class="layui-clearfix"></div>
+                                        <button type="button"
+                                                class="layui-btn layui-btn-sm layui-btn-danger all_delete_btn"
+                                                style="display: none">批量删除
+                                        </button>
+                                        <!--<div class="checked-count">-->
+                                        <!--<span>已选择</span>-->
+                                        <!--<span class="checked-num">0</span>-->
+                                        <!--<span>项</span>-->
+                                        <!--</div>-->
+                                        <table class="layui-table management_money_back_estimation"
+                                               data-table="management_money_back_estimation">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 50px;">序号</th>
+                                                <th style="width: 120px;">其他类型</th>
+                                                <th style="width: 120px;">金额</th>
+                                                <th style="width: 120px;">备注</th>
+                                                <th style="width: 50px;">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="rests_money_back_estimation_tBody">
+                                            <!--<tr class="newTr">-->
+                                            <!--<td>1</td>-->
+                                            <!--<td>-->
+                                            <!--<select title="生产费类型">-->
+                                            <!--<option value="1">全站仪设备</option>-->
+                                            <!--<option value="2">3D扫描仪</option>-->
+                                            <!--</select>-->
+                                            <!--</td>-->
+                                            <!--<td><input title="金额" type="number" class="layui-input"></td>-->
+                                            <!--<td class="do-td">-->
+                                            <!--<button>-->
+                                            <!--<span class="layui-icon layui-icon-delete del-btn" data-id="2" style="color: #ff4646" title="删除"></span>-->
+                                            <!--</button>-->
+                                            <!--</td>-->
+                                            <!--</tr>-->
+                                            </tbody>
+
+                                        </table>
+
+                                        <div class="layui-row layui-money">
+                                            <label class="layui-form-label" style="padding: 9px 0">其他汇总金额：</label>
+                                            <div class="layui-input-block  flow-select">
+                                                <input title="汇总金额" type="number" readonly class="layui-input restsSum">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-card" style="margin-top: 15px;">
+                <div class="layui-card-body">
+                    <div class="layui-row" style="padding: 10px">
+                        <div class="layui-col-sm8">
+                            <label class="layui-form-label" style="color: #ff42a7">汇总金额：</label>
+                            <div class="layui-input-block">
+                                <input title="汇总金额" style=" width: 80%;" readonly type="number"
+                                       class="moneySum layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row" style="padding: 10px">
+                        <div class="layui-col-sm2">
+                            <!--扫描件上传-->
+                            <button type="button" class="layui-btn layui-btn-warm layui-btn-sm" id="btn_file_upload"><i
+                                    class="layui-icon"></i>上传文件
+                            </button>
+                            <div id="uploaded_file">
+                                <input type="hidden" name="del_file_ids" class="delFileIds">
+                            </div>
+
+                        </div>
+                        <div class="layui-col-sm6" class="showFile">
+
+
+                            <div class="download_file">
+
+                            </div>
+                            <div id="showFile">
+
+                            </div>
+                            <div class="layui-progress" style="margin-top: 20px;width: 60%;">
+                                <div class="layui-progress-bar"><span class="layui-progress-text"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row" style="padding: 10px">
+                        <div class="layui-col-sm12">
+                            <div class="layui-input-block" style="text-align: right;">
+                                <button class="layui-btn confirm-btn" type="button">提交更改</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="layui-card layui-display">
+                <div class="layui-card-body">
+                    <div>
+                        <blockquote class="layui-elem-quote layui-quote-nm">
+                            <div class="layui-row">
+                                <label class="layui-form-label" style="padding: 9px 0">流程动作：</label>
+                                <div class="layui-input-block  flow-select">
+                                    <!--suppress HtmlUnknownAttribute -->
+                                    <select title="" name="thisFlowNodeId" lay-filter="thisFlowNodeId">
+                                    </select>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!--通知-->
+                    <div class="choose-parent">
+                        <blockquote class="layui-elem-quote layui-quote-nm">
+                            <span>通知人</span>
+                            <button class="layui-btn layui-btn-xs layui-btn-normal add-people select-tree-btn"
+                                    data-href="../../set/user/user-select.html?" data-type="通知" type="button">添加
+                            </button>
+                            <div class="user-div choose-wait">
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!--待办-->
+                    <div>
+                        <blockquote class="layui-elem-quote layui-quote-nm">
+                            <span>待办人</span>
+                            <div class="layui-row todo-list">
+                                <!--&lt;!&ndash;合同上传&ndash;&gt;-->
+                                <!--<div class="layui-col-sm4 choose-parent">-->
+                                <!--<fieldset class="layui-elem-field">-->
+                                <!--<legend>-->
+                                <!--<button class="layui-btn layui-btn-xs layui-btn-normal select-tree-btn" type="button"-->
+                                <!--data-href="../../set/user/user-select.html?" data-type="待办">合同上传</button>-->
+                                <!--</legend>-->
+                                <!--<div class="layui-field-box" >-->
+                                <!--&lt;!&ndash; 默认待办人&ndash;&gt;-->
+                                <!--<div class="default-wait">-->
+                                <!--<button class="layui-btn layui-btn-sm layui-btn-primary" type="button">许书兰-->
+                                <!--</button>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;可选可删待办人&ndash;&gt;-->
+                                <!--<div class="choose-wait user-div">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</fieldset>-->
+                                <!--</div>-->
+                            </div>
+
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

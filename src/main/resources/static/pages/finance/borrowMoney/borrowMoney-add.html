@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>借款-基础页</title>
+    <meta id="permission-tag" data-name="借款-基础页" data-class="财务管理-借款" data-remark="借款-基础页"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script src="../../../js/finance/borrowMoney/borrowMoney-add.js"></script>
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+            z-index: -1;
+        }
+
+        body .layui-form-label {
+            color: #79c1c9
+        }
+
+        body .layui-input-block p {
+            margin-top: 5px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" id="inputForm">
+    <div class="layui-row">
+        <div class="layui-col-sm-offset3 layui-col-sm6">
+            <!--基本信息录入-->
+            <div class="layui-card">
+                <div class="layui-card-header">借款</div>
+                <div class="layui-card-body">
+                    <div class="layui-row">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*借款日期：</label>
+                            <div class="layui-input-block">
+                                <input type="text" class="layui-input borrowMoneyDate need-input" placeholder="请选择..."
+                                       name="borrowMoneyDate" autocomplete="off">
+                                <input type="hidden" class="layui-input" placeholder="" name="borrowMoneyId" >
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*借款金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" class="layui-input need-input borrowMoney Money" placeholder="请输入..."
+                                       name="borrowMoneyMoney"
+                                       autocomplete="off">
+                            </div>
+                            <label class="layui-form-label none-element" style="width: 104px;padding: 9px 2px;display: none">*借款人卡号：</label>
+                            <div class="layui-input-block none-element" style="display: none">
+                                <p data-text="personalBankCardBean.personalBankCardNum"></p>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*借款人：</label>
+                            <div class="layui-input-block">
+                                <select class="personalBankCardId need-input" name="personalBankCardBean.personalBankCardId"
+                                        title="" lay-filter="personalBankCardId" autocomplete="off" lay-search>
+                                    <option></option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">借款用途：</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="请输入" class="layui-textarea borrowMoneyRemark show-text"
+                                          name="borrowMoneyRemark" autocomplete="off"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--确认信息-->
+            <div class="layui-card confirm-div">
+                <div class="layui-card-header">
+                    确认信息
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*确认操作：</label>
+                            <div class="layui-input-block confirm-inner-div">
+                                <input type="text" name="paymentStatusBean.paymentStatusId"
+                                       class="layui-input paymentStatus-1" placeholder="" value="1">
+                                <select title="" name="paymentStatusBean.paymentStatusId" lay-filter="paymentStatus"
+                                        class="confirm-select" lay-search>
+                                    <option value="3">已确认</option>
+                                    <option value="2">退回</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*确认备注：</label>
+                            <div class="layui-input-block">
+                                <textarea class="layui-textarea disburseApprovalRemark" placeholder=""
+                                          name="borrowMoneyAuditRemark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--审核信息-->
+            <div class="layui-card audit-div">
+                <div class="layui-card-header">
+                    审核信息
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核操作：</label>
+                            <div class="layui-input-block audit-inner-div">
+                                <select title="" name="paymentStatusBean.paymentStatusId" lay-filter="paymentStatus"
+                                        lay-search>
+                                    <option value="5">审核通过</option>
+                                    <option value="4">退回</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*审核备注：</label>
+                            <div class="layui-input-block">
+                                <textarea class="layui-textarea disburseApprovalRemark2" placeholder=""
+                                          name="borrowMoneyAffirmRemark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--支付信息-->
+            <div class="layui-card pay-div">
+                <div class="layui-card-header">
+                    支付信息
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*支付操作：</label>
+                            <div class="layui-input-block pay-inner-div">
+                                <select title="" name="paymentStatusBean.paymentStatusId" lay-filter="paymentStatus" lay-search>
+                                    <option value="7">已支付</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*付款银行卡：</label>
+                            <div class="layui-input-block bankCard-div">
+                                <select class="bankCardId need-input" name="bankCardBean.bankCardId" title=""
+                                        lay-filter="bankCardId" autocomplete="off" lay-search>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*支付备注：</label>
+                            <div class="layui-input-block">
+                                <textarea class="layui-textarea disburseApprovalRemark3" placeholder=""
+                                          name="borrowMoneyPayRemark"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*支付时间：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="borrowMoneyPayDate" placeholder="点击选择时间" class="layui-input test-item need-input" lay-verify="required">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn submit-btn" type="button">立即提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

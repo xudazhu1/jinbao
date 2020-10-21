@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传合同/编辑合同</title>
+    <meta id="permission-tag" data-name="上传/编辑合同" data-class="经营管理-合同" data-remark="上传/编辑合同" />
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/utils/createNotice.js"></script>
+    <script type="text/javascript" src="../../../vendor/Mtils/Mtils.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/operationManagement/contract/contract-add.js"></script>
+    <style>
+        select[disabled] + .layui-form-select .layui-input {
+            display: none !important;
+        }
+        select[disabled] + .layui-form-select .layui-edge {
+            display: none !important;
+        }
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+        body .layui-card-header {
+            color: #efb019;
+        }
+        button {
+            margin:2px 4px;
+        }
+        body .layui-input {
+            height: 34px;
+        }
+        .all-remove {
+            color: #1E9FFF;
+            cursor: pointer;
+        }
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+        }
+        .file-div {
+            border: 1px solid #e6e6e6;
+            border-radius: 2px;
+            padding: 2px;
+        }
+        .newSpan {
+            line-height: 36px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-lg-offset3 layui-col-lg6">
+        <form class="layui-form" id="contract_form">
+            <div class="layui-card">
+                <div class="layui-card-header">基本信息</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-form-item">
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">*项目编号：</label>
+                            <div class="layui-input-block">
+                                <select class="projectId need-input" title="" lay-filter="projectId" lay-search name="projectBean.projectId">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <!--合同id-->
+                            <input type="hidden" name="contractId" class="contractId " title="">
+                            <label class="layui-form-label">*项目名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text"  placeholder="" data-notice-path="projectBean.projectName"  autocomplete="off"
+                                       class="projectName layui-input  need-input project-relate" readonly>
+                            </div>
+                            <label class="layui-form-label" for="test1">签订时间：</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="test1" name="contractSigningDate"  placeholder="" autocomplete="off"
+                                       class="layui-input contractSigningDate" >
+                            </div>
+                            <label class="layui-form-label">概算金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="contractEstimateMoney"  placeholder="" autocomplete="off"
+                                       class="layui-input contractEstimateMoney">
+                            </div>
+                            <label class="layui-form-label">合同金额：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="contractMoney"  placeholder="" autocomplete="off"
+                                       class="layui-input contractMoney">
+                            </div>
+                            <label class="layui-form-label">合同状态：</label>
+                            <div class="layui-input-block">
+                                <select name="contractState" class="contractState project-relate" title="" lay-filter="contractState" lay-search>
+                                    <option></option>
+                                    <option>未签</option>
+                                    <option>已签</option>
+                                    <option>不需签</option>
+                                </select>
+                            </div>
+                            <label class="layui-form-label">原件数：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="contractRawFileCount"  placeholder="" autocomplete="off"
+                                       class="layui-input contractRawFileCount">
+                            </div>
+                            <label class="layui-form-label">副件数：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="contractAccessoryCount"  placeholder="" autocomplete="off"
+                                       class="layui-input contractRawFileCount">
+                            </div>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-space5">
+                            <label class="layui-form-label">付款条件：</label>
+                            <div class="layui-input-block">
+                                <textarea name="contractPaymentClause" placeholder="请输入内容" class="layui-textarea contractPaymentClause"></textarea>
+                            </div>
+                            <label class="layui-form-label">资料要求：</label>
+                            <div class="layui-input-block">
+                                <textarea name="contractDataRequirements" placeholder="请输入内容" class="layui-textarea contractDataRequirements"></textarea>
+                            </div>
+                            <label class="layui-form-label">扫描件上传：</label>
+                            <div class="layui-input-block">
+                                <div class="file-div">
+                                    <input type="hidden" name="del_file_ids" class="delFileIds">
+                                    <!--已上传好的文件-->
+                                    <div class="download_file" >
+                                        <!--<p style="color: #2c2c2c">-->
+                                        <!--<span>09_素材中国sccnn.com.jpg</span>-->
+                                        <!--<button type="button" class="layui-btn layui-btn-xs layui-btn-normal">-->
+                                        <!--<a download="宣传册文字版.docx" href="/file/宣传册文字版.docx144095c4-b72e-4e13-8b52-ca2b3c005b21.docx" style="color: #fff">下载</a>-->
+                                        <!--</button>-->
+                                        <!--<button type="button" class="delete-file layui-btn layui-btn-danger layui-btn-xs">删除</button>-->
+                                        <!--</p>-->
+                                    </div>
+                                    <!--扫描件上传-->
+                                    <button type="button" class="layui-btn layui-btn-warm layui-btn-sm" id="btn_file_upload"><i class="layui-icon"></i>上传文件</button>
+
+                                    <div id="uploaded_file">
+
+                                    </div>
+                                    <div class="layui-progress" style="margin-top: 20px;">
+                                        <div class="layui-progress-bar"><span class="layui-progress-text"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-header">附加信息</div>
+                <div class="layui-card-body">
+                    <div class="layui-collapse" >
+                        <!--修改项目信息-->
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">修改项目信息<i class="layui-icon layui-colla-icon"></i></h2>
+                            <div class="layui-colla-content">
+                                <div class="layui-row layui-col-space5 layui-form-item">
+                                    <div class="layui-col-sm6">
+                                        <label class="layui-form-label">项目名称：</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="projectBean.projectName"  placeholder="" autocomplete="off"
+                                                   class="layui-input projectName ">
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6">
+                                        <label class="layui-form-label">经营类型：</label>
+                                        <div class="layui-input-block">
+                                            <select name="projectBean.projectManagementType" lay-filter="projectManagementType" class="project-relate need-input projectManagementType" lay-search>
+                                                <option></option>
+                                                <option>自营</option>
+                                                <option>合作</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-row layui-col-space5 layui-form-item">
+                                    <div class="layui-col-sm6">
+                                        <label class="layui-form-label">项目地点：</label>
+                                        <div class="layui-input-block">
+                                            <select name="projectBean.projectLocationBean.projectLocationId"
+                                                    data-notice-path="projectBean.projectLocationBean.projectLocationName"
+                                                    lay-filter="projectLocationName" class="need-input  projectLocationName project-relate"
+                                                    title="">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm6">
+                                        <label class="layui-form-label">*收益单位：</label>
+                                        <div class="layui-input-block">
+                                            <!--suppress HtmlUnknownAttribute -->
+                                            <select title=""  name="projectBean.earningsCompanyBean.earningsCompanyId" data-notice-path="projectBean.earningsCompanyBean.earningsCompanyName"  lay-filter="earningsCompanyName" class="earningsCompanyName need-input">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--分配合同金额-->
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">分配合同金额<i class="layui-icon layui-colla-icon"></i></h2>
+                            <div class="layui-colla-content">
+                                <div class="layui-row layui-col-space5 layui-form-item quota">
+                                    <!--<div class="layui-col-sm6">-->
+                                    <!--<label class="layui-form-label">测量部：</label>-->
+                                    <!--<div class="layui-input-block">-->
+                                    <!--<input type="text" name="fullname"  placeholder="" autocomplete="off"-->
+                                    <!--class="layui-input">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-row">
+                        <div class="layui-col-sm6 choose-parent">
+                            <blockquote class="layui-elem-quote layui-quote-nm">
+                                <button class="layui-btn layui-btn-sm layui-btn-normal add-people select-tree-btn" data-href="../../set/user/user-select.html?" type="button">添加通知人</button>
+                                <div class="user-div choose-wait" >
+                                    <!--<button class="layui-btn layui-btn-sm layui-btn-primary" type="button">林建丰-->
+                                    <!--<i class="layui-icon layui-icon-close"></i>-->
+                                    <!--</button>-->
+
+                                    <!--<span class="all-remove">清空</span>-->
+                                </div>
+                            </blockquote>
+                        </div>
+                        <div class="layui-col-sm6 choose-parent">
+                            <blockquote class="layui-elem-quote layui-quote-nm" >
+                                <button class="layui-btn layui-btn-sm layui-btn-normal add-people" type="button">待办人</button>
+                                <div class="user-div choose-wait">
+                                </div>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item submit-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" id="contract_submit" type="button">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

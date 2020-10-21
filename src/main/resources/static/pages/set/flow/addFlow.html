@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑主流程</title>
+    <meta id="permission-tag" data-name="编辑主流程" data-class="设置-流程管理" data-remark="编辑主流程,对该流程添加子流程">
+    <!--<link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../../css/set/structure.css">
+    <link rel="stylesheet" href="../../../css/set/flow/addFlow.css">
+    <link rel="stylesheet" href="../../../vendor/sweetalert/sweet-alert.css">
+    <link rel="stylesheet" href="../../../vendor/formSelects-v4/formSelects-v4.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../js/flow/addFlow.js"></script>
+    <script type="text/javascript" src="../../../vendor/sweetalert/sweet-alert.js"></script>
+</head>
+<body>
+<div>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <form class="layui-form layui-row">
+                    <div class="layui-form-item">
+                        <div class="layui-col-sm3 layui-form">
+                            <label class="layui-form-label" style="padding: 9px 0">主流程名称:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="flowName" placeholder="" autocomplete="off"
+                                       class="layui-input need-input">
+                                <input type="hidden" name="flowId" placeholder="" autocomplete="off"
+                                       class="layui-input ">
+                            </div>
+                        </div>
+                        <div class="layui-col-sm5 layui-form">
+                            <label class="layui-form-label" style="padding: 9px 0">所属公司：</label>
+                            <div class="layui-input-block company-selected">
+                                <select name="company" id="company" xm-select="select1" title="">
+                                    <!--<option value="海口分公司">花无a分公司</option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4 layui-form">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn layui-btn-sm flow-submit" style="margin-top: 3px">确认</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="structure-tree">
+        <ul>
+            <li class="node-li">
+                <div class="dropdown menu-btn-div add-btn-div">
+                    <div class="menu-btn-div add-btn-button img-circle  suspension-btn" type="button"
+                         id="dropdownMenu1434" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </div>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1434">
+                        <a class="btn btn-default add-sub-flow-btn" href="#" role="button">新建节点</a>
+                        <!--<a class="btn btn-default" href="#" role="button">添加现有节点</a>-->
+                    </div>
+                </div>
+                <div class="node-add-box">
+                    <div class="node-add">
+                        <button type="button" class="layui-btn layui-btn-normal layui-btn-xs layui-btn-radius department-add-btn">
+                            <span class="layui-icon layui-icon-add-1"></span>
+                        </button>
+                        <div class="select-type-div">
+                            <div class="arrow">
+                            </div>
+                            <div class="select-type">
+                                <i class="layui-icon layui-icon-close" title="关闭"></i>
+                                <div class="layui-row">
+                                    <div class="layui-col-xs6" data-type="department" data-type-name="部门">
+                                        <i class="layui-icon layui-icon-home"></i>
+                                        <span>新建节点</span>
+                                    </div>
+                                    <div class="layui-col-xs6" data-type="job" data-type-name="职位">
+                                        <i class="layui-icon layui-icon-user"></i>
+                                        <span>添加现有节点</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="canvas">
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="sweet-overlay" tabindex="-1"></div>
+    <div class="sweet-alert" tabindex="-1">
+        <div class="icon error"><span class="x-mark"><span class="line left"></span><span
+                class="line right"></span></span></div>
+        <div class="icon warning"><span class="body"></span> <span class="dot"></span></div>
+        <div class="icon info"></div>
+        <div class="icon success"><span class="line tip"></span> <span class="line long"></span>
+            <div class="placeholder"></div>
+            <div class="fix"></div>
+        </div>
+        <div class="icon custom"></div>
+        <h2>Title</h2>
+        <p>Text</p>
+        <button class="cancel" tabindex="2">Cancel</button>
+        <button class="confirm" tabindex="1">OK</button>
+    </div>
+</div>
+
+<script>
+    //全局定义一次, 加载formSelects
+    layui.extend({
+        formSelects: '../../../vendor/formSelects-v4/formSelects-v4'
+    });
+    //加载模块
+    // layui.use(['jquery', 'formSelects'], function () {
+    //     let formSelects = layui.formSelects;
+    //     formSelects.value('select1');
+    // });
+</script>
+</body>
+</html>

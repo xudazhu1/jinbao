@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta id="permission-tag" data-name="生产费详情展示" data-class="项目管理-生产费" data-remark="生产费详情展示页"/>
+    <title>生产费展示</title>
+    <link rel="stylesheet" href="../../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../../vendor/build.css">
+    <link rel="stylesheet" href="../../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../../vendor/layer-v3.1.1/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="../../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/sweetalert/sweet-alert.js"></script>
+    <script type="text/javascript" src="../../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../../js/projectManagement/production/productionCost.js"></script>
+    <style>
+
+        .table-utils-td-text {
+            background-color: initial;
+            width: 100%;
+            border: 0;
+            /*outline : none;*/
+            text-align: center;
+        }
+        .table-utils-td-text:hover {
+        }
+
+        .type-filter {
+            display: inline-block;
+        }
+        .table-div{
+            height: 696px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="project-show project-show-margin">
+    <div class="ctl-div">
+        <span class="ctl-glyphicon table-title" title="生产费">
+            生产费
+        </span>
+
+        <div class="time-area ctl-glyphicon">
+            <div class="th-checkbox">
+                <i class="glyphicon glyphicon-th-list show-i test-normal"></i>
+                <div class="filter-div" tabindex="1">
+                    <div class="filter-body pre-scrollable test-1 " id="label_list">
+                        <div class="checkbox checkbox-info checkbox-circle">
+                            <input type="checkbox" id="opera_name" checked>
+                            <label for="opera_name">项目编号</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_num" checked>
+                            <label for="opera_num">项目名称</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module134" checked>
+                            <label for="opera_module134">经营类型</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module1" checked>
+                            <label for="opera_module1">项目地点</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module" checked>
+                            <label for="opera_module">实施部门</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module11" checked>
+                            <label for="opera_module11">实施负责人</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_num2" checked>
+                            <label for="opera_num2">项目类型</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module22" checked>
+                            <label for="opera_module22">乙方名称</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module12" checked>
+                            <label for="opera_module12">项目状态</label>
+                        </div>
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="opera_module13" checked>
+                            <label for="opera_module13">实施记录</label>
+                        </div>
+                    </div>
+                    <div class="scrollbar">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="th-checkbox add-div ctl-glyphicon" data-href="production/production-add.html" title="添加" data-title="添加生产费"-->
+             <!--&gt;-->
+            <!--&lt;!&ndash;data-width="840px" data-height="700px"&ndash;&gt;-->
+            <!--<i class="glyphicon glyphicon-plus show-i test-normal"></i>-->
+        <!--</div>-->
+        <div class="input-group input-sm item-num-search-xudaz">
+            <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                   title="搜索任意内容">
+            <input type="hidden" class="multiple-key" name="multiple_key" value="">
+            <span class="input-group-btn search-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+        </div>
+    </div>
+    <div class="table-div">
+        <form id="searchForm">
+            <table data-table="implement" id="operating_record_table" class="show-altrowstable no-copy-show-altrowstable
+                first-line-table table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>
+                        <span>项目编号</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1">
+                                <input type="text" class="form-control input-sm" name="projectBean.projectNum" value=""
+                                       autocomplete="off" placeholder="键入或勾选">
+                                <input type="hidden" name="$D.projectBean.projectNum" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning  search-btn">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>项目名称</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1">
+                                <input type="text" class="form-control input-sm" name="projectBean.projectName" value=""
+                                       autocomplete="off" placeholder="键入或勾选">
+                                <input type="hidden" name="$D.projectBean.projectName" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning search-btn">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>经营类型</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1 need-data" data-
+                                 property="projectManagementType">
+                                <input type="text" class="form-control input-sm" name="projectBean.projectManagementType" value=""
+                                       autocomplete="off" placeholder="键入或勾选">
+                                <input type="hidden" name="$D.projectBean.projectManagementType" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning search-btn">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>经营部负责人</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1 need-data"
+                                 data-property="projectBean.managementBean.managementMainHead">
+                                <input type="text" class="form-control input-sm"
+                                       name="projectBean.managementBean.managementMainHead" value="" autocomplete="off"
+                                       placeholder="键入或勾选">
+                                <input type="hidden" name="$D.projectBean.managementBean.managementMainHead" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning search-btn">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>实施部</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1 need-data"
+                                 data-property="departmentBean.departmentName">
+                                <input type="text" class="form-control input-sm"
+                                       name="departmentBean.departmentName" value="" autocomplete="off"
+                                       placeholder="键入或勾选">
+                                <input type="hidden" name="$D.departmentBean.departmentName" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning search-btn">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>实施部负责人</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1 need-data"
+                                 data-property="implementImplementHead">
+                                <input type="text" class="form-control input-sm"
+                                       name="implementImplementHead" value="" autocomplete="off"
+                                       placeholder="键入或勾选">
+                                <input type="hidden" name="$D.implementImplementHead" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning search-btn">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>项目花销</span>
+                    </th>
+                    <th>
+                        <span>税费</span>
+                    </th>
+                    <th>
+                        <span>管理费</span>
+                    </th>
+                    <th>
+                        <span>人员成本</span>
+                    </th>
+                    <th>
+                        <span>技术提成</span>
+                    </th>
+                    <th>
+                        <span>年总奖金</span>
+                    </th>
+                    <th>
+                        <span>设备使用</span>
+                    </th>
+                    <th>
+                        <span>班组费</span>
+                    </th>
+                    <th>
+                        <span>其他费</span>
+                    </th>
+                    <th>
+                        <span>操作框</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="items">
+                    <tr>
+                    <td>HZ19SY-0848</td>
+                    <td>三亚市吉阳区综合行政执法局（宗地测量22宗）</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="page" class="page_div">
+        <button class="btn btn-xs btn-default startsPage firstPage" type="button">首页</button>
+        <button class="btn btn-xs btn-default lastPage firstPage" type="button">上一页</button>
+        <button class="button1 pageButton btn btn-xs  btn-default  " type="button"
+                style="background: rgb(0, 115, 169); color: rgb(255, 255, 255);">1
+        </button>
+        <button class="btn btn-xs  btn-default nextPage firstPage" type="button">下一页</button>
+        <button class="btn btn-xs  btn-default endPage firstPage" type="button">末页</button>
+        <span class=" countPage totalPages">共 <span>1</span> 页  </span><span
+            class=" countPage totalPages">共 <span>10</span> 条数据&nbsp;&nbsp;&nbsp; </span><input type="number"
+                                                                                                style="width: 40px;"
+                                                                                                class="btn btn-xs
+btn-default inputPage"
+                                                                                                id="inputPage"
+                                                                                                value="1">
+        <button class="btn btn-xs  btn-default inputPageButton firstPage" type="button">Go!</button>
+    </div>
+</div>
+
+</body>
+
+</html>

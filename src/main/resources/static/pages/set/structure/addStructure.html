@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加组织架构</title>
+    <meta id="permission-tag" data-name="添加组织架构" data-class="设置-组织架构" data-remark="添加组织架构的页面,可以添加分公司、部门、职位" />
+    <link rel="stylesheet" href="../../../css/set/structure/addStructure.css">
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/set/structure/addStructure.js"></script>
+
+</head>
+<body>
+
+<div class="sub-container">
+
+    <div class="sub-info">添加<span class="type-name">动态</span>信息</div>
+    <div class="layui-row sub-info-add">
+        <form id="inputForm">
+            <div>
+                <label class="layui-form-label"><span class="type-name">动态</span>名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="companyName"  placeholder="" autocomplete="off" class="layui-input need-input company-input hidden">
+                    <input type="text" name="departmentName"  placeholder="" autocomplete="off" class="layui-input need-input department-input hidden">
+                    <input type="text" name="jobName"  placeholder="" autocomplete="off" class="layui-input need-input job-input hidden">
+                </div>
+            </div>
+            <div>
+                <label class="layui-form-label">上级结构：</label>
+                <div class="layui-input-block parent-name" style="height: 36px;line-height: 38px;">
+                    海南进保勘测有限公司(动态变化)
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="layui-input-block sub-info-btn">
+        <button class="layui-btn confirm-btn">确认</button>
+        <button type="reset" class="layui-btn layui-btn-primary cancel-btn">取消</button>
+    </div>
+</div>
+
+<script>
+
+
+
+</script>
+</body>
+</html>

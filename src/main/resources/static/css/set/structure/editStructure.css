@@ -1,0 +1,54 @@
+html {
+    background-color: #f2f2f2;
+    color: #666;
+}
+.structure-form {
+    padding-top: 15px;
+    box-sizing: border-box;
+    padding-bottom: 60px;
+    margin-bottom: 15px;
+}
+.basic-info {
+    width: 100%;
+    padding: 0px 15px;
+    min-height: 38px;
+    background: #eceff4;
+    line-height: 38px;
+    box-sizing: border-box;
+}
+.sub-info-add>div {
+    padding: 10px 10px 2px 10px;
+}
+.fixed-bottom {
+    border: 1px solid #f2f2f2;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px #ccc;
+    padding: 10px 40px 10px 10px;
+    text-align: right;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+}
+.sub-info-btn {
+    position: absolute;
+    bottom: 4px;
+}
+/*复选框样式*/
+body .layui-form-checkbox[lay-skin=primary]{
+    padding-left: 0;
+}
+
+/*复选框计数*/
+.checked-count {
+    display: inline-block;
+}
+
+.select-tree-btn {
+    cursor: pointer;
+}
+
+/*默认用户管理隐藏,只有是职位是才显示*/
+/*body .job-show {*/
+    /*display: none;*/
+/*}*/

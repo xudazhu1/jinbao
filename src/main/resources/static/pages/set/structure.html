@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>组织架构展示页</title>
+    <meta id="permission-tag" data-name="组织架构展示页" data-class="设置-组织架构" data-remark="组织架构展示页" />
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/set/structure.css">
+    <link rel="stylesheet" href="../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../js/set/structure.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../vendor/sweetalert/sweet-alert.js"></script>
+
+</head>
+
+<body>
+<div >
+    <div class="structure-tree" >
+        <ul>
+            <li class="node-li">
+                <div class="node-box">
+                    <span>海南进保勘测有限公司</span>
+                    <i class="layui-icon layui-icon-triangle-d ul-toggle" title="向下伸缩"></i>
+                </div>
+                <br>
+                <div class="node-add-box">
+                    <div class="node-add">
+                        <button class="node-add-btn add-element" data-type="company" data-type-name="分公司" data-parent-name="海南进保勘测有限公司">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <!--<div class="select-type-div">-->
+                            <!--<div class="arrow">-->
+                            <!--</div>-->
+                            <!--<div class="select-type">-->
+                                <!--<i class="layui-icon layui-icon-close" title="关闭"></i>-->
+                                <!--<div class="layui-row">-->
+                                    <!--<div class="layui-col-xs6" data-type="department" data-type-name="部门">-->
+                                        <!--<i class="layui-icon layui-icon-home"></i>-->
+                                        <!--<span>添加部门</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="layui-col-xs6" data-type="job" data-type-name="职位">-->
+                                        <!--<i class="layui-icon layui-icon-user" ></i>-->
+                                        <!--<span>添加职位</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="canvas">
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

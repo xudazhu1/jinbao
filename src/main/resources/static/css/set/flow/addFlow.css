@@ -1,0 +1,38 @@
+.structure-tree {
+    min-height: 200px!important;
+}
+
+.add-btn-button {
+    background-color: #00a8ff;
+    width: 30px;
+    height: 30px;
+    font-size: 21px;
+    line-height: 31px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+.add-btn-div .dropdown-menu a {
+    color: #2200009c;
+    width: 100%;
+    border-radius: 0;
+}
+.add-btn-div .dropdown-menu  {
+    width: 110px;
+    min-width: 50px;
+    padding: 0;
+}
+
+.flow-submit {
+    margin-left: 10px;
+}
+/*!*iframe的关闭图标*!*/
+/*body .layui-layer-setwin .layui-layer-close2 {*/
+    /*display: none;*/
+/*}*/
+
+/*label*/
+body label {
+    margin-bottom: 0;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>银行账号余额展示</title>
+    <meta id="permission-tag" data-name="银行账号余额展示" data-class="财务管理-银行账号余额" data-remark="银行账号余额展示页"/>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../vendor/laydate_custom/theme/default/laydate.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../vendor/laydate_custom/laydate.js"></script>
+    <script type="text/javascript" src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../js/finance/bankCardMoney.js"></script>
+    <style>
+        html{
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            color: #666;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .table-div table {
+            margin-top: 10px;
+        }
+        .table-div table th {
+            padding: 5px 10px;
+            color: #302727;
+            width: 100px;
+            background-color: rgb(227, 240, 215);
+            border: 1px solid #fff !important;
+        }
+        body .contain {
+            overflow: scroll;
+            position: relative;
+        }
+
+        body .contain .trueTable {
+            top: -40px;
+            position: relative;
+            margin: 0;
+        }
+
+        body .contain .copyTable {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: 0;
+        }
+
+        body .contain .copyTable th {
+            text-align: center;
+            background-color: rgb(227, 240, 215);
+        }
+    </style>
+</head>
+<body>
+<form id="searchForm">
+    <div class="ctl-div">
+        <span class="ctl-glyphicon table-title" title="银行账户余额">
+            银行账户余额
+        </span>
+        <div class="input-group" style="float: right;width: 320px">
+            <input type="text" class="form-control" placeholder="搜索..." id="year" autocomplete="off">
+            <span class="input-group-addon" style="cursor: pointer">搜索</span>
+        </div>
+    </div>
+    <div class="table-div">
+        <table class="table table-bordered table-hover bankCard">
+            <thead>
+            <tr>
+                <th>
+                    <span>银行卡名称</span>
+                </th>
+                <th>
+                    <span>期初余额</span>
+                </th>
+                <th>
+                    <span>收入</span>
+                </th>
+                <th>
+                    <span>支出</span>
+                </th>
+                <th>
+                    <span>转账</span>
+                </th>
+                <th>
+                    <span>借出给个人</span>
+                </th>
+                <th>
+                    期末余额
+                </th>
+            </tr>
+            </thead>
+            <tbody id="items">
+
+            </tbody>
+        </table>
+    </div>
+</form>
+
+</body>
+</html>

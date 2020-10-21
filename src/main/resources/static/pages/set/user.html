@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <meta id="permission-tag" data-name="用户管理" data-class="设置-用户管理" data-remark="用户管理页面 , 可以对用户进行添加或者配置"/>
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome-4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../../css/utils/table_utils.css">
+    <link rel="stylesheet" href="../../vendor/build.css">
+    <link rel="stylesheet" href="../../css/set/user.css">
+    <link rel="stylesheet" href="../../css/utils/pageStyle2.css">
+    <link rel="stylesheet" href="../../vendor/sweetalert/sweet-alert.css">
+
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../vendor/layer-v3.1.1/layer/layer.js"></script>
+    <script type="text/javascript" src="../../js/utils/table_utils.js"></script>
+    <script type="text/javascript" src="../../js/utils/pageUtils.js"></script>
+    <script type="text/javascript" src="../../js/set/user/user.js"></script>
+    <script type="text/javascript" src="../../vendor/sweetalert/sweet-alert.js"></script>
+</head>
+<body>
+<div class="project-show project-show-margin">
+
+        <div class="ctl-div">
+
+            <span class=" ctl-glyphicon table-title" title="用户管理">
+                用户管理
+            </span>
+
+            <div class="time-area ctl-glyphicon" title="自定义展示列">
+                <div class="th-checkbox">
+                    <i class="glyphicon glyphicon-th-list show-i test-normal"></i>
+                    <div class="filter-div" tabindex="1">
+                        <div class="filter-body pre-scrollable test-1" id="label_list">
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_name" checked>
+                                <label for="opera_name">用户名</label>
+                            </div>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_num" checked>
+                                <label for="opera_num">密码</label>
+                            </div>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_module" checked>
+                                <label for="opera_module">电话</label>
+                            </div>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_职位" checked>
+                                <label for="opera_职位">职位</label>
+                            </div>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_部门" checked>
+                                <label for="opera_部门">部门</label>
+                            </div>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_公司" checked>
+                                <label for="opera_公司">公司</label>
+                            </div>
+                            <div class="checkbox checkbox-info checkbox-circle">
+                                <input type="checkbox" id="opera_角色" checked>
+                                <label for="opera_角色">角色</label>
+                            </div>
+                        </div>
+                        <div class="scrollbar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="th-checkbox add-div ctl-glyphicon" data-href="user/user-inner.html" title="添加">
+                <i class="glyphicon glyphicon-plus show-i test-normal"></i>
+            </div>
+
+            <div class="input-group input-sm item-num-search-xudaz">
+                <input type="text" class="form-control multiple-value" name="multiple_value" placeholder="Search for..."
+                       title="搜索任意内容">
+                <span class="input-group-btn">
+            <button class="btn btn-default  btn-confirm1" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+            </div>
+        </div>
+    <form id="searchForm">
+        <div class="table-div">
+            <table data-table="user"
+                   class="show-altrowstable no-copy-show-altrowstable first-line-table table table-bordered table-hover table-striped"
+                   id="operating_record_table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>
+                        <span>用户名</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1 need-data" data-property="userName">
+                                <input type="text" class="form-control input-sm" name="userName" value=""
+                                       autocomplete="off"
+                                       placeholder="键入或勾选">
+                                <input type="hidden" name="$D.userName" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning btn-confirm1">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>密码</span>
+                    </th>
+                    <th>
+                        <span>电话</span>
+                        <i class="glyphicon glyphicon-chevron-down show-i test-normal"></i>
+                        <div class="filter-div" tabindex="1">
+                            <div class="filter-body pre-scrollable test-1 need-data" data-property="userTelephone">
+                                <input type="text" class="form-control input-sm" name="userTelephone" value=""
+                                       autocomplete="off" placeholder="键入或勾选">
+                                <input type="hidden" name="$D.userTelephone" value="">
+                            </div>
+                            <div class="scrollbar">
+                            </div>
+                            <button type="button" class="btn btn-xs btn-warning btn-confirm1">确定</button>
+                        </div>
+                    </th>
+                    <th>
+                        <span>职位</span>
+                    </th>
+                    <th>
+                        <span>部门</span>
+                    </th>
+                    <th>
+                        <span>公司</span>
+                    </th>
+                    <th>
+                        <span>角色</span>
+                    </th>
+                    <th>
+                        <span>操作框</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="items">
+                <tr>
+                    <td>测量部fcm</td>
+                    <td>无</td>
+                    <td>登录</td>
+                    <td>job</td>
+                    <td>dept</td>
+                    <td>comp</td>
+                    <td>role</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-xs edit-btn">编辑</button>
+                        <button type="button" class="btn btn-danger btn-xs delete-btn">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <div id="page" class="page_div">
+        <button class="btn btn-xs btn-default startsPage firstPage" type="button">首页</button>
+        <button class="btn btn-xs btn-default lastPage firstPage" type="button">上一页</button>
+        <button class="button1 pageButton btn btn-xs  btn-default  " type="button"
+                style="background: rgb(0, 115, 169); color: rgb(255, 255, 255);">1
+        </button>
+        <button class="btn btn-xs  btn-default nextPage firstPage" type="button">下一页</button>
+        <button class="btn btn-xs  btn-default endPage firstPage" type="button">末页</button>
+        <span class=" countPage totalPages">共 <span>1</span> 页  </span><span
+            class=" countPage totalPages">共 <span>10</span> 条数据&nbsp;&nbsp;&nbsp; </span><input type="number" title=""
+                                                                                                style="width: 40px;"
+                                                                                                class="btn btn-xs  btn-default inputPage"
+                                                                                                id="inputPage"
+                                                                                                value="1">
+        <button class="btn btn-xs  btn-default inputPageButton firstPage" type="button">Go!</button>
+    </div>
+</div>
+</body>
+</html>

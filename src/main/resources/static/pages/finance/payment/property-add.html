@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>录入资产信息</title>
+    <meta id="permission-tag" data-name="录入资产信息" data-class="财务管理-资产" data-remark="录入资产信息"/>
+    <link rel="stylesheet" href="../../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../vendor/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../js/xudazhu.js"></script>
+    <script src="../../../js/utils/createNotice.js"></script>
+
+    <script type="text/javascript" src="../../../js/finance/payment/property-add.js"></script>
+
+    <style>
+        html {
+            background-color: #f2f2f2;
+            padding: 8px 30px;
+            box-sizing: border-box;
+        }
+
+        body .layui-card-header {
+            color: #efb019;
+        }
+
+        body .layui-form select {
+            top: 6px;
+            position: absolute;
+            display: block;
+            border: none;
+            opacity: 0.01;
+            z-index: -1;
+        }
+
+        .add-card td {
+            padding: 0;
+            vertical-align: top;
+        }
+
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: #bfbfbf;
+        }
+
+        body .layui-form-label {
+            color: #79c1c9
+        }
+        body .layui-input-block p{
+            margin-top: 8px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-sm-offset3 layui-col-sm6">
+        <form class="layui-form" id="inputForm">
+            <div class="layui-card" id="sumCard">
+                <div class="layui-card-header form-header">
+                    资产信息
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*对应付款编号：</label>
+                            <div class="layui-input-block">
+                                <select name="disburseBean.disburseId"  class="disburseNum need-input" title="" lay-filter="disburseId">
+                                </select>
+                                <input type="hidden" name="propertyId" placeholder="" class="propertyId">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*物品名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="propertyName" placeholder="请输入.."  class="layui-input need-input " autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*购买时间：</label>
+                            <div class="layui-input-block">
+                                <input id="test-laydate-normal-cn" name="propertyBuyTime" type="text" placeholder="请输入.."  class="layui-input need-input" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*物品型号：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="propertyType" placeholder="请输入.."  class="layui-input need-input" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*折旧期限(月)：</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="propertyDeadline" placeholder="请输入.."  class="layui-input need-input propertyDeadline" data-class="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">*折旧方式：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="propertyDepreciationMethod" placeholder="请输入.."  class="layui-input need-input depreciationMethod" value="按月平均折旧" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label decimal" style="width: 104px;padding: 9px 2px;">*残值率:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="propertyResidual" placeholder="例如 12% 或 0.12"  class="layui-input need-input propertyResidual" autocomplete="off" >
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6  project-hidden content-div">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">原值：</label>
+                            <div class="layui-input-block">
+                                <input type="number" placeholder="自动"  class="layui-input disbursePaymentAmount" readonly autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6 ">
+                            <label class="layui-form-label" style="width: 104px;padding: 9px 2px;">净值：</label>
+                            <div class="layui-input-block">
+                                <input type="text" placeholder="自动"  class="layui-input netValue" readonly autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn submit-btn" type="button">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

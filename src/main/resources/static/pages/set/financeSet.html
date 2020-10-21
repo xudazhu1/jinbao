@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财务管理</title>
+    <meta id="permission-tag" data-name="财务管理" data-class="设置-财务管理" data-remark="财务管理展示页/支出设置/费用设置/银行账号设置(公司)/银行账号设置(个人)" />
+    <link rel="stylesheet" href="../../vendor/layui/css/layui.css">
+    <script type="text/javascript" src="../../vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../vendor/layui/layui.all.js"></script>
+    <script type="text/javascript" src="../../js/utils/createNotice.js"></script>
+    <script src="../../js/xudazhu.js"></script>
+    <script type="text/javascript" src="../../js/set/financeSet.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+            color: #666;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        caption {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        td .layui-input {
+            height: 30px;
+            border: 1px solid #bfd0c2;
+            padding-left: 9px;
+            box-shadow: 0px 0px 5px #d7deda;
+        }
+
+        td .layui-icon {
+            cursor: pointer;
+        }
+
+        body .contain {
+            overflow: scroll;
+            position: relative;
+        }
+
+        body .contain .trueTable {
+            margin: 0;
+        }
+
+        body .contain .copyTable {
+            position: fixed;
+            z-index: 1000;
+            margin: 0;
+        }
+
+        body .contain .copyTable th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layui-card" style=" height:100%; width: 100%; overflow:auto">
+    <div class="layui-card-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="component-tabs-hash">
+            <ul class="layui-tab-title">
+                <li class="layui-this">支出设置</li>
+                <li>费用设置</li>
+                <li>银行账号设置(公司)</li>
+                <li>银行账号设置(个人)</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-row ">
+                        <div class="layui-col-sm8 layui-col-md7 layui-col-lg6">
+                            <form id="disburse_detail" class="layui-form">
+                                <!--<table class="layui-table copyTable">-->
+                                <!--<thead>-->
+                                <!--<tr>-->
+                                <!--<th>序号</th>-->
+                                <!--<th>费用明细</th>-->
+                                <!--<th>费用明细备注</th>-->
+                                <!--<th>费用来源</th>-->
+                                <!--<th>所属费用类型</th>-->
+                                <!--<th>所属费用类别</th>-->
+                                <!--<th>操作</th>-->
+                                <!--</tr>-->
+                                <!--</thead>-->
+                                <!--</table>-->
+                                <table class="layui-table disburse_detail" data-table="disburse_detail">
+                                    <!--<caption>费用明细(小类)</caption>-->
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>费用明细</th>
+                                        <th>费用明细备注</th>
+                                        <th>费用来源</th>
+                                        <th>所属费用类型(中类)</th>
+                                        <th>所属费用类别(大类)</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <!--费用明细-->
+                                        <td>
+                                            <input type="text" class="layui-input" name="disburseDetailName" title=""
+                                                   autocomplete="off" placeholder="请输入......">
+                                        </td>
+                                        <!--费用明细备注-->
+                                        <td>
+                                            <input class="layui-input" name="disburseDetailRemarks" title=""
+                                                   autocomplete="off" placeholder="请输入......">
+                                        </td>
+                                        <!--费用明细来源-->
+                                        <td>
+                                            <input class="layui-input" name="disburseDetailSource" title=""
+                                                   placeholder="请输入......">
+                                        </td>
+                                        <!--费用类型-->
+                                        <td>
+                                            <select title="" name="disburseTypeBean.disburseTypeId"
+                                                    class="disburseTypeName" data-select-way="disburse_type"
+                                                    lay-filter="disburseTypeName" id="disburse_type_select"
+                                                    data-name3="disburseType" data-parent="disburseCategory">
+                                                <option></option>
+                                            </select>
+                                        </td>
+                                        <td class="show-td"></td>
+                                        <td>
+                                            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                                  style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr">
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-sm4 layui-col-lg2">
+                            <form id="disburse_category">
+                                <table class="layui-table disburse_category" data-table="disburse_category">
+                                    <caption>费用类别(大类)</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>费用类别</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <td>
+                                            <input type="text" class="layui-input" name="disburseCategoryName" title=""
+                                                   autocomplete="off" placeholder="请输入......">
+                                        </td>
+                                        <td>
+                                            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                                  style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr">
+                                    <!--<tr>-->
+                                    <!--<td>1</td>-->
+                                    <!--<td class="edit-td">个人报销</td>-->
+                                    <!--<td>-->
+                                    <!--<span class="layui-icon layui-icon-delete"></span>-->
+                                    <!--</td>-->
+                                    <!--</tr>-->
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="layui-col-sm6 layui-col-lg4">
+                            <form id="disburse_type" class="layui-form">
+                                <table class="layui-table disburse_type" data-table="disburse_type">
+                                    <caption>费用类型(中类)</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>费用类型</th>
+                                        <th>所属费用类别</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <td>
+                                            <input type="text" class="layui-input" name="disburseTypeName" title=""
+                                                   autocomplete="off" placeholder="请输入......">
+                                        </td>
+                                        <td>
+                                            <select title="" name="disburseCategoryBean.disburseCategoryId"
+                                                    class="disburseCategoryName" data-select-way="disburse_category"
+                                                    lay-filter="disburseCategoryName" id="disburse_category_select"
+                                                    data-name3="disburseCategory">
+                                                <option></option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                                  style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr">
+                                    <!--<tr>-->
+                                    <!--<td>1</td>-->
+                                    <!--<td class="edit-td">个人报销</td>-->
+                                    <!--<td>-->
+                                    <!--<span class="layui-icon layui-icon-delete"></span>-->
+                                    <!--</td>-->
+                                    <!--</tr>-->
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-sm8 layui-col-lg8">
+                            <form id="bank_card" class="layui-form">
+                                <table class="layui-table bank_card" data-table="bank_card">
+                                    <caption>银行账号设置(公司)</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th style="min-width: 100px;max-width: 150px;">类型</th>
+                                        <th>名称</th>
+                                        <th>卡号</th>
+                                        <th>初始额(保存调整记录)</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <td>
+                                            <select title="" name="bankCardType">
+                                                <option></option>
+                                                <option>公户卡</option>
+                                                <option>私户卡</option>
+                                                <option>现金</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="layui-input" name="bankCardName" title=""
+                                                   autocomplete="off" placeholder="请输入......">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="layui-input cardSpace bankCardNum" name="bankCardNum"
+                                                   placeholder="请输入..." maxlength="24">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="layui-input" name="bankCardInitialValue"
+                                                   placeholder="请输入...">
+                                        </td>
+                                        <td>
+                                            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                                  style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr">
+                                    <!--<tr>-->
+                                    <!--<td>1</td>-->
+                                    <!--<td class="edit-td">个人报销</td>-->
+                                    <!--<td>-->
+                                    <!--<span class="layui-icon layui-icon-delete"></span>-->
+                                    <!--</td>-->
+                                    <!--</tr>-->
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-sm6 layui-col-lg6">
+                            <form id="personal_bank_card" class="layui-form">
+                                <table class="layui-table personal_bank_card" data-table="personal_bank_card">
+                                    <caption>银行账号设置(个人)</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>姓名</th>
+                                        <th>卡名称</th>
+                                        <th>卡号</th>
+                                        <th>初始额(保存调整记录)</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="newTr">
+                                        <td></td>
+                                        <td>
+                                            <input type="text" class="layui-input head select-tree-btn" title=""
+                                                   autocomplete="off" placeholder="请输入......" data-href="user/user-select.html?num=1" data-type="用户" style="max-width: 100px" readonly>
+                                        </td>
+                                        <td style="display: none">
+                                            <input type="text" placeholder="请输入" class="userId" name="userBean.userId" style="max-width: 100px">
+                                        </td>
+                                        <td>
+                                            <input type="text" placeholder="请输入..." class="layui-input personalBankCardName" name="personalBankCardName" style="max-width: 100px">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="layui-input bankCardNum" name="personalBankCardNum"
+                                                   placeholder="请输入..." maxlength="24">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="layui-input" name="personalBankCardInitialValue"
+                                                   placeholder="请输入...">
+                                        </td>
+                                        <td>
+                                            <span class="layui-icon layui-icon-ok ok-btn new-add" title="添加"
+                                                  style="margin-right: 10px;color: #009688"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody class="dataTr">
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
